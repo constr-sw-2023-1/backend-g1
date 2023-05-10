@@ -1,0 +1,41 @@
+version: '3'
+
+services:
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: 'courses-api'
+    ports:
+      - "8080:80"
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://coursesdb:5432/user
+      - SPRING_DATASOURCE_USERNAME=user
+      - SPRING_DATASOURCE_PASSWORD=pass
+  postgres:
+    image: postgres:13.1
+    healthcheck:
+      test:
+        [
+          "CMD",
+          "pg_isready",
+          "-q",
+          "-d",
+          "postgres",
+          "-U",
+          "user"
+        ]
+      timeout: 45s
+      interval: 10s
+      retries: 10
+    restart: always
+    environment:
+      - POSTGRES_USER=user
+      - POSTGRES_PASSWORD=pass
+      - APP_DB_USER=usuario
+      - APP_DB_PASS=senha
+      - APP_DB_NAME=coursesdb
+    volumes:
+      - ./db:/docker-entrypoint-initdb.d/
+    ports:
+      - "5432:5432"
