@@ -23,7 +23,7 @@ public class CourseService {
         try {
             return courseMapper.courseToCourseDTO(courseRepository.findById(id).orElse(null));
         } catch (Exception e) {
-            throw new CourseException();
+            throw new CourseException(e);
         }
 
     }
