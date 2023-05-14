@@ -12,6 +12,9 @@ services:
       - SPRING_DATASOURCE_URL=jdbc:postgresql://coursesdb:5432/user
       - SPRING_DATASOURCE_USERNAME=user
       - SPRING_DATASOURCE_PASSWORD=pass
+    depends_on:
+      - postgres
+    restart: on-failure
   postgres:
     image: postgres:13.1
     healthcheck:
