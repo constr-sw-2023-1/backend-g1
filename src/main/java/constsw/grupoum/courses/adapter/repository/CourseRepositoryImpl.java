@@ -1,5 +1,6 @@
 package constsw.grupoum.courses.adapter.repository;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -20,5 +21,8 @@ public class CourseRepositoryImpl implements CourseRepository {
     public Optional<Course> findById(UUID id) {
         return courseRepositoryJpa.findById(id);
     }
+
+    @Override
+    public List<Course> findAll() { return courseRepositoryJpa.findAll(); }
 
 }
