@@ -28,10 +28,10 @@ public class CourseService {
 
     }
 
-    public void createCourse(CourseDTO course) throws CourseException {
+    public CourseDTO createCourse(CourseDTO course) throws CourseException {
 
         try {
-            courseRepository.insert(courseMapper.courseDTOToCourse(course));
+            return courseMapper.courseToCourseDTO(courseRepository.insert(courseMapper.courseDTOToCourse(course)));
         } catch (Exception e) {
             throw new CourseException(e);
         }

@@ -22,7 +22,7 @@ public class CourseRepositoryImpl implements CourseRepository {
     }
 
     @Override
-    public void insert(Course course) {
-        courseRepositoryMongo.insert(course);
+    public Course insert(Course course) {
+        return courseRepositoryMongo.insert(course);
     }
 }

@@ -13,7 +13,7 @@ public class CreateCourseUC {
 
     private final CourseService courseService;
 
-    public void run(CourseDTO course) throws CourseException {
-        courseService.createCourse(course);
+    public CourseDTO run(CourseDTO course) throws CourseException {
+        return courseService.createCourse(course);
     }
 }

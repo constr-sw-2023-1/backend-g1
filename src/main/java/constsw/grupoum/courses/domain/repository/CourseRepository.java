@@ -9,5 +9,5 @@ public interface CourseRepository {
 
     Optional<Course> findById(UUID id);
 
-    void insert(Course course);
+    Course insert(Course course);
 }

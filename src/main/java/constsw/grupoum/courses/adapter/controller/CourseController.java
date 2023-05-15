@@ -35,10 +35,9 @@ public class CourseController {
     }
 
     @PostMapping("/")
-    public ResponseEntity<?> postCreateCourse(@RequestBody CourseDTO course) {
+    public ResponseEntity<?> postCourse(@RequestBody CourseDTO course) {
         try {
-            createCourse.run(course);
-            return ResponseEntity.ok().build();
+            return ResponseEntity.ok(createCourse.run(course));
         } catch (CourseException e) {
             return ResponseEntity.internalServerError().body(e);
         }

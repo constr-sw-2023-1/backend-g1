@@ -34,10 +34,11 @@ public interface CourseMapper {
 
     @Named("bibliographyToRefBibliography")
     default Collection<String> bibliographyToRefBibliography(Collection<Book> books) {
-        return books
-                .stream()
-                .map(book -> book.getISBN13())
-                .collect(Collectors.toList());
+        return books == null ? null
+                : books
+                        .stream()
+                        .map(book -> book.getISBN13())
+                        .collect(Collectors.toList());
     }
 
 }
