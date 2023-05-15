@@ -1,18 +1,19 @@
 package constsw.grupoum.courses.application.usecase;
 
-import constsw.grupoum.courses.domain.entity.Course;
+import org.springframework.stereotype.Service;
+
+import constsw.grupoum.courses.domain.dto.CourseDTO;
 import constsw.grupoum.courses.domain.exception.CourseException;
 import constsw.grupoum.courses.domain.service.CourseService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Service;
 
 @RequiredArgsConstructor
 @Service
-public class CreateCourse {
+public class CreateCourseUC {
 
     private final CourseService courseService;
 
-    public void run(Course course) throws CourseException {
+    public void run(CourseDTO course) throws CourseException {
         courseService.createCourse(course);
     }
 }

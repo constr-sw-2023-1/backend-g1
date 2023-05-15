@@ -1,39 +1,43 @@
 package constsw.grupoum.courses.domain.entity;
 
-import java.util.List;
+import java.util.Collection;
 import java.util.UUID;
 
-import jakarta.persistence.*;
-import lombok.Data;
+import org.springframework.data.mongodb.core.mapping.DBRef;
+import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.Field;
+import org.springframework.data.mongodb.core.mapping.FieldType;
+import org.springframework.data.mongodb.core.mapping.MongoId;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@NoArgsConstructor
+@AllArgsConstructor
 @Data
-@Entity
+@Document(collection = "courses", language = "json")
 public class Course {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
+    @MongoId(value = FieldType.OBJECT_ID)
     private UUID id;
 
-    @Column(name = "name")
+    @Field("name")
     private String name;
 
-    @Column(name = "codcred")
-    private String codcred;
+    @Field("codcred")
+    private String codCred;
 
-    @Column(name = "workload")
-    private String workload;
+    @Field("workload")
+    private int workload;
 
-    @Column(name = "objectives")
-    private List<String> objectives;
+    @Field("objectives")
+    private Collection<String> objectives;
 
-    @Column(name = "course_program")
-    private String courseProgram;
+    @Field("syllabus")
+    private CourseSyllabus syllabus;
 
-    @JoinColumn(name = "unit_id")
-    @ManyToOne
-    private Unit units;
+    @DBRef(lazy = false)
+    private Collection<Book> bibliography;
 
-    @JoinColumn(name = "bibliography_id")
-    @ManyToOne
-    private LiteraryWork literaryWork;
 }

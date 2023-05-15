@@ -1,9 +1,7 @@
 package constsw.grupoum.courses.domain.service;
 
-import java.util.List;
 import java.util.UUID;
 
-import constsw.grupoum.courses.domain.entity.Course;
 import org.springframework.stereotype.Service;
 
 import constsw.grupoum.courses.domain.dto.CourseDTO;
@@ -30,22 +28,10 @@ public class CourseService {
 
     }
 
-    public List<CourseDTO> getAll() throws CourseException {
+    public void createCourse(CourseDTO course) throws CourseException {
 
         try {
-            List<Course> courses = courseRepository.findAll();
-            List<CourseDTO> coursesDTO = (List<CourseDTO>) courseMapper.collectionUsertoCollectionResponseUsers(courses);
-            return coursesDTO;
-        } catch (Exception e) {
-            throw new CourseException(e);
-        }
-
-    }
-
-    public void createCourse(Course course) throws CourseException {
-
-        try {
-            courseRepository.createCourse(course);
+            courseRepository.insert(courseMapper.courseDTOToCourse(course));
         } catch (Exception e) {
             throw new CourseException(e);
         }
