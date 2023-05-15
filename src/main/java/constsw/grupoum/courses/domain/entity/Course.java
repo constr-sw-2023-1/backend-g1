@@ -1,23 +1,43 @@
 package constsw.grupoum.courses.domain.entity;
 
+import java.util.Collection;
 import java.util.UUID;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import lombok.Data;
+import org.springframework.data.mongodb.core.mapping.DBRef;
+import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.Field;
+import org.springframework.data.mongodb.core.mapping.FieldType;
+import org.springframework.data.mongodb.core.mapping.MongoId;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@NoArgsConstructor
+@AllArgsConstructor
 @Data
-@Entity
+@Document(collection = "courses", language = "json")
 public class Course {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
+    @MongoId(value = FieldType.OBJECT_ID)
     private UUID id;
 
-    @Column(name = "name")
+    @Field("name")
     private String name;
+
+    @Field("codcred")
+    private String codCred;
+
+    @Field("workload")
+    private int workload;
+
+    @Field("objectives")
+    private Collection<String> objectives;
+
+    @Field("syllabus")
+    private CourseSyllabus syllabus;
+
+    @DBRef
+    private Collection<Book> bibliography;
 
 }
