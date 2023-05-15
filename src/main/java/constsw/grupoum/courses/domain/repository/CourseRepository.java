@@ -10,4 +10,5 @@ public interface CourseRepository {
 
     Optional<Course> findById(UUID id);
     List<Course> findAll();
+    void createCourse(Course course);
 }

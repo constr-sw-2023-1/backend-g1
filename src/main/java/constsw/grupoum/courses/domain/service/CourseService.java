@@ -42,4 +42,14 @@ public class CourseService {
 
     }
 
+    public void createCourse(Course course) throws CourseException {
+
+        try {
+            courseRepository.createCourse(course);
+        } catch (Exception e) {
+            throw new CourseException(e);
+        }
+
+    }
+
 }

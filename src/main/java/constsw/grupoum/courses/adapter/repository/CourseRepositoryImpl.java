@@ -25,4 +25,7 @@ public class CourseRepositoryImpl implements CourseRepository {
     @Override
     public List<Course> findAll() { return courseRepositoryJpa.findAll(); }
 
+    @Override
+    public void createCourse(Course course) {
+    }
 }
