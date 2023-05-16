@@ -1,7 +1,8 @@
 package constsw.grupoum.courses.domain.mapper;
 
+import java.util.ArrayList;
 import java.util.Collection;
-import java.util.stream.Collectors;
+import java.util.List;
 
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
@@ -24,7 +25,7 @@ public interface CourseMapper {
     @Mapping(target = "bibliography", source = "bibliography", qualifiedByName = "refBibliographyToBibliography")
     Course courseDTOToCourse(CourseDTO course);
 
-    @Mapping(target = "bibliography", qualifiedByName = "bibliographyToRefBibliography")
+    @Mapping(target = "bibliography", source = "bibliography", qualifiedByName = "bibliographyToRefBibliography")
     CourseDTO courseToCourseDTO(Course course);
 
     Collection<CourseDTO> collectionUsertoCollectionResponseUsers(Collection<Course> courses);
@@ -37,16 +38,30 @@ public interface CourseMapper {
 
     @Named("refBibliographyToBibliography")
     default Collection<Book> refBibliographyToBibliography(Collection<String> isbns) {
-        return null;
+        if (isbns == null) {
+            return null;
+        }
+        List<Book> books = new ArrayList<Book>();
+        for (String isbn : isbns) {
+            Book book = new Book();
+            book.setISBN13(isbn);
+            books.add(book);
+        }
+        return books;
     }
 
     @Named("bibliographyToRefBibliography")
     default Collection<String> bibliographyToRefBibliography(Collection<Book> books) {
-        return books == null ? null
-                : books
-                        .stream()
-                        .map(book -> book.getISBN13())
-                        .collect(Collectors.toList());
+        if (books == null) {
+            return null;
+        }
+        List<String> isbns = new ArrayList<String>();
+        for (Book book : books) {
+            if (book != null) {
+                isbns.add(book.getISBN13());
+            }
+        }
+        return isbns;
     }
 
 }
