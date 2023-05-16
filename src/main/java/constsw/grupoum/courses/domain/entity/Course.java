@@ -3,7 +3,6 @@ package constsw.grupoum.courses.domain.entity;
 import java.util.Collection;
 import java.util.UUID;
 
-import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 import org.springframework.data.mongodb.core.mapping.FieldType;
@@ -37,7 +36,6 @@ public class Course {
     @Field("syllabus")
     private CourseSyllabus syllabus;
 
-    @DBRef(lazy = false)
-    private Collection<Book> bibliography;
+    private Collection<BookRef> bibliography;
 
 }

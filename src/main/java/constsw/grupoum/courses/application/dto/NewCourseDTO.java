@@ -2,6 +2,7 @@ package constsw.grupoum.courses.application.dto;
 
 import java.util.Collection;
 
+import constsw.grupoum.courses.domain.dto.BookRefDTO;
 import constsw.grupoum.courses.domain.dto.CourseSyllabusDTO;
 
 public record NewCourseDTO(String name,
@@ -9,6 +10,6 @@ public record NewCourseDTO(String name,
         int workload,
         Collection<String> objectives,
         CourseSyllabusDTO syllabus,
-        Collection<String> bibliography) {
+        Collection<BookRefDTO> bibliography) {
 
 }
