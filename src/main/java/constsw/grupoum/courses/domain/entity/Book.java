@@ -9,7 +9,7 @@ import lombok.Data;
 public class Book {
 
     @MongoId
-    private String ISBN13;
+    private String isbn13;
 
     @Field("title")
     private String title;
