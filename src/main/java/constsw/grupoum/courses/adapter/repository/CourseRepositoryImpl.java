@@ -21,4 +21,9 @@ public class CourseRepositoryImpl implements CourseRepository {
         return courseRepositoryMongo.findById(id);
     }
 
+    @Override
+    public void deleteById(UUID id) {
+        courseRepositoryMongo.deleteById(id);
+    }
+
 }
