@@ -30,4 +30,11 @@ public class CourseRepositoryImpl implements CourseRepository {
     public Course insert(Course course) {
         return courseRepositoryMongo.insert(course);
     }
+
+    @Override
+    public Course save(Course course) {
+        return courseRepositoryMongo.save(course);
+    }
+
+    
 }

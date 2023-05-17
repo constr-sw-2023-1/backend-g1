@@ -19,6 +19,7 @@ import constsw.grupoum.courses.application.usecase.CreateCourseUC;
 import constsw.grupoum.courses.application.usecase.FindCourseByIdUC;
 import constsw.grupoum.courses.application.usecase.UpdateCourseUC;
 import constsw.grupoum.courses.domain.dto.CourseDTO;
+import constsw.grupoum.courses.domain.dto.CourseUpdateDTO;
 import constsw.grupoum.courses.domain.exception.CourseException;
 import lombok.RequiredArgsConstructor;
 
@@ -45,7 +46,7 @@ public class CourseController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<?> updateById(@PathVariable UUID id, CourseDTO courseDTO) {
+    public ResponseEntity<?> updateById(@PathVariable UUID id, @RequestBody CourseUpdateDTO courseDTO) {
         try {
             return ResponseEntity.ok(updateCourse.run(id, courseDTO));
         } catch (CourseException e) {
