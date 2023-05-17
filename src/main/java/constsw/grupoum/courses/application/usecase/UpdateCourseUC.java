@@ -5,6 +5,7 @@ import java.util.UUID;
 import org.springframework.stereotype.Service;
 
 import constsw.grupoum.courses.domain.dto.CourseDTO;
+import constsw.grupoum.courses.domain.exception.CourseException;
 import constsw.grupoum.courses.domain.service.CourseService;
 import lombok.RequiredArgsConstructor;
 
@@ -14,7 +15,7 @@ public class UpdateCourseUC {
     
     private final CourseService courseService;
 
-    public CourseDTO run(UUID id ,CourseDTO courseDTO) {
+    public CourseDTO run(UUID id ,CourseDTO courseDTO) throws CourseException {
         return courseService.updateCourse(id ,courseDTO);
     }
 }

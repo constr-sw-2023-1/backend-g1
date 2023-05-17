@@ -5,6 +5,7 @@ import java.util.UUID;
 import org.springframework.stereotype.Service;
 
 import constsw.grupoum.courses.domain.dto.CourseDTO;
+import constsw.grupoum.courses.domain.entity.Course;
 import constsw.grupoum.courses.domain.exception.CourseException;
 import constsw.grupoum.courses.domain.mapper.CourseMapper;
 import constsw.grupoum.courses.domain.repository.CourseRepository;
@@ -36,8 +37,9 @@ public class CourseService {
 
     public CourseDTO updateCourse(UUID id, CourseDTO courseDTO) throws CourseException {
         try {
-            //courseMapper.courseDTOToCourse(courseDTO);
-            //courseRepository.save(courseDTO);
+            Course course = courseMapper.courseDTOToCourse(courseDTO);
+            course.setId(id);
+            return courseMapper.courseToCourseDTO(courseRepository.insert(course));
         } catch (Exception e) {
             throw new CourseException(e);
         }
