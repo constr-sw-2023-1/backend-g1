@@ -34,4 +34,13 @@ public class CourseService {
         }
     }
 
+    public CourseDTO updateCourse(UUID id, CourseDTO courseDTO) throws CourseException {
+        try {
+            //courseMapper.courseDTOToCourse(courseDTO);
+            //courseRepository.save(courseDTO);
+        } catch (Exception e) {
+            throw new CourseException(e);
+        }
+    }
+
 }
