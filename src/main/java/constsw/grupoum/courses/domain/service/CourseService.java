@@ -19,13 +19,19 @@ public class CourseService {
     private final CourseMapper courseMapper;
 
     public CourseDTO getById(UUID id) throws CourseException {
-
         try {
             return courseMapper.courseToCourseDTO(courseRepository.findById(id).orElse(null));
         } catch (Exception e) {
             throw new CourseException(e);
         }
+    }
 
+    public void deleteById(UUID id) throws CourseException {
+        try {
+            courseRepository.deleteById(id);
+        } catch (Exception e) {
+            throw new CourseException(e);
+        }
     }
 
     public CourseDTO createCourse(CourseDTO course) throws CourseException {
