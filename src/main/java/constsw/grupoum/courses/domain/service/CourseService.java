@@ -42,5 +42,15 @@ public class CourseService {
             throw new CourseException(e);
         }
     }
+    public CourseDTO createCourse(CourseDTO course) throws CourseException {
+
+        try {
+            return courseMapper
+                    .courseToCourseDTO(courseRepository.insert(courseMapper.courseDTOWithoutIdToCourseWithId(course)));
+        } catch (Exception e) {
+            throw new CourseException(e);
+        }
+
+    }
 
 }
