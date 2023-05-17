@@ -9,4 +9,6 @@ public interface CourseRepository {
 
     Optional<Course> findById(UUID id);
 
+    void deleteById(UUID id);
+
 }
