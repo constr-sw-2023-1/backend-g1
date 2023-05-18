@@ -2,23 +2,21 @@ package constsw.grupoum.courses.adapter.controller;
 
 import java.util.UUID;
 
-import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import constsw.grupoum.courses.application.usecase.DeleteCourseByIdUC;
 import constsw.grupoum.courses.application.dto.NewCourseDTO;
 import constsw.grupoum.courses.application.usecase.CreateCourseUC;
+import constsw.grupoum.courses.application.usecase.DeleteCourseByIdUC;
 import constsw.grupoum.courses.application.usecase.FindCourseByIdUC;
 import constsw.grupoum.courses.application.usecase.UpdateCourseUC;
-import constsw.grupoum.courses.domain.dto.CourseDTO;
 import constsw.grupoum.courses.domain.dto.CourseUpdateDTO;
 import constsw.grupoum.courses.domain.exception.CourseException;
 import lombok.RequiredArgsConstructor;
@@ -27,15 +25,15 @@ import lombok.RequiredArgsConstructor;
 @RequestMapping("/courses")
 @RestController
 public class CourseController {
-
+    
     private final FindCourseByIdUC findByIdUC;
-
+    
     private final DeleteCourseByIdUC deleteById;
-
+    
     private final UpdateCourseUC updateCourse;
     
     private final CreateCourseUC createCourse;
-
+    
     @GetMapping("/{id}")
     public ResponseEntity<?> getById(@PathVariable UUID id) {
         try {
@@ -44,7 +42,7 @@ public class CourseController {
             return ResponseEntity.internalServerError().body(e);
         }
     }
-
+    
     @PutMapping("/{id}")
     public ResponseEntity<?> updateById(@PathVariable UUID id, @RequestBody CourseUpdateDTO courseDTO) {
         try {
@@ -53,7 +51,7 @@ public class CourseController {
             return ResponseEntity.internalServerError().body(e);
         }
     }
-
+    
     @DeleteMapping("/{id}")
     public ResponseEntity<?> deleteById(@PathVariable UUID id) {
         try {
@@ -63,7 +61,7 @@ public class CourseController {
             return ResponseEntity.internalServerError().body(e);
         }
     }
-
+    
     @PostMapping("/")
     public ResponseEntity<?> postCourse(@RequestBody NewCourseDTO course) {
         try {
@@ -72,5 +70,5 @@ public class CourseController {
             return ResponseEntity.internalServerError().body(e);
         }
     }
-
+    
 }
