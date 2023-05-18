@@ -13,6 +13,6 @@ public class CourseSyllabus {
 
     private String description;
 
-    private Collection<SylabusUnit> units;
+    private Collection<SyllabusUnit> units;
 
 }

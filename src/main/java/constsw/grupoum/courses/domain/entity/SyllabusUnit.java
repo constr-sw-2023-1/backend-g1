@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class SylabusUnit {
+public class SyllabusUnit {
 
     private int number;
 
