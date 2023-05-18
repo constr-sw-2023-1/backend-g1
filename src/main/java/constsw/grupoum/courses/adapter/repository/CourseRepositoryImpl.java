@@ -26,4 +26,8 @@ public class CourseRepositoryImpl implements CourseRepository {
         courseRepositoryMongo.deleteById(id);
     }
 
+    @Override
+    public Course insert(Course course) {
+        return courseRepositoryMongo.insert(course);
+    }
 }

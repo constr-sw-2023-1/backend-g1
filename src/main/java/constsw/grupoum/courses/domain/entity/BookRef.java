@@ -1,19 +1,19 @@
 package constsw.grupoum.courses.domain.entity;
 
-import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Field;
-import org.springframework.data.mongodb.core.mapping.MongoId;
 
 import lombok.Data;
 
 @Data
-@Document(collection = "books", language = "json")
-public class Book {
+public class BookRef {
 
-    @MongoId
+    @Field("isbn13")
     private String isbn13;
 
     @Field("title")
     private String title;
 
+    @DBRef(lazy = false)
+    private Book book;
 }
