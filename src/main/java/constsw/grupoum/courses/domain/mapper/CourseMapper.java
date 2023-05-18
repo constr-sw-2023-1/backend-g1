@@ -29,7 +29,7 @@ public interface CourseMapper {
 
     CourseDTO newCourseDTOToCourseDTO(NewCourseDTO course);
 
-    Collection<CourseDTO> collectionUsertoCollectionResponseUsers(Collection<Course> courses);
+    Collection<CourseDTO> courseCollectionToCourseDTOCollection(Collection<Course> courses);
 
     BookRef bookRefDTOToBookRef(BookRefDTO book);
 

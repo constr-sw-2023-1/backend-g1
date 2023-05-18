@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import constsw.grupoum.courses.application.usecase.DeleteCourseByIdUC;
+import constsw.grupoum.courses.application.usecase.FindCourseByComplexQueryUC;
 import constsw.grupoum.courses.application.dto.NewCourseDTO;
 import constsw.grupoum.courses.application.usecase.CreateCourseUC;
 import constsw.grupoum.courses.application.usecase.FindCourseByIdUC;
@@ -30,6 +31,8 @@ public class CourseController {
     private final DeleteCourseByIdUC deleteById;
 
     private final CreateCourseUC createCourse;
+
+    private final FindCourseByComplexQueryUC findByComplexQuery;
 
     @GetMapping("/{id}")
     public ResponseEntity<?> getById(@PathVariable UUID id) {
@@ -61,7 +64,11 @@ public class CourseController {
 
     @GetMapping("")
     public ResponseEntity<?> getComplexQuery(@RequestParam Map<String, String> searchParams) {
-        return ResponseEntity.ok(searchParams);
+        try {
+            return ResponseEntity.ok(findByComplexQuery.run(searchParams));
+        } catch (CourseException e) {
+            return ResponseEntity.internalServerError().body(e);
+        }
     }
 
 }
