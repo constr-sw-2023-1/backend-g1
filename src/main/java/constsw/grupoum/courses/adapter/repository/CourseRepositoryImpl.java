@@ -6,6 +6,7 @@ import java.util.UUID;
 
 import org.springframework.stereotype.Repository;
 
+import constsw.grupoum.courses.adapter.mapper.mongo.MongoEntitiesMapper;
 import constsw.grupoum.courses.adapter.repository.mongo.CourseRepositoryMongo;
 import constsw.grupoum.courses.domain.entity.Course;
 import constsw.grupoum.courses.domain.repository.CourseRepository;
@@ -18,9 +19,11 @@ public class CourseRepositoryImpl implements CourseRepository {
 
     private final CourseRepositoryMongo courseRepositoryMongo;
 
+    private final MongoEntitiesMapper mapper;
+
     @Override
     public Optional<Course> findById(UUID id) {
-        return courseRepositoryMongo.findById(id);
+        return courseRepositoryMongo.findById(id).map(course -> mapper.toCourse(course));
     }
 
     @Override
@@ -30,7 +33,7 @@ public class CourseRepositoryImpl implements CourseRepository {
 
     @Override
     public Course insert(Course course) {
-        return courseRepositoryMongo.insert(course);
+        return mapper.toCourse(courseRepositoryMongo.insert(mapper.toMongoCourse(course)));
     }
 
     @Override
