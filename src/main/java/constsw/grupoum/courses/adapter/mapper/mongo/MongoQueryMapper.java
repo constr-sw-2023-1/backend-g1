@@ -48,7 +48,7 @@ public class MongoQueryMapper {
     }
 
     private String toRegexMongo(String pattern) {
-        return pattern.replaceAll("^%|%$", "(.*)");
+        return pattern.replaceAll("^%", "^(.*)").replaceAll("%$", "(.*)\\$");
     }
 
 }
