@@ -12,8 +12,6 @@ import constsw.grupoum.courses.domain.vo.QueryParam;
 @Component
 public class MongoQueryMapper {
 
-    Pattern like = Pattern.compile("^%|%$");
-
     public Query toQuery(Collection<QueryParam> queries) {
 
         QueryBuilder queryBuilder = new QueryBuilder();
