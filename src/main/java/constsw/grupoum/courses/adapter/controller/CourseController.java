@@ -16,6 +16,7 @@ import constsw.grupoum.courses.application.dto.CourseUpdateDTO;
 import constsw.grupoum.courses.application.dto.NewCourseDTO;
 import constsw.grupoum.courses.application.usecase.CreateCourseUC;
 import constsw.grupoum.courses.application.usecase.DeleteCourseByIdUC;
+import constsw.grupoum.courses.application.usecase.FindAllCoursesUC;
 import constsw.grupoum.courses.application.usecase.FindCourseByIdUC;
 import constsw.grupoum.courses.application.usecase.UpdateCourseUC;
 import constsw.grupoum.courses.domain.exception.CourseException;
@@ -25,15 +26,26 @@ import lombok.RequiredArgsConstructor;
 @RequestMapping("/courses")
 @RestController
 public class CourseController {
-    
+
+    private final FindAllCoursesUC findAll;
+
     private final FindCourseByIdUC findByIdUC;
-    
+
     private final DeleteCourseByIdUC deleteById;
-    
+
     private final UpdateCourseUC updateCourse;
-    
+
     private final CreateCourseUC createCourse;
-    
+
+    @GetMapping("/")
+    public ResponseEntity<?> getAll() {
+        try {
+            return ResponseEntity.ok(findAll.run());
+        } catch (CourseException e) {
+            return ResponseEntity.internalServerError().body(e);
+        }
+    }
+
     @GetMapping("/{id}")
     public ResponseEntity<?> getById(@PathVariable UUID id) {
         try {
@@ -42,7 +54,7 @@ public class CourseController {
             return ResponseEntity.internalServerError().body(e);
         }
     }
-    
+
     @PutMapping("/{id}")
     public ResponseEntity<?> updateById(@PathVariable UUID id, @RequestBody CourseUpdateDTO courseDTO) {
         try {
@@ -51,7 +63,7 @@ public class CourseController {
             return ResponseEntity.internalServerError().body(e);
         }
     }
-    
+
     @DeleteMapping("/{id}")
     public ResponseEntity<?> deleteById(@PathVariable UUID id) {
         try {
@@ -61,7 +73,7 @@ public class CourseController {
             return ResponseEntity.internalServerError().body(e);
         }
     }
-    
+
     @PostMapping("/")
     public ResponseEntity<?> postCourse(@RequestBody NewCourseDTO course) {
         try {
@@ -70,5 +82,5 @@ public class CourseController {
             return ResponseEntity.internalServerError().body(e);
         }
     }
-    
+
 }

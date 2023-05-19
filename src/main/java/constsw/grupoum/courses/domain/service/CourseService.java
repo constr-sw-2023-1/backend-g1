@@ -1,5 +1,6 @@
 package constsw.grupoum.courses.domain.service;
 
+import java.util.Collection;
 import java.util.UUID;
 
 import org.springframework.stereotype.Service;
@@ -18,6 +19,14 @@ public class CourseService {
     private final CourseRepository courseRepository;
 
     private final CourseMapper courseMapper;
+
+    public Collection<CourseDTO> getAll() throws CourseException {
+        try {
+            return courseMapper.toCourseDTOCollection(courseRepository.findAll());
+        } catch (Exception e) {
+            throw new CourseException(e);
+        }
+    }
 
     public CourseDTO getById(UUID id) throws CourseException {
         try {
