@@ -37,7 +37,7 @@ public class CourseController {
 
     private final CreateCourseUC createCourse;
 
-    @GetMapping("/")
+    @GetMapping
     public ResponseEntity<?> getAll() {
         try {
             return ResponseEntity.ok(findAll.run());
@@ -74,7 +74,7 @@ public class CourseController {
         }
     }
 
-    @PostMapping("/")
+    @PostMapping
     public ResponseEntity<?> postCourse(@RequestBody NewCourseDTO course) {
         try {
             return ResponseEntity.ok(createCourse.run(course));
