@@ -36,8 +36,7 @@ public class CourseRepositoryImpl implements CourseRepository {
 
     @Override
     public Course save(Course course) {
-        return courseRepositoryMongo.save(course);
+        return mapper.toCourse(courseRepositoryMongo.save(mapper.toMongoCourse(course)));
     }
 
-    
 }
