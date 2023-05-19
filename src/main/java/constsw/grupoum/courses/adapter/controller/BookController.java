@@ -26,7 +26,7 @@ public class BookController {
 
     private final FindBookByIsbn13UC findByIsbn13UC;
 
-    @PostMapping("")
+    @PostMapping
     public ResponseEntity<?> create(@RequestBody BookDTO book) {
         try {
             return ResponseEntity.ok(create.run(book));
@@ -35,7 +35,7 @@ public class BookController {
         }
     }
 
-    @GetMapping("")
+    @GetMapping
     public ResponseEntity<?> getAll() {
         try {
             return ResponseEntity.ok(findAll.run());
