@@ -34,6 +34,8 @@ public interface MongoEntitiesMapper {
 
     Course toCourse(constsw.grupoum.courses.adapter.entity.mongo.Course course);
 
+    Collection<Course> toCourseCollection(Collection<constsw.grupoum.courses.adapter.entity.mongo.Course> course);
+
     constsw.grupoum.courses.adapter.entity.mongo.CourseSyllabus toMongoCourseSyllabus(
             CourseSyllabus courseSyllabus);
 

@@ -22,6 +22,11 @@ public class CourseRepositoryImpl implements CourseRepository {
     private final MongoEntitiesMapper mapper;
 
     @Override
+    public Collection<Course> findAll() {
+        return mapper.toCourseCollection(courseRepositoryMongo.findAll());
+    }
+
+    @Override
     public Optional<Course> findById(UUID id) {
         return courseRepositoryMongo.findById(id).map(course -> mapper.toCourse(course));
     }
@@ -35,6 +40,12 @@ public class CourseRepositoryImpl implements CourseRepository {
     public Course insert(Course course) {
         return mapper.toCourse(courseRepositoryMongo.insert(mapper.toMongoCourse(course)));
     }
+
+    @Override
+    public Course save(Course course) {
+        return mapper.toCourse(courseRepositoryMongo.save(mapper.toMongoCourse(course)));
+    }
+
 
     @Override
     public Collection<Course> findByComplexQuery(Collection<QueryParam> queries) {

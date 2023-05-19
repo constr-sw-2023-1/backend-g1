@@ -9,11 +9,15 @@ import constsw.grupoum.courses.domain.vo.QueryParam;
 
 public interface CourseRepository {
 
+    Collection<Course> findAll();
+
     Optional<Course> findById(UUID id);
 
     void deleteById(UUID id);
 
     Course insert(Course course);
+
+    Course save(Course course);
 
     Collection<Course> findByComplexQuery(Collection<QueryParam> queries);
 
