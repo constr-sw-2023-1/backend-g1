@@ -89,7 +89,7 @@ public class CourseController {
         }
     }
 
-    @GetMapping("")
+    @GetMapping("/search")
     public ResponseEntity<?> getComplexQuery(@RequestParam Map<String, String> searchParams) {
         try {
             return ResponseEntity.ok(findByComplexQuery.run(searchParams));
