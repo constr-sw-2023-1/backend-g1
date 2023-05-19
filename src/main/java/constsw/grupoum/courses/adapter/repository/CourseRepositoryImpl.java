@@ -1,5 +1,6 @@
 package constsw.grupoum.courses.adapter.repository;
 
+import java.util.Collection;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -18,6 +19,11 @@ public class CourseRepositoryImpl implements CourseRepository {
     private final CourseRepositoryMongo courseRepositoryMongo;
 
     private final MongoEntitiesMapper mapper;
+
+    @Override
+    public Collection<Course> findAll() {
+        return mapper.toCourseCollection(courseRepositoryMongo.findAll());
+    }
 
     @Override
     public Optional<Course> findById(UUID id) {
