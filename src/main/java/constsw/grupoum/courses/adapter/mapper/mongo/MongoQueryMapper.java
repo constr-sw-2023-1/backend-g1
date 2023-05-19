@@ -1,7 +1,6 @@
 package constsw.grupoum.courses.adapter.mapper.mongo;
 
 import java.util.Collection;
-import java.util.regex.Pattern;
 
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Component;
