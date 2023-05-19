@@ -12,4 +12,6 @@ public interface CourseRepository {
     void deleteById(UUID id);
 
     Course insert(Course course);
+
+    Course save(Course course);
 }
