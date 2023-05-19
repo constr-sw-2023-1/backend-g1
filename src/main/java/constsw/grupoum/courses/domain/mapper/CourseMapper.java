@@ -8,10 +8,10 @@ import org.mapstruct.ReportingPolicy;
 import org.mapstruct.factory.Mappers;
 import org.springframework.stereotype.Component;
 
+import constsw.grupoum.courses.application.dto.CourseUpdateDTO;
 import constsw.grupoum.courses.application.dto.NewCourseDTO;
 import constsw.grupoum.courses.domain.dto.BookRefDTO;
 import constsw.grupoum.courses.domain.dto.CourseDTO;
-import constsw.grupoum.courses.domain.dto.CourseUpdateDTO;
 import constsw.grupoum.courses.domain.entity.BookRef;
 import constsw.grupoum.courses.domain.entity.Course;
 
@@ -31,6 +31,8 @@ public interface CourseMapper {
     CourseDTO courseToCourseDTO(Course course);
 
     CourseDTO newCourseDTOToCourseDTO(NewCourseDTO course);
+
+    CourseDTO toCourseDTO(CourseUpdateDTO course);
 
     Collection<CourseDTO> collectionUsertoCollectionResponseUsers(Collection<Course> courses);
 

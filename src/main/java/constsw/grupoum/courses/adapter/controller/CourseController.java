@@ -12,12 +12,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import constsw.grupoum.courses.application.dto.CourseUpdateDTO;
 import constsw.grupoum.courses.application.dto.NewCourseDTO;
 import constsw.grupoum.courses.application.usecase.CreateCourseUC;
 import constsw.grupoum.courses.application.usecase.DeleteCourseByIdUC;
 import constsw.grupoum.courses.application.usecase.FindCourseByIdUC;
 import constsw.grupoum.courses.application.usecase.UpdateCourseUC;
-import constsw.grupoum.courses.domain.dto.CourseUpdateDTO;
 import constsw.grupoum.courses.domain.exception.CourseException;
 import lombok.RequiredArgsConstructor;
 
