@@ -36,7 +36,7 @@ public class CourseController {
 
     private final CreateCourseUC createCourse;
 
-    @GetMapping("/")
+    @GetMapping
     public ResponseEntity<?> getAll() throws Throwable {
         return ResponseEntity.ok(findAll.run());
     }
@@ -58,7 +58,7 @@ public class CourseController {
         return ResponseEntity.ok().build();
     }
 
-    @PostMapping("/")
+    @PostMapping
     public ResponseEntity<?> postCourse(@RequestBody NewCourseDTO course) throws Throwable {
         return ResponseEntity.ok(createCourse.run(course));
     }
