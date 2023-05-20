@@ -22,47 +22,27 @@ public class CourseService {
     private final CourseMapper courseMapper;
 
     public Collection<CourseDTO> getAll() throws CourseException {
-        try {
-            return courseMapper.toCourseDTOCollection(courseRepository.findAll());
-        } catch (Exception e) {
-            throw new CourseException(e);
-        }
+        return courseMapper.toCourseDTOCollection(courseRepository.findAll());
     }
 
     public CourseDTO getById(UUID id) throws CourseException {
-        try {
-            return courseMapper.courseToCourseDTO(courseRepository.findById(id).orElse(null));
-        } catch (Exception e) {
-            throw new CourseException(e);
-        }
+        return courseMapper.courseToCourseDTO(courseRepository.findById(id).orElse(null));
     }
 
     public void deleteById(UUID id) throws CourseException {
-        try {
-            courseRepository.deleteById(id);
-        } catch (Exception e) {
-            throw new CourseException(e);
-        }
+        courseRepository.deleteById(id);
     }
 
     public CourseDTO updateCourse(UUID id, CourseDTO courseDTO) throws CourseException {
-        try {
-            Course course = courseMapper.courseDTOToCourse(courseDTO);
-            course.setId(id);
+        Course course = courseMapper.courseDTOToCourse(courseDTO);
+        course.setId(id);
 
-            return courseMapper.courseToCourseDTO(courseRepository.save(course));
-        } catch (Exception e) {
-            throw new CourseException(e);
-        }
+        return courseMapper.courseToCourseDTO(courseRepository.save(course));
     }
 
     public CourseDTO createCourse(CourseDTO course) throws CourseException {
-        try {
-            return courseMapper
-                    .courseToCourseDTO(courseRepository.insert(courseMapper.courseDTOWithoutIdToCourseWithId(course)));
-        } catch (Exception e) {
-            throw new CourseException(e);
-        }
+        return courseMapper
+                .courseToCourseDTO(courseRepository.insert(courseMapper.courseDTOWithoutIdToCourseWithId(course)));
     }
 
     public Collection<CourseDTO> getByComplexQuery(Collection<QueryParam> queries) throws CourseException {
