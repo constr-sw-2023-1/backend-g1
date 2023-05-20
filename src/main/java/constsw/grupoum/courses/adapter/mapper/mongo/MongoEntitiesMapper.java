@@ -3,7 +3,6 @@ package constsw.grupoum.courses.adapter.mapper.mongo;
 import java.util.Collection;
 
 import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;
 import org.springframework.stereotype.Component;
 
