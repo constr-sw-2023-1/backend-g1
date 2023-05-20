@@ -7,6 +7,7 @@ import java.util.UUID;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.stereotype.Repository;
 
+import constsw.grupoum.courses.adapter.entity.mongo.CourseMongo;
 import constsw.grupoum.courses.adapter.mapper.mongo.MongoEntitiesMapper;
 import constsw.grupoum.courses.adapter.mapper.mongo.MongoQueryMapper;
 import constsw.grupoum.courses.adapter.repository.mongo.CourseRepositoryMongo;
@@ -54,9 +55,7 @@ public class CourseRepositoryImpl implements CourseRepository {
 
     @Override
     public Collection<Course> findByComplexQuery(Collection<QueryParam> queries) {
-        return mapperEntity.toCourseCollection(
-                mongoTemplate.find(mapperQuery.toQuery(queries),
-                        constsw.grupoum.courses.adapter.entity.mongo.Course.class));
+        return mapperEntity.toCourseCollection(mongoTemplate.find(mapperQuery.toQuery(queries), CourseMongo.class));
 
     }
 }
