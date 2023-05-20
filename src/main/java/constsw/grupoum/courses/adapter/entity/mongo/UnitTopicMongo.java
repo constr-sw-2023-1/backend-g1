@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-public class UnitTopic {
+public class UnitTopicMongo {
 
     @Field(name = "number", targetType = FieldType.INT32)
     private int number;
