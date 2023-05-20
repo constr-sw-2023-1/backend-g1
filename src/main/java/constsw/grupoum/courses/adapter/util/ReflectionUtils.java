@@ -6,7 +6,7 @@ import java.util.Queue;
 
 import org.springframework.stereotype.Component;
 
-import constsw.grupoum.courses.adapter.exception.InvalidAtributeException;
+import constsw.grupoum.courses.domain.exception.InvalidAtributeException;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor

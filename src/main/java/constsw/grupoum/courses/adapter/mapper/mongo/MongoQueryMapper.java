@@ -6,9 +6,9 @@ import org.apache.commons.beanutils.ConvertUtils;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Component;
 
-import constsw.grupoum.courses.adapter.exception.InvalidAtributeException;
 import constsw.grupoum.courses.adapter.util.ReflectionUtils;
 import constsw.grupoum.courses.adapter.util.mongo.QueryBuilder;
+import constsw.grupoum.courses.domain.exception.InvalidAtributeException;
 import constsw.grupoum.courses.domain.vo.QueryParam;
 import lombok.RequiredArgsConstructor;
 

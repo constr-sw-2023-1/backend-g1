@@ -1,6 +1,6 @@
-package constsw.grupoum.courses.adapter.exception;
+package constsw.grupoum.courses.domain.exception;
 
-public class InvalidAtributeException extends AdapterExcpetion {
+public class InvalidAtributeException extends CourseException {
 
     public InvalidAtributeException(String message) {
         super(message);

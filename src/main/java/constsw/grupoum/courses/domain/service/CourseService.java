@@ -68,7 +68,9 @@ public class CourseService {
     public Collection<CourseDTO> getByComplexQuery(Collection<QueryParam> queries) throws CourseException {
         try {
             return courseMapper.toCourseDTOCollection(courseRepository.findByComplexQuery(queries));
-        } catch (Exception e) {
+        } catch (CourseException e) {
+            throw e;
+        } catch (Throwable e) {
             throw new CourseException(e);
         }
     }

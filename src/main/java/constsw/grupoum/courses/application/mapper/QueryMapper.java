@@ -9,7 +9,7 @@ import java.util.stream.Collectors;
 import org.springframework.stereotype.Component;
 
 import constsw.grupoum.courses.application.exception.ApplicationException;
-import constsw.grupoum.courses.application.exception.InvalidQueryOperator;
+import constsw.grupoum.courses.application.exception.InvalidQueryOperatorException;
 import constsw.grupoum.courses.domain.vo.QueryParam;
 import constsw.grupoum.courses.domain.vo.enumeration.Operator;
 
@@ -28,7 +28,7 @@ public class QueryMapper {
                             getValue(queryParam.getValue())))
                     .collect(Collectors.toList());
         } catch (RuntimeException e) {
-            throw new InvalidQueryOperator(e.getMessage(), e);
+            throw new InvalidQueryOperatorException(e.getMessage(), e);
         }
 
     }
