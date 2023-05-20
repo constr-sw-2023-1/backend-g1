@@ -55,7 +55,7 @@ public class CourseRepositoryImpl implements CourseRepository {
 
     @Override
     public Collection<Course> findByComplexQuery(Collection<QueryParam> queries) {
-        return mapperEntity.toCourseCollection(mongoTemplate.find(mapperQuery.toQuery(queries), CourseMongo.class));
-
+        return mapperEntity.toCourseCollection(
+                mongoTemplate.find(mapperQuery.toQuery(CourseMongo.class, queries), CourseMongo.class));
     }
 }

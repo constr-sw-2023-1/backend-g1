@@ -10,3 +10,9 @@ spring:
       password: root
       authentication-database: admin
       uuid-representation: standard
+logging:
+  level:
+    root: INFO
+    constsw:
+      grupoum:
+        oauth: ${LOGGING_LEVEL:INFO}
