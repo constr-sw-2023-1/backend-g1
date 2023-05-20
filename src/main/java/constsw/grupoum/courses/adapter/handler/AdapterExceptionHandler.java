@@ -35,7 +35,7 @@ public class AdapterExceptionHandler {
     @ExceptionHandler(RepositoryDuplicateKeyException.class)
     public ResponseEntity<ErrorDTO> handleThrowable(RepositoryDuplicateKeyException ex) {
         return ResponseEntity.status(HttpStatus.CONFLICT)
-                .body(new ErrorDTO("CO-513", ex.getMessage()));
+                .body(new ErrorDTO("CO-410", ex.getMessage()));
     }
 
 }
