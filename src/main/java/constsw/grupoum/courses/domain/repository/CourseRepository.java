@@ -5,6 +5,7 @@ import java.util.Optional;
 import java.util.UUID;
 
 import constsw.grupoum.courses.domain.entity.Course;
+import constsw.grupoum.courses.domain.exception.CourseException;
 import constsw.grupoum.courses.domain.vo.QueryParam;
 
 public interface CourseRepository {
@@ -19,6 +20,6 @@ public interface CourseRepository {
 
     Course save(Course course);
 
-    Collection<Course> findByComplexQuery(Collection<QueryParam> queries);
+    Collection<Course> findByComplexQuery(Collection<QueryParam> queries) throws CourseException;
 
 }

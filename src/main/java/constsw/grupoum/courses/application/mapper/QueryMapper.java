@@ -9,7 +9,8 @@ import java.util.stream.Collectors;
 import org.springframework.stereotype.Component;
 
 import constsw.grupoum.courses.application.exception.ApplicationException;
-import constsw.grupoum.courses.application.exception.QueryInvalidaException;
+import constsw.grupoum.courses.application.exception.InvalidQueryException;
+import constsw.grupoum.courses.application.exception.InvalidQueryOperatorException;
 import constsw.grupoum.courses.domain.vo.QueryParam;
 import constsw.grupoum.courses.domain.vo.enumeration.Operator;
 
@@ -21,15 +22,18 @@ public class QueryMapper {
     public Collection<QueryParam> mapToCollectionOfQueryParam(Map<String, String> queryParams)
             throws ApplicationException {
 
-        try {
-            return queryParams.entrySet()
-                    .stream()
-                    .map(queryParam -> new QueryParam(getOperator(queryParam.getValue()), queryParam.getKey(),
-                            getValue(queryParam.getValue())))
-                    .collect(Collectors.toList());
-        } catch (RuntimeException e) {
-            throw new QueryInvalidaException();
-        }
+        return queryParams.entrySet()
+                .stream()
+                .map(queryParam -> {
+                    Operator operator = getOperator(queryParam.getValue());
+                    String value = getValue(queryParam.getValue());
+
+                    if (operator.equals(Operator.LIKE) && value.length() < 3)
+                        throw new InvalidQueryException("Like's operations must be have more than three characters");
+
+                    return new QueryParam(operator, queryParam.getKey(), value);
+                })
+                .collect(Collectors.toList());
 
     }
 
@@ -54,7 +58,7 @@ public class QueryMapper {
                 return Operator.LIKE;
         }
 
-        throw new RuntimeException("Operador inválido!");
+        throw new InvalidQueryOperatorException(String.format("Invalid query operator: %s", value));
     }
 
     private String getValue(String value) {

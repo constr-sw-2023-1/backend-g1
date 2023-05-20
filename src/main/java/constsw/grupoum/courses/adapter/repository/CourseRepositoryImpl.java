@@ -12,6 +12,7 @@ import constsw.grupoum.courses.adapter.mapper.mongo.MongoEntitiesMapper;
 import constsw.grupoum.courses.adapter.mapper.mongo.MongoQueryMapper;
 import constsw.grupoum.courses.adapter.repository.mongo.CourseRepositoryMongo;
 import constsw.grupoum.courses.domain.entity.Course;
+import constsw.grupoum.courses.domain.exception.CourseException;
 import constsw.grupoum.courses.domain.repository.CourseRepository;
 import constsw.grupoum.courses.domain.vo.QueryParam;
 import lombok.RequiredArgsConstructor;
@@ -54,8 +55,8 @@ public class CourseRepositoryImpl implements CourseRepository {
     }
 
     @Override
-    public Collection<Course> findByComplexQuery(Collection<QueryParam> queries) {
-        return mapperEntity.toCourseCollection(mongoTemplate.find(mapperQuery.toQuery(queries), CourseMongo.class));
-
+    public Collection<Course> findByComplexQuery(Collection<QueryParam> queries) throws CourseException {
+        return mapperEntity.toCourseCollection(
+                mongoTemplate.find(mapperQuery.toQuery(CourseMongo.class, queries), CourseMongo.class));
     }
 }
