@@ -12,7 +12,6 @@ import constsw.grupoum.courses.application.usecase.CreateBookUC;
 import constsw.grupoum.courses.application.usecase.FindAllBooksUC;
 import constsw.grupoum.courses.application.usecase.FindBookByIsbn13UC;
 import constsw.grupoum.courses.domain.dto.BookDTO;
-import constsw.grupoum.courses.domain.exception.CourseException;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
@@ -27,30 +26,18 @@ public class BookController {
     private final FindBookByIsbn13UC findByIsbn13UC;
 
     @PostMapping
-    public ResponseEntity<?> create(@RequestBody BookDTO book) {
-        try {
-            return ResponseEntity.ok(create.run(book));
-        } catch (CourseException e) {
-            return ResponseEntity.internalServerError().body(e);
-        }
+    public ResponseEntity<?> create(@RequestBody BookDTO book) throws Throwable {
+        return ResponseEntity.ok(create.run(book));
     }
 
     @GetMapping
-    public ResponseEntity<?> getAll() {
-        try {
-            return ResponseEntity.ok(findAll.run());
-        } catch (CourseException e) {
-            return ResponseEntity.internalServerError().body(e);
-        }
+    public ResponseEntity<?> getAll() throws Throwable {
+        return ResponseEntity.ok(findAll.run());
     }
 
     @GetMapping("/{isbn13}")
-    public ResponseEntity<?> getById(@PathVariable String isbn13) {
-        try {
-            return ResponseEntity.ok(findByIsbn13UC.run(isbn13));
-        } catch (CourseException e) {
-            return ResponseEntity.internalServerError().body(e);
-        }
+    public ResponseEntity<?> getById(@PathVariable String isbn13) throws Throwable {
+        return ResponseEntity.ok(findByIsbn13UC.run(isbn13));
     }
 
 }
