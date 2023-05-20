@@ -2,6 +2,7 @@ package constsw.grupoum.courses;
 
 import java.io.File;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
@@ -13,9 +14,11 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import constsw.grupoum.courses.adapter.entity.mongo.BookMongo;
 import constsw.grupoum.courses.adapter.repository.mongo.BookRepositoryMongo;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.log4j.Log4j2;
 
 @RequiredArgsConstructor
 @Component
+@Log4j2
 public class CommandLineAppStartupRunner implements CommandLineRunner{
 
   private final BookRepositoryMongo bookRepositoryMongo;
@@ -24,7 +27,7 @@ public class CommandLineAppStartupRunner implements CommandLineRunner{
   @Override
   public void run(String... args) throws Exception {
     try {
-      System.out.println("Começou a popular");
+      log.info("Começou a popular");
 
       File file = new File("src/main/resources/books.json");
 
@@ -34,10 +37,13 @@ public class CommandLineAppStartupRunner implements CommandLineRunner{
       List<BookMongo> booksList = objectMapper.readValue(jsonArrayAsString, new TypeReference<List<BookMongo>>() {});
 
       for(BookMongo book : booksList){
-        bookRepositoryMongo.insert(book);
+        Optional<BookMongo> result = bookRepositoryMongo.findById(book.getIsbn13());
+        if(result.isEmpty()){
+          bookRepositoryMongo.insert(book);
+        }
       }
 
-      System.out.println("Terminou de popular");
+      log.info("Terminou de popular");
     } catch (Exception e) {
       throw new Exception("Erro ao popular o banco de dados");
     }
