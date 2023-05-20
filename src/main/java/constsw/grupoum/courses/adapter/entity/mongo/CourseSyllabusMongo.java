@@ -14,13 +14,10 @@ import lombok.NoArgsConstructor;
 @Data
 public class CourseSyllabusMongo {
 
-    @Field(name = "number", targetType = FieldType.INT32)
-    private int number;
+    @Field(name = "description", targetType = FieldType.STRING)
+    private String description;
 
-    @Field(name = "name", targetType = FieldType.STRING)
-    private String name;
-
-    @Field(name = "topics", targetType = FieldType.ARRAY)
-    private Collection<UnitTopicMongo> topics;
+    @Field(name = "units", targetType = FieldType.ARRAY)
+    private Collection<SyllabusUnitMongo> units;
 
 }
