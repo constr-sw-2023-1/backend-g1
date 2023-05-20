@@ -3,10 +3,15 @@ package constsw.grupoum.courses.adapter.mapper.mongo;
 import java.util.Collection;
 
 import org.mapstruct.Mapper;
-import org.mapstruct.ReportingPolicy;
 import org.mapstruct.factory.Mappers;
 import org.springframework.stereotype.Component;
 
+import constsw.grupoum.courses.adapter.entity.mongo.BookMongo;
+import constsw.grupoum.courses.adapter.entity.mongo.BookRefMongo;
+import constsw.grupoum.courses.adapter.entity.mongo.CourseMongo;
+import constsw.grupoum.courses.adapter.entity.mongo.CourseSyllabusMongo;
+import constsw.grupoum.courses.adapter.entity.mongo.SyllabusUnitMongo;
+import constsw.grupoum.courses.adapter.entity.mongo.UnitTopicMongo;
 import constsw.grupoum.courses.domain.entity.Book;
 import constsw.grupoum.courses.domain.entity.BookRef;
 import constsw.grupoum.courses.domain.entity.Course;
@@ -15,41 +20,37 @@ import constsw.grupoum.courses.domain.entity.SyllabusUnit;
 import constsw.grupoum.courses.domain.entity.UnitTopic;
 
 @Component
-@Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE, componentModel = "spring")
+@Mapper(componentModel = "spring")
 public interface MongoEntitiesMapper {
 
     MongoEntitiesMapper INSTANCE = Mappers.getMapper(MongoEntitiesMapper.class);
 
-    constsw.grupoum.courses.adapter.entity.mongo.Book toMongoBook(Book book);
+    BookMongo toMongoBook(Book book);
 
-    Book toBook(constsw.grupoum.courses.adapter.entity.mongo.Book book);
+    Book toBook(BookMongo book);
 
-    Collection<Book> toBookCollection(Collection<constsw.grupoum.courses.adapter.entity.mongo.Book> books);
+    Collection<Book> toBookCollection(Collection<BookMongo> books);
 
-    constsw.grupoum.courses.adapter.entity.mongo.BookRef toMongoBookRef(BookRef bookRef);
+    BookRefMongo toMongoBookRef(BookRef bookRef);
 
-    BookRef toBookRef(constsw.grupoum.courses.adapter.entity.mongo.BookRef bookRef);
+    BookRef toBookRef(BookRefMongo bookRef);
 
-    constsw.grupoum.courses.adapter.entity.mongo.Course toMongoCourse(Course course);
+    CourseMongo toMongoCourse(Course course);
 
-    Course toCourse(constsw.grupoum.courses.adapter.entity.mongo.Course course);
+    Course toCourse(CourseMongo course);
 
-    Collection<Course> toCourseCollection(Collection<constsw.grupoum.courses.adapter.entity.mongo.Course> course);
+    Collection<Course> toCourseCollection(Collection<CourseMongo> course);
 
-    constsw.grupoum.courses.adapter.entity.mongo.CourseSyllabus toMongoCourseSyllabus(
-            CourseSyllabus courseSyllabus);
+    CourseSyllabusMongo toMongoCourseSyllabus(CourseSyllabus courseSyllabus);
 
-    CourseSyllabus toCourseSyllabus(
-            constsw.grupoum.courses.adapter.entity.mongo.CourseSyllabus courseSyllabus);
+    CourseSyllabus toCourseSyllabus(CourseSyllabusMongo courseSyllabus);
 
-    constsw.grupoum.courses.adapter.entity.mongo.SyllabusUnit toMongoSyallabusUnit(
-            SyllabusUnit syllabusUnit);
+    SyllabusUnitMongo toMongoSyallabusUnit(SyllabusUnit syllabusUnit);
 
-    SyllabusUnit toSyllabusUnit(
-            constsw.grupoum.courses.adapter.entity.mongo.SyllabusUnit syllabusUnit);
+    SyllabusUnit toSyllabusUnit(SyllabusUnitMongo syllabusUnit);
 
-    constsw.grupoum.courses.adapter.entity.mongo.UnitTopic toMongoUnitTopic(UnitTopic unitTopic);
+    UnitTopicMongo toMongoUnitTopic(UnitTopic unitTopic);
 
-    UnitTopic toUnitTopic(constsw.grupoum.courses.adapter.entity.mongo.UnitTopic unitTopic);
+    UnitTopic toUnitTopic(UnitTopicMongo unitTopic);
 
 }
