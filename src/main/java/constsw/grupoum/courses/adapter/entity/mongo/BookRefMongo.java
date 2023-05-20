@@ -1,6 +1,5 @@
 package constsw.grupoum.courses.adapter.entity.mongo;
 
-import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Field;
 
 import lombok.Data;
@@ -14,6 +13,4 @@ public class BookRefMongo {
     @Field("title")
     private String title;
 
-    @DBRef(lazy = false)
-    private BookMongo book;
 }
