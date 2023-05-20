@@ -5,9 +5,9 @@ import java.util.UUID;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 
-import constsw.grupoum.courses.adapter.entity.mongo.Course;
+import constsw.grupoum.courses.adapter.entity.mongo.CourseMongo;
 
 @Repository
-public interface CourseRepositoryMongo extends MongoRepository<Course, UUID> {
+public interface CourseRepositoryMongo extends MongoRepository<CourseMongo, UUID> {
 
 }

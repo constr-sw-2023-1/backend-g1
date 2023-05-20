@@ -6,7 +6,7 @@ import org.springframework.data.mongodb.core.mapping.Field;
 import lombok.Data;
 
 @Data
-public class BookRef {
+public class BookRefMongo {
 
     @Field("isbn13")
     private String isbn13;
@@ -15,5 +15,5 @@ public class BookRef {
     private String title;
 
     @DBRef(lazy = false)
-    private Book book;
+    private BookMongo book;
 }
