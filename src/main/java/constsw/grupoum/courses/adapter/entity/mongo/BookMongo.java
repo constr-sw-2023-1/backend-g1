@@ -16,4 +16,21 @@ public class BookMongo {
     @Field("title")
     private String title;
 
+    @Field("author")
+    private String author;
+
+    @Field("year")
+    private Integer year;
+
+    @Field("pages")
+    private Integer pages;
+
+    @Field("language")
+    private String language;
+
+    @Field("editor")
+    private String editor;
+
+    @Field("genre")
+    private String genre;
 }
