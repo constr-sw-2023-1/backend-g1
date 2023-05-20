@@ -5,7 +5,7 @@
         "isbn13": "9786555601565",
         "year": 2021,
         "pages": 128,
-        "language": "Portugues",
+        "language": "portugues",
         "publisher": "Intrinseca",
         "genre": "Economia, Financas / Literatura Brasileira / Nao-ficcao "
     },
@@ -15,7 +15,7 @@
         "isbn13": "9788551006276",
         "year": 2020,
         "pages": 432,
-        "language": "Portugues",
+        "language": "portugues",
         "publisher": "Intrinseca",
         "genre": "Drama / Ficcao / Literatura Estrangeira / Suspense e Misterio "
     },
@@ -25,7 +25,7 @@
         "isbn13": "9788551005378",
         "year": 2020,
         "pages": 320,
-        "language": "Portugues",
+        "language": "portugues",
         "publisher": "Intrinseca",
         "genre": "Ficcao / Ficcao cientifica / Literatura Estrangeira "
     },
@@ -35,7 +35,7 @@
         "isbn13": "9788551006078",
         "year": 2020,
         "pages": 816,
-        "language": "Portugues",
+        "language": "portugues",
         "publisher": "Intrinseca",
         "genre": "Biografia, Autobiografia, Memorias / Historia / Literatura Estrangeira / Politica "
     },
@@ -45,7 +45,7 @@
         "isbn13": "9788551006252",
         "year": 2020,
         "pages": 136,
-        "language": "Portugues",
+        "language": "portugues",
         "publisher": "Intrinseca",
         "genre": "Ficcao / HQ, comics, manga / Literatura Estrangeira "
     },
@@ -55,7 +55,7 @@
         "isbn13": "9788551006092",
         "year": 2020,
         "pages": 320,
-        "language": "Portugues",
+        "language": "portugues",
         "publisher": "Intrinseca",
         "genre": "Autoajuda / Literatura Brasileira / Nao-ficcao "
     },
@@ -65,7 +65,7 @@
         "isbn13": "9788551005675",
         "year": 2020,
         "pages": 368,
-        "language": "Portugues",
+        "language": "portugues",
         "publisher": "Intrinseca",
         "genre": "Historia Geral / Literatura Estrangeira / Nao-ficcao "
     },
@@ -75,7 +75,7 @@
         "isbn13": "9788551005842",
         "year": 2020,
         "pages": 32,
-        "language": "Portugues",
+        "language": "portugues",
         "publisher": "Intrinseca",
         "genre": "Ficcao / Infantil / Literatura Estrangeira "
     },
@@ -85,7 +85,7 @@
         "isbn13": "9788551006214",
         "year": 2020,
         "pages": 464,
-        "language": "Portugues",
+        "language": "portugues",
         "publisher": "Intrinseca",
         "genre": "Literatura Estrangeira / Nao-ficcao / Negocios e Empreendedorismo "
     },
@@ -95,7 +95,7 @@
         "isbn13": "9788551006290",
         "year": 2020,
         "pages": 384,
-        "language": "Portugues",
+        "language": "portugues",
         "publisher": "Intrinseca",
         "genre": "Ficcao / Jovem adulto / Literatura Estrangeira / Suspense e Misterio "
     },
@@ -105,7 +105,7 @@
         "isbn13": "9788551006191",
         "year": 2020,
         "pages": 352,
-        "language": "Portugues",
+        "language": "portugues",
         "publisher": "Intrinseca",
         "genre": "Fantasia / Ficcao cientifica / Historia / Horror / Literatura Estrangeira / Suspense e Misterio / Terror "
     },
@@ -115,7 +115,7 @@
         "isbn13": "9788551005989",
         "year": 2020,
         "pages": 336,
-        "language": "Portugues",
+        "language": "portugues",
         "publisher": "Intrinseca",
         "genre": "Aventura / Jogos / Literatura Estrangeira / Terror "
     },
@@ -125,7 +125,7 @@
         "isbn13": "9788551005736",
         "year": 2020,
         "pages": 304,
-        "language": "Portugues",
+        "language": "portugues",
         "publisher": "Intrinseca",
         "genre": " Com uma trama assustadora e brilhantemente construida, A Ultima Festa planta no leitor a semente da duvida: sera que velhos amigos sao sempre os melhores amigos?Ficcao / Literatura Estrangeira / Crime / Romance policial / Ficcao / Suspense e Misterio / Literatura Estrangeira / Romance policial / Suspense e Misterio "
     },
@@ -135,19 +135,9 @@
         "isbn13": "9788551006313",
         "year": 2020,
         "pages": 400,
-        "language": "Portugues",
+        "language": "portugues",
         "publisher": "Intrinseca",
         "genre": "Biografia, Autobiografia, Memorias / Literatura Estrangeira / Nao-ficcao "
-    },
-    {
-        "title": "Uma Dor Tao Doce",
-        "author": "David Nicholls",
-        "isbn13": "9788551005743",
-        "year": 2020,
-        "pages": 384,
-        "language": "Portugues",
-        "publisher": "Intrinseca",
-        "genre": "Romance / Literatura Estrangeira "
     },
     {
         "title": "DUPLICADO Este e o Mar",
@@ -155,7 +145,7 @@
         "isbn13": "9788551005019",
         "year": 2020,
         "pages": 0,
-        "language": "Portugues",
+        "language": "portugues",
         "publisher": "Intrinseca",
         "genre": null
     },
@@ -165,7 +155,7 @@
         "isbn13": "9788551005729",
         "year": 2020,
         "pages": 304,
-        "language": "Portugues",
+        "language": "portugues",
         "publisher": "Intrinseca",
         "genre": " Com uma trama assustadora e brilhantemente construida, A Ultima Festa planta no leitor a semente da duvida: sera que velhos amigos sao sempre os melhores amigos?Crime / Ficcao / Literatura Estrangeira / Romance policial / Suspense e Misterio "
     },
@@ -175,7 +165,7 @@
         "isbn13": "9788551006542",
         "year": 2020,
         "pages": 224,
-        "language": "Portugues",
+        "language": "portugues",
         "publisher": "Intrinseca",
         "genre": "HQ, comics, manga / Jovem adulto "
     },
@@ -185,7 +175,7 @@
         "isbn13": "9788551006238",
         "year": 2020,
         "pages": 320,
-        "language": "Portugues",
+        "language": "portugues",
         "publisher": "Intrinseca",
         "genre": "Fantasia / Ficcao / Jovem adulto / Literatura Estrangeira / Horror "
     },
@@ -195,7 +185,7 @@
         "isbn13": "9788551006481",
         "year": 2020,
         "pages": 304,
-        "language": "Portugues",
+        "language": "portugues",
         "publisher": "Intrinseca",
         "genre": "Matematica / Medicina e Saude / Nao-ficcao "
     },
@@ -205,7 +195,7 @@
         "isbn13": "9788551006320",
         "year": 2020,
         "pages": 432,
-        "language": "Portugues",
+        "language": "portugues",
         "publisher": "Intrinseca",
         "genre": "Ficcao / Literatura Estrangeira / Suspense e Misterio "
     },
@@ -215,7 +205,7 @@
         "isbn13": "9788551006207",
         "year": 2020,
         "pages": 352,
-        "language": "Portugues",
+        "language": "portugues",
         "publisher": "Intrinseca",
         "genre": "Fantasia / Ficcao cientifica / Historia / Horror / Literatura Estrangeira / Suspense e Misterio / Terror "
     },
@@ -225,7 +215,7 @@
         "isbn13": "9788580577266",
         "year": 2020,
         "pages": 320,
-        "language": "Portugues",
+        "language": "portugues",
         "publisher": "Intrinseca",
         "genre": "Ficcao / Literatura Estrangeira / Romance "
     },
@@ -235,19 +225,9 @@
         "isbn13": "9788580578690",
         "year": 2020,
         "pages": 304,
-        "language": "Portugues",
+        "language": "portugues",
         "publisher": "Intrinseca",
         "genre": "Ficcao / Infantojuvenil / Literatura Brasileira / Literatura Estrangeira / Romance "
-    },
-    {
-        "title": "O Livro de Libero",
-        "author": "Alfredo Nugent Setubal",
-        "isbn13": "9788551006177",
-        "year": 2020,
-        "pages": 256,
-        "language": "Portugues",
-        "publisher": "Intrinseca",
-        "genre": "Fantasia / Ficcao / Literatura Brasileira "
     },
     {
         "title": "Terra Americana",
@@ -255,7 +235,7 @@
         "isbn13": "9788551006528",
         "year": 2020,
         "pages": 416,
-        "language": "Portugues",
+        "language": "portugues",
         "publisher": "Intrinseca",
         "genre": "Ficcao / Literatura Estrangeira "
     },
@@ -265,7 +245,7 @@
         "isbn13": "9788551006443",
         "year": 2020,
         "pages": 160,
-        "language": "Portugues",
+        "language": "portugues",
         "publisher": "Intrinseca",
         "genre": "Autoajuda / Humor, Comedia / Literatura Brasileira "
     },
@@ -275,7 +255,7 @@
         "isbn13": "9788551006177",
         "year": 2020,
         "pages": 256,
-        "language": "Portugues",
+        "language": "portugues",
         "publisher": "Intrinseca",
         "genre": "Fantasia / Ficcao / Literatura Brasileira "
     },
@@ -285,7 +265,7 @@
         "isbn13": "9788551006467",
         "year": 2020,
         "pages": 168,
-        "language": "Portugues",
+        "language": "portugues",
         "publisher": "Intrinseca",
         "genre": "Autoajuda / Literatura Estrangeira "
     },
@@ -295,7 +275,7 @@
         "isbn13": "9788551006634",
         "year": 2020,
         "pages": 192,
-        "language": "Portugues",
+        "language": "portugues",
         "publisher": "Intrinseca",
         "genre": "HQ, comics, manga / Literatura Estrangeira "
     },
@@ -305,7 +285,7 @@
         "isbn13": "9788551006245",
         "year": 2020,
         "pages": 320,
-        "language": "Portugues",
+        "language": "portugues",
         "publisher": "Intrinseca",
         "genre": null
     },
@@ -315,7 +295,7 @@
         "isbn13": "9788551006504",
         "year": 2020,
         "pages": 304,
-        "language": "Portugues",
+        "language": "portugues",
         "publisher": "Intrinseca",
         "genre": "Ficcao / Literatura Estrangeira / Romance policial / Suspense e Misterio "
     },
@@ -325,7 +305,7 @@
         "isbn13": "9788551005743",
         "year": 2020,
         "pages": 384,
-        "language": "Portugues",
+        "language": "portugues",
         "publisher": "Intrinseca",
         "genre": "Literatura Estrangeira / Romance "
     },
@@ -335,7 +315,7 @@
         "isbn13": "9786555600162",
         "year": 2020,
         "pages": 608,
-        "language": "Portugues",
+        "language": "portugues",
         "publisher": "Intrinseca",
         "genre": "Historia Geral / Literatura Estrangeira / Medicina e Saude "
     },
@@ -345,7 +325,7 @@
         "isbn13": "9788551006627",
         "year": 2020,
         "pages": 240,
-        "language": "Portugues",
+        "language": "portugues",
         "publisher": "Intrinseca",
         "genre": "Ficcao / Literatura Estrangeira / Romance "
     },
@@ -355,7 +335,7 @@
         "isbn13": "9788551006719",
         "year": 2020,
         "pages": 336,
-        "language": "Portugues",
+        "language": "portugues",
         "publisher": "Intrinseca",
         "genre": "Infantil / Infantojuvenil / Literatura Estrangeira "
     },
@@ -365,7 +345,7 @@
         "isbn13": "9786555600131",
         "year": 2020,
         "pages": 304,
-        "language": "Portugues",
+        "language": "portugues",
         "publisher": "Intrinseca",
         "genre": "Biologia / Literatura Estrangeira / Nao-ficcao "
     },
@@ -375,7 +355,7 @@
         "isbn13": "9788551006689",
         "year": 2020,
         "pages": 416,
-        "language": "Portugues",
+        "language": "portugues",
         "publisher": "Intrinseca",
         "genre": "Literatura Estrangeira / Romance policial "
     },
@@ -385,7 +365,7 @@
         "isbn13": "9788551006184",
         "year": 2020,
         "pages": 345,
-        "language": "Portugues",
+        "language": "portugues",
         "publisher": "Intrinseca",
         "genre": "Ficcao / Literatura Estrangeira / Romance "
     },
@@ -395,7 +375,7 @@
         "isbn13": "None",
         "year": 2020,
         "pages": 338,
-        "language": "Portugues",
+        "language": "portugues",
         "publisher": "Intrinseca",
         "genre": " Com uma trama assustadora e brilhantemente construida, A ultima festa planta no leitor a semente da duvida: sera que velhos amigos sao sempre os melhores amigos?Suspense e Misterio "
     },
@@ -405,19 +385,9 @@
         "isbn13": "9788551005347",
         "year": 2020,
         "pages": 368,
-        "language": "Portugues",
+        "language": "portugues",
         "publisher": "Intrinseca",
         "genre": "Fantasia / Ficcao / Jovem adulto / Literatura Estrangeira "
-    },
-    {
-        "title": "As Outras Pessoas",
-        "author": "C.J. Tudor",
-        "isbn13": "9788551006504",
-        "year": 2020,
-        "pages": 304,
-        "language": "Portugues",
-        "publisher": "Intrinseca",
-        "genre": "Ficcao / Literatura Estrangeira / Romance policial / Suspense e Misterio "
     },
     {
         "title": "Coraline",
@@ -425,7 +395,7 @@
         "isbn13": "9788551006757",
         "year": 2020,
         "pages": 224,
-        "language": "Portugues",
+        "language": "portugues",
         "publisher": "Intrinseca",
         "genre": "Aventura / Fantasia / Ficcao / Ficcao cientifica / Horror / Infantojuvenil / Literatura Estrangeira / Suspense e Misterio / Terror "
     },
@@ -435,7 +405,7 @@
         "isbn13": "9786555600292",
         "year": 2020,
         "pages": 736,
-        "language": "Portugues",
+        "language": "portugues",
         "publisher": "Intrinseca",
         "genre": "Fantasia / Ficcao / Literatura Estrangeira / Romance "
     },
@@ -445,7 +415,7 @@
         "isbn13": "9786555600254",
         "year": 2020,
         "pages": 288,
-        "language": "Portugues",
+        "language": "portugues",
         "publisher": "Intrinseca",
         "genre": "Ficcao / Literatura Estrangeira / Romance policial / Suspense e Misterio "
     },
@@ -455,7 +425,7 @@
         "isbn13": "9786555600209",
         "year": 2020,
         "pages": 320,
-        "language": "Portugues",
+        "language": "portugues",
         "publisher": "Intrinseca",
         "genre": "Ficcao / Literatura Estrangeira / Psicologia "
     },
@@ -465,7 +435,7 @@
         "isbn13": "9788551006672",
         "year": 2020,
         "pages": 304,
-        "language": "Portugues",
+        "language": "portugues",
         "publisher": "Intrinseca",
         "genre": "Biografia, Autobiografia, Memorias "
     },
@@ -475,7 +445,7 @@
         "isbn13": "9788551005910",
         "year": 2020,
         "pages": 430,
-        "language": "Portugues",
+        "language": "portugues",
         "publisher": "Intrinseca",
         "genre": "Ficcao / Literatura Estrangeira "
     },
@@ -485,7 +455,7 @@
         "isbn13": "9788551006153",
         "year": 2020,
         "pages": 1056,
-        "language": "Portugues",
+        "language": "portugues",
         "publisher": "Intrinseca",
         "genre": "Economia, Financas / Literatura Estrangeira / Nao-ficcao "
     },
@@ -495,7 +465,7 @@
         "isbn13": "9788551006375",
         "year": 2020,
         "pages": 432,
-        "language": "Portugues",
+        "language": "portugues",
         "publisher": "Intrinseca",
         "genre": "Ficcao / Literatura Estrangeira "
     },
@@ -505,7 +475,7 @@
         "isbn13": "9788551006665",
         "year": 2020,
         "pages": 288,
-        "language": "Portugues",
+        "language": "portugues",
         "publisher": "Intrinseca",
         "genre": "Biografia, Autobiografia, Memorias / HQ, comics, manga "
     },
@@ -515,7 +485,7 @@
         "isbn13": "9786555600278",
         "year": 2020,
         "pages": 144,
-        "language": "Portugues",
+        "language": "portugues",
         "publisher": "Intrinseca",
         "genre": "Jovem adulto / LGBT / GLS / Literatura Estrangeira "
     },
@@ -525,7 +495,7 @@
         "isbn13": "9788551006368",
         "year": 2020,
         "pages": 400,
-        "language": "Portugues",
+        "language": "portugues",
         "publisher": "Intrinseca",
         "genre": "Ficcao / Literatura Estrangeira / Romance "
     },
@@ -535,19 +505,9 @@
         "isbn13": "9788551006603",
         "year": 2020,
         "pages": 352,
-        "language": "Portugues",
+        "language": "portugues",
         "publisher": "Intrinseca",
         "genre": "Ficcao / Literatura Estrangeira / Romance "
-    },
-    {
-        "title": "Relatorio da Desigualdade Mundial 2018",
-        "author": "Facundo Alvaredo",
-        "isbn13": "None",
-        "year": 2020,
-        "pages": 458,
-        "language": "Portugues",
-        "publisher": "Intrinseca",
-        "genre": "Economia, Financas / Sociologia "
     },
     {
         "title": "Os Dois Mundos de Isabel",
@@ -555,7 +515,7 @@
         "isbn13": "9788551006580",
         "year": 2020,
         "pages": 304,
-        "language": "Portugues",
+        "language": "portugues",
         "publisher": "Intrinseca",
         "genre": "FLAVIA OLIVEIRABiografia, Autobiografia, Memorias / Literatura Brasileira / Nao-ficcao "
     },
@@ -565,19 +525,9 @@
         "isbn13": "9788551006658",
         "year": 2020,
         "pages": 256,
-        "language": "Portugues",
+        "language": "portugues",
         "publisher": "Intrinseca",
         "genre": "Ficcao / Jovem adulto / Literatura Estrangeira / Romance "
-    },
-    {
-        "title": "A danca da agua",
-        "author": "Ta-Nehisi Coates",
-        "isbn13": "9788551006368",
-        "year": 2020,
-        "pages": 400,
-        "language": "Portugues",
-        "publisher": "Intrinseca",
-        "genre": "Ficcao / Literatura Estrangeira / Romance "
     },
     {
         "title": "Adultos",
@@ -585,7 +535,7 @@
         "isbn13": "9786555600032",
         "year": 2020,
         "pages": 400,
-        "language": "Portugues",
+        "language": "portugues",
         "publisher": "Intrinseca",
         "genre": "Drama / Humor, Comedia / Romance / Ficcao / Literatura Estrangeira "
     },
@@ -595,7 +545,7 @@
         "isbn13": "9786555600223",
         "year": 2020,
         "pages": 496,
-        "language": "Portugues",
+        "language": "portugues",
         "publisher": "Intrinseca",
         "genre": "Distopia / Ficcao / Ficcao cientifica / Literatura Estrangeira "
     },
@@ -605,7 +555,7 @@
         "isbn13": "9786555600087",
         "year": 2020,
         "pages": 272,
-        "language": "Portugues",
+        "language": "portugues",
         "publisher": "Intrinseca",
         "genre": "Ficcao / Jovem adulto / Literatura Estrangeira / Romance "
     },
@@ -615,7 +565,7 @@
         "isbn13": "9786555600094",
         "year": 2020,
         "pages": 272,
-        "language": "Portugues",
+        "language": "portugues",
         "publisher": "Intrinseca",
         "genre": "Ficcao / Jovem adulto / Literatura Estrangeira / Romance "
     },
@@ -625,19 +575,9 @@
         "isbn13": "9786555600315",
         "year": 2020,
         "pages": 352,
-        "language": "Portugues",
+        "language": "portugues",
         "publisher": "Intrinseca",
         "genre": "Historia / Literatura Estrangeira / Nao-ficcao "
-    },
-    {
-        "title": "Territorio Lovecraft",
-        "author": "Matt Ruff",
-        "isbn13": "None",
-        "year": 2020,
-        "pages": 395,
-        "language": "Portugues",
-        "publisher": "Intrinseca",
-        "genre": "Fantasia / Ficcao cientifica / Historia / Horror / Literatura Estrangeira / Suspense e Misterio / Terror "
     },
     {
         "title": "Arvore dos Desejos",
@@ -645,7 +585,7 @@
         "isbn13": "9786555600483",
         "year": 2020,
         "pages": 224,
-        "language": "Portugues",
+        "language": "portugues",
         "publisher": "Intrinseca",
         "genre": "Ficcao / Infantojuvenil / Literatura Estrangeira "
     },
@@ -655,7 +595,7 @@
         "isbn13": "9786555600070",
         "year": 2020,
         "pages": 352,
-        "language": "Portugues",
+        "language": "portugues",
         "publisher": "Intrinseca",
         "genre": "Chick-lit / Romance / Literatura Estrangeira "
     },
@@ -665,7 +605,7 @@
         "isbn13": "9788551005941",
         "year": 2020,
         "pages": 352,
-        "language": "Portugues",
+        "language": "portugues",
         "publisher": "Intrinseca",
         "genre": " De volta a Londres, Eileen e um grande sucesso com seus novos vizinhos, mas sera que seu par perfeito esta mais perto de casa do que ela pensava?Chick-lit / Ficcao / Romance "
     },
@@ -675,7 +615,7 @@
         "isbn13": "9786555600346",
         "year": 2020,
         "pages": 416,
-        "language": "Portugues",
+        "language": "portugues",
         "publisher": "Intrinseca",
         "genre": "Economia, Financas / Historia / Literatura Estrangeira / Politica "
     },
@@ -685,7 +625,7 @@
         "isbn13": "9786555600452",
         "year": 2020,
         "pages": 304,
-        "language": "Portugues",
+        "language": "portugues",
         "publisher": "Intrinseca",
         "genre": "Biografia, Autobiografia, Memorias / Literatura Estrangeira / Nao-ficcao "
     },
@@ -695,7 +635,7 @@
         "isbn13": "9786555600360",
         "year": 2020,
         "pages": 320,
-        "language": "Portugues",
+        "language": "portugues",
         "publisher": "Intrinseca",
         "genre": "Literatura Brasileira / Nao-ficcao "
     },
@@ -705,7 +645,7 @@
         "isbn13": "9786555600322",
         "year": 2020,
         "pages": 304,
-        "language": "Portugues",
+        "language": "portugues",
         "publisher": "Intrinseca",
         "genre": "Autoajuda / Literatura Estrangeira / Nao-ficcao "
     },
@@ -715,7 +655,7 @@
         "isbn13": "9786555600551",
         "year": 2020,
         "pages": 1240,
-        "language": "Portugues",
+        "language": "portugues",
         "publisher": "Intrinseca",
         "genre": "Fantasia / Ficcao / Ficcao cientifica / Horror / Literatura Estrangeira "
     },
@@ -725,7 +665,7 @@
         "isbn13": "9786555600636",
         "year": 2020,
         "pages": 336,
-        "language": "Portugues",
+        "language": "portugues",
         "publisher": "Intrinseca",
         "genre": "Aventura / Fantasia / Infantojuvenil / Jovem adulto / Literatura Estrangeira "
     },
@@ -735,19 +675,9 @@
         "isbn13": "9788580576764",
         "year": 2020,
         "pages": 256,
-        "language": "Portugues",
+        "language": "portugues",
         "publisher": "Intrinseca",
         "genre": "Publishers WeeklyLiteratura Estrangeira "
-    },
-    {
-        "title": "Coraline",
-        "author": "Neil Gaiman",
-        "isbn13": "9788551006757",
-        "year": 2020,
-        "pages": 224,
-        "language": "Portugues",
-        "publisher": "Intrinseca",
-        "genre": "Aventura / Fantasia / Ficcao / Horror / Infantojuvenil / Literatura Estrangeira / Suspense e Misterio / Terror "
     },
     {
         "title": "Promessa de Pai",
@@ -755,7 +685,7 @@
         "isbn13": "9786555600520",
         "year": 2020,
         "pages": 256,
-        "language": "Portugues",
+        "language": "portugues",
         "publisher": "Intrinseca",
         "genre": "Biografia, Autobiografia, Memorias / Literatura Estrangeira / Politica "
     },
@@ -765,7 +695,7 @@
         "isbn13": "9786555600506",
         "year": 2020,
         "pages": 368,
-        "language": "Portugues",
+        "language": "portugues",
         "publisher": "Intrinseca",
         "genre": "Jovem adulto / Literatura Estrangeira / Romance "
     },
@@ -775,7 +705,7 @@
         "isbn13": "9786555600650",
         "year": 2020,
         "pages": 320,
-        "language": "Portugues",
+        "language": "portugues",
         "publisher": "Intrinseca",
         "genre": "Ficcao / Literatura Estrangeira / Romance "
     },
@@ -785,19 +715,9 @@
         "isbn13": "9786555600612",
         "year": 2020,
         "pages": 1072,
-        "language": "Portugues",
+        "language": "portugues",
         "publisher": "Intrinseca",
         "genre": "Historia / Literatura Estrangeira / Nao-ficcao "
-    },
-    {
-        "title": "Adultos",
-        "author": " Emma Jane Unsworth ",
-        "isbn13": "9786555600032",
-        "year": 2020,
-        "pages": 400,
-        "language": "Portugues",
-        "publisher": "Intrinseca",
-        "genre": "Drama / Ficcao / Humor, Comedia / Literatura Estrangeira / Romance "
     },
     {
         "title": "Pachinko",
@@ -805,7 +725,7 @@
         "isbn13": "9788551005958",
         "year": 2020,
         "pages": 528,
-        "language": "Portugues",
+        "language": "portugues",
         "publisher": "Intrinseca",
         "genre": "Ficcao / Literatura Estrangeira / Romance "
     },
@@ -815,7 +735,7 @@
         "isbn13": "9786555600438",
         "year": 2020,
         "pages": 352,
-        "language": "Portugues",
+        "language": "portugues",
         "publisher": "Intrinseca",
         "genre": "Chick-lit / Ficcao / Romance "
     },
@@ -825,7 +745,7 @@
         "isbn13": "9788551006597",
         "year": 2020,
         "pages": 160,
-        "language": "Portugues",
+        "language": "portugues",
         "publisher": "Intrinseca",
         "genre": "Ficcao / Literatura Estrangeira / Romance "
     },
@@ -835,7 +755,7 @@
         "isbn13": "9786555601251",
         "year": 2020,
         "pages": 144,
-        "language": "Portugues",
+        "language": "portugues",
         "publisher": "Intrinseca",
         "genre": "Literatura Brasileira / Nao-ficcao / Religiao e Espiritualidade "
     },
@@ -845,7 +765,7 @@
         "isbn13": "9786555600902",
         "year": 2020,
         "pages": 324,
-        "language": "Portugues",
+        "language": "portugues",
         "publisher": "Intrinseca",
         "genre": "Biografia, Autobiografia, Memorias / Historia / Literatura Estrangeira / Nao-ficcao / Politica / Romance policial "
     },
@@ -855,7 +775,7 @@
         "isbn13": "9786555600384",
         "year": 2020,
         "pages": 224,
-        "language": "Portugues",
+        "language": "portugues",
         "publisher": "Intrinseca",
         "genre": "Literatura Brasileira / Nao-ficcao "
     },
@@ -865,7 +785,7 @@
         "isbn13": "9786555600926",
         "year": 2020,
         "pages": 160,
-        "language": "Portugues",
+        "language": "portugues",
         "publisher": "Intrinseca",
         "genre": "Ficcao / HQ, comics, manga / Literatura Estrangeira "
     },
@@ -875,7 +795,7 @@
         "isbn13": "9786555650570",
         "year": 2020,
         "pages": 288,
-        "language": "Portugues",
+        "language": "portugues",
         "publisher": "Arqueiro",
         "genre": "Ficcao / Romance "
     },
@@ -885,7 +805,7 @@
         "isbn13": "9786555600810",
         "year": 2020,
         "pages": 320,
-        "language": "Portugues",
+        "language": "portugues",
         "publisher": "Intrinseca",
         "genre": "Economia, Financas / Literatura Brasileira / Negocios e Empreendedorismo "
     },
@@ -895,7 +815,7 @@
         "isbn13": "9786555600469",
         "year": 2020,
         "pages": 304,
-        "language": "Portugues",
+        "language": "portugues",
         "publisher": "Intrinseca",
         "genre": "Ficcao "
     },
@@ -905,7 +825,7 @@
         "isbn13": "9788551006139",
         "year": 2020,
         "pages": 896,
-        "language": "Portugues",
+        "language": "portugues",
         "publisher": "Intrinseca",
         "genre": "Biografia, Autobiografia, Memorias / Historia / Literatura Estrangeira / Nao-ficcao "
     },
@@ -915,7 +835,7 @@
         "isbn13": "9786555601145",
         "year": 2020,
         "pages": 304,
-        "language": "Portugues",
+        "language": "portugues",
         "publisher": "Intrinseca",
         "genre": "HQ, comics, manga / Literatura Estrangeira / Romance "
     },
@@ -925,7 +845,7 @@
         "isbn13": "9786555600858",
         "year": 2020,
         "pages": 992,
-        "language": "Portugues",
+        "language": "portugues",
         "publisher": "Intrinseca",
         "genre": "Jogos / Jovem adulto / Literatura Estrangeira "
     },
@@ -935,7 +855,7 @@
         "isbn13": "9786555600544",
         "year": 2020,
         "pages": 1500,
-        "language": "Portugues",
+        "language": "portugues",
         "publisher": "Intrinseca",
         "genre": "Jovem adulto / Literatura Brasileira / Nao-ficcao "
     },
@@ -945,7 +865,7 @@
         "isbn13": "9786555601121",
         "year": 2020,
         "pages": 304,
-        "language": "Portugues",
+        "language": "portugues",
         "publisher": "Intrinseca",
         "genre": "Ficcao / Literatura Estrangeira / Romance "
     },
@@ -955,7 +875,7 @@
         "isbn13": "9786555601138",
         "year": 2020,
         "pages": 304,
-        "language": "Portugues",
+        "language": "portugues",
         "publisher": "Intrinseca",
         "genre": "Ficcao / Literatura Estrangeira / Romance "
     },
@@ -965,7 +885,7 @@
         "isbn13": "9786555600834",
         "year": 2020,
         "pages": 304,
-        "language": "Portugues",
+        "language": "portugues",
         "publisher": "Intrinseca",
         "genre": "Ficcao / Literatura Estrangeira / Romance "
     },
@@ -975,7 +895,7 @@
         "isbn13": "9786555601329",
         "year": 2020,
         "pages": 624,
-        "language": "Portugues",
+        "language": "portugues",
         "publisher": "Intrinseca",
         "genre": "Entretenimento / Literatura Brasileira / Nao-ficcao "
     },
@@ -985,7 +905,7 @@
         "isbn13": "9788551006344",
         "year": 2020,
         "pages": 528,
-        "language": "Portugues",
+        "language": "portugues",
         "publisher": "Intrinseca",
         "genre": "Ficcao / Literatura Estrangeira / Romance "
     },
@@ -995,7 +915,7 @@
         "isbn13": "9786555600599",
         "year": 2020,
         "pages": 304,
-        "language": "Portugues",
+        "language": "portugues",
         "publisher": "Intrinseca",
         "genre": "Ficcao / Literatura Estrangeira / Romance policial / Suspense e Misterio "
     }
