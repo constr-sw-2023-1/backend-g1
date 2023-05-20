@@ -4,10 +4,13 @@ import java.util.Collection;
 import java.util.Optional;
 import java.util.UUID;
 
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.stereotype.Repository;
 
 import constsw.grupoum.courses.adapter.entity.mongo.CourseMongo;
+import constsw.grupoum.courses.adapter.exception.RepositoryConnectionException;
+import constsw.grupoum.courses.adapter.exception.RepositoryDuplicateKeyException;
 import constsw.grupoum.courses.adapter.mapper.mongo.MongoEntitiesMapper;
 import constsw.grupoum.courses.adapter.mapper.mongo.MongoQueryMapper;
 import constsw.grupoum.courses.adapter.repository.mongo.CourseRepositoryMongo;
@@ -31,32 +34,58 @@ public class CourseRepositoryImpl implements CourseRepository {
 
     @Override
     public Collection<Course> findAll() {
-        return mapperEntity.toCourseCollection(courseRepositoryMongo.findAll());
+        try {
+            return mapperEntity.toCourseCollection(courseRepositoryMongo.findAll());
+        } catch (Exception e) {
+            throw new RepositoryConnectionException(e);
+        }
     }
 
     @Override
     public Optional<Course> findById(UUID id) {
-        return courseRepositoryMongo.findById(id).map(course -> mapperEntity.toCourse(course));
+        try {
+            return courseRepositoryMongo.findById(id).map(course -> mapperEntity.toCourse(course));
+        } catch (Exception e) {
+            throw new RepositoryConnectionException(e);
+        }
     }
 
     @Override
     public void deleteById(UUID id) {
-        courseRepositoryMongo.deleteById(id);
+        try {
+            courseRepositoryMongo.deleteById(id);
+        } catch (Exception e) {
+            throw new RepositoryConnectionException(e);
+        }
     }
 
     @Override
     public Course insert(Course course) {
-        return mapperEntity.toCourse(courseRepositoryMongo.insert(mapperEntity.toMongoCourse(course)));
+        try {
+            return mapperEntity.toCourse(courseRepositoryMongo.insert(mapperEntity.toMongoCourse(course)));
+        } catch (DuplicateKeyException e) {
+            throw new RepositoryDuplicateKeyException(String.format("%s already registered", course.getId()), e);
+        } catch (Exception e) {
+            throw new RepositoryConnectionException(e);
+        }
     }
 
     @Override
     public Course save(Course course) {
-        return mapperEntity.toCourse(courseRepositoryMongo.save(mapperEntity.toMongoCourse(course)));
+        try {
+            return mapperEntity.toCourse(courseRepositoryMongo.save(mapperEntity.toMongoCourse(course)));
+        } catch (Exception e) {
+            throw new RepositoryConnectionException(e);
+        }
     }
 
     @Override
     public Collection<Course> findByComplexQuery(Collection<QueryParam> queries) throws CourseException {
-        return mapperEntity.toCourseCollection(
-                mongoTemplate.find(mapperQuery.toQuery(CourseMongo.class, queries), CourseMongo.class));
+        try {
+            return mapperEntity.toCourseCollection(
+                    mongoTemplate.find(mapperQuery.toQuery(CourseMongo.class, queries), CourseMongo.class));
+        } catch (Exception e) {
+            throw new RepositoryConnectionException(e);
+        }
     }
 }
