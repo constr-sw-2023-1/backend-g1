@@ -8,7 +8,7 @@ import lombok.Data;
 
 @Data
 @Document(collection = "books", language = "json")
-public class Book {
+public class BookMongo {
 
     @MongoId
     private String isbn13;

@@ -16,7 +16,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Data
 @Document(collection = "courses", language = "json")
-public class Course {
+public class CourseMongo {
 
     @MongoId(value = FieldType.OBJECT_ID)
     private UUID id;
@@ -34,9 +34,9 @@ public class Course {
     private Collection<String> objectives;
 
     @Field("syllabus")
-    private CourseSyllabus syllabus;
+    private CourseSyllabusMongo syllabus;
 
     @Field(name = "bibliography", targetType = FieldType.ARRAY)
-    private Collection<BookRef> bibliography;
+    private Collection<BookRefMongo> bibliography;
 
 }

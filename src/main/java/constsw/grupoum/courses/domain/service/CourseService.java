@@ -10,6 +10,7 @@ import constsw.grupoum.courses.domain.entity.Course;
 import constsw.grupoum.courses.domain.exception.CourseException;
 import constsw.grupoum.courses.domain.mapper.CourseMapper;
 import constsw.grupoum.courses.domain.repository.CourseRepository;
+import constsw.grupoum.courses.domain.vo.QueryParam;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
@@ -56,14 +57,20 @@ public class CourseService {
     }
 
     public CourseDTO createCourse(CourseDTO course) throws CourseException {
-
         try {
             return courseMapper
                     .courseToCourseDTO(courseRepository.insert(courseMapper.courseDTOWithoutIdToCourseWithId(course)));
         } catch (Exception e) {
             throw new CourseException(e);
         }
+    }
 
+    public Collection<CourseDTO> getByComplexQuery(Collection<QueryParam> queries) throws CourseException {
+        try {
+            return courseMapper.toCourseDTOCollection(courseRepository.findByComplexQuery(queries));
+        } catch (Exception e) {
+            throw new CourseException(e);
+        }
     }
 
 }

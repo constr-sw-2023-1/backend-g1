@@ -5,6 +5,7 @@ import java.util.Optional;
 import java.util.UUID;
 
 import constsw.grupoum.courses.domain.entity.Course;
+import constsw.grupoum.courses.domain.vo.QueryParam;
 
 public interface CourseRepository {
 
@@ -17,4 +18,7 @@ public interface CourseRepository {
     Course insert(Course course);
 
     Course save(Course course);
+
+    Collection<Course> findByComplexQuery(Collection<QueryParam> queries);
+
 }
