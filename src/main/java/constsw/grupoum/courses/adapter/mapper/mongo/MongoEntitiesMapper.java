@@ -3,7 +3,7 @@ package constsw.grupoum.courses.adapter.mapper.mongo;
 import java.util.Collection;
 
 import org.mapstruct.Mapper;
-import org.mapstruct.ReportingPolicy;
+import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;
 import org.springframework.stereotype.Component;
 
@@ -21,7 +21,7 @@ import constsw.grupoum.courses.domain.entity.SyllabusUnit;
 import constsw.grupoum.courses.domain.entity.UnitTopic;
 
 @Component
-@Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE, componentModel = "spring")
+@Mapper(componentModel = "spring")
 public interface MongoEntitiesMapper {
 
     MongoEntitiesMapper INSTANCE = Mappers.getMapper(MongoEntitiesMapper.class);
