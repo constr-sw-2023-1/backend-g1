@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import constsw.grupoum.courses.application.dto.CourseUpdateDTO;
 import constsw.grupoum.courses.application.dto.NewCourseDTO;
-import constsw.grupoum.courses.application.exception.ApplicationException;
 import constsw.grupoum.courses.application.usecase.CreateCourseUC;
 import constsw.grupoum.courses.application.usecase.DeleteCourseByIdUC;
 import constsw.grupoum.courses.application.usecase.FindAllCoursesUC;
@@ -70,14 +69,8 @@ public class CourseController {
     }
 
     @GetMapping("/search")
-    public ResponseEntity<?> getComplexQuery(@RequestParam Map<String, String> searchParams) {
-        try {
-            return ResponseEntity.ok(findByComplexQuery.run(searchParams));
-        } catch (CourseException e) {
-            return ResponseEntity.internalServerError().body(e);
-        } catch (ApplicationException e) {
-            return ResponseEntity.internalServerError().body(e);
-        }
+    public ResponseEntity<?> getComplexQuery(@RequestParam Map<String, String> searchParams) throws Throwable {
+        return ResponseEntity.ok(findByComplexQuery.run(searchParams));
     }
 
 }
