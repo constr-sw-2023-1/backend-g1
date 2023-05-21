@@ -1,5 +1,6 @@
 package constsw.grupoum.courses.domain.service;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.UUID;
 
@@ -67,20 +68,15 @@ public class CourseService {
     }
 
     private void validateBooks(Collection<BookRefDTO> books) throws InvalidBookException {
-
-        Boolean erro = false;
-        StringBuilder sb = new StringBuilder();
+        Collection<String> invalidISBNs = new ArrayList<>();
 
         for (BookRefDTO book : books) {
             if (bookRepository.findById(book.isbn13()).isEmpty()) {
-                erro = true;
-                sb.append(",");
-                sb.append(book.isbn13());
+                invalidISBNs.add(book.isbn13());
             }
         }
 
-        if (erro)
-            throw new InvalidBookException(String.format("IBNS's %s not found", sb.toString()));
+        if (!invalidISBNs.isEmpty()) throw new InvalidBookException("ISBNs not found: " + String.join(", ", invalidISBNs));
     }
 
 }
