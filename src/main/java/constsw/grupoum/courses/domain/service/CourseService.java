@@ -55,4 +55,9 @@ public class CourseService {
         }
     }
 
+    public CourseDTO patchCourse(UUID id, CourseDTO course) throws CourseException {
+        return courseMapper
+                .courseToCourseDTO(courseRepository.patch(id, courseMapper.courseDTOToCourse(course)));
+    }
+
 }
