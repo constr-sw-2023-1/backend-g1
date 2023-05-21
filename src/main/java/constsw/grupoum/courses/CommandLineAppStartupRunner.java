@@ -1,46 +1,54 @@
 package constsw.grupoum.courses;
 
 import java.io.File;
-import java.util.List;
+import java.util.Collection;
 
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
 import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import constsw.grupoum.courses.adapter.entity.mongo.BookMongo;
 import constsw.grupoum.courses.adapter.repository.mongo.BookRepositoryMongo;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.log4j.Log4j2;
 
+@Log4j2
 @RequiredArgsConstructor
 @Component
-public class CommandLineAppStartupRunner implements CommandLineRunner{
+public class CommandLineAppStartupRunner implements CommandLineRunner {
 
   private final BookRepositoryMongo bookRepositoryMongo;
+
   private final ObjectMapper objectMapper;
 
   @Override
   public void run(String... args) throws Exception {
     try {
-      System.out.println("Começou a popular");
 
-      File file = new File("src/main/resources/books.json");
+      File books = new File("src/main/resources/books.json");
+      if (books.isFile()) {
 
-      JsonNode jsonArray = objectMapper.readValue(file, JsonNode.class);
-      String jsonArrayAsString = objectMapper.writeValueAsString(jsonArray);
+        log.info("Começou a popular");
 
-      List<BookMongo> booksList = objectMapper.readValue(jsonArrayAsString, new TypeReference<List<BookMongo>>() {});
+        objectMapper.readValue(new File("src/main/resources/books.json"),
+            new TypeReference<Collection<BookMongo>>() {
+            })
+            .stream()
+            .forEach(book -> {
+              if (!bookRepositoryMongo.findById(book.getIsbn13()).isPresent()) {
+                bookRepositoryMongo.insert(book);
+              }
+            });
 
-      for(BookMongo book : booksList){
-        bookRepositoryMongo.insert(book);
+        log.info("Terminou de popular");
+
       }
 
-      System.out.println("Terminou de popular");
     } catch (Exception e) {
-      throw new Exception("Erro ao popular o banco de dados");
+      log.info("Erro ao popular o banco de dados");
     }
   }
-  
+
 }
