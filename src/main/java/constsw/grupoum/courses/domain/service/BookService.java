@@ -8,6 +8,7 @@ import constsw.grupoum.courses.domain.dto.BookDTO;
 import constsw.grupoum.courses.domain.exception.CourseException;
 import constsw.grupoum.courses.domain.mapper.BookMapper;
 import constsw.grupoum.courses.domain.repository.BookRepository;
+import constsw.grupoum.courses.domain.vo.QueryParam;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
@@ -38,6 +39,16 @@ public class BookService {
         try {
             return bookMapper.bookToBookDTO(bookRepository.findById(isbn13).orElse(null));
         } catch (Exception e) {
+            throw new CourseException(e);
+        }
+    }
+
+    public Collection<BookDTO> getByComplexQuery(Collection<QueryParam> queries) throws CourseException {
+        try {
+            return bookMapper.collectionOfBookToCollectionOfBookDTO(bookRepository.findByComplexQuery(queries));
+        } catch (CourseException e) {
+            throw e;
+        } catch (Throwable e) {
             throw new CourseException(e);
         }
     }
