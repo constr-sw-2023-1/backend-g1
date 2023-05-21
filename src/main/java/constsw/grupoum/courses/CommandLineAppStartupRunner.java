@@ -27,19 +27,24 @@ public class CommandLineAppStartupRunner implements CommandLineRunner {
   public void run(String... args) throws Exception {
     try {
 
-      log.info("Começou a popular");
+      File books = new File("src/main/resources/books.json");
+      if (books.isFile()) {
 
-      objectMapper.readValue(new File("src/main/resources/books.json"),
-          new TypeReference<Collection<BookMongo>>() {
-          })
-          .stream()
-          .forEach(book -> {
-            if (!bookRepositoryMongo.findById(book.getIsbn13()).isPresent()) {
-              bookRepositoryMongo.insert(book);
-            }
-          });
+        log.info("Começou a popular");
 
-      log.info("Terminou de popular");
+        objectMapper.readValue(new File("src/main/resources/books.json"),
+            new TypeReference<Collection<BookMongo>>() {
+            })
+            .stream()
+            .forEach(book -> {
+              if (!bookRepositoryMongo.findById(book.getIsbn13()).isPresent()) {
+                bookRepositoryMongo.insert(book);
+              }
+            });
+
+        log.info("Terminou de popular");
+
+      }
 
     } catch (Exception e) {
       log.info("Erro ao popular o banco de dados");
