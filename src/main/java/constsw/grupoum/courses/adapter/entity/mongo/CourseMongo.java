@@ -25,7 +25,7 @@ public class CourseMongo {
     private String name;
 
     @Field("codcred")
-    private String codCred;
+    private String codcred;
 
     @Field("workload")
     private Integer workload;

@@ -9,6 +9,8 @@ import constsw.grupoum.courses.application.dto.ErrorDTO;
 import constsw.grupoum.courses.domain.exception.CourseException;
 import constsw.grupoum.courses.domain.exception.InvalidAtributeException;
 import constsw.grupoum.courses.domain.exception.InvalidBookException;
+import constsw.grupoum.courses.domain.exception.NotFoundEntityException;
+import constsw.grupoum.courses.domain.exception.NotNullException;
 
 @ControllerAdvice
 public class DomainExceptionHandler {
@@ -30,4 +32,17 @@ public class DomainExceptionHandler {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST)
                 .body(new ErrorDTO("CO-332", ex.getMessage()));
     }
+
+    @ExceptionHandler(NotNullException.class)
+    public ResponseEntity<ErrorDTO> handleThrowable(NotNullException ex) {
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                .body(new ErrorDTO("CO-334", ex.getMessage()));
+    }
+
+    @ExceptionHandler(NotFoundEntityException.class)
+    public ResponseEntity<ErrorDTO> handleThrowable(NotFoundEntityException ex) {
+        return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                .body(new ErrorDTO("CO-231", ex.getMessage()));
+    }
+
 }

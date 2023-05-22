@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import constsw.grupoum.courses.domain.dto.BookDTO;
 import constsw.grupoum.courses.domain.exception.CourseException;
+import constsw.grupoum.courses.domain.exception.NotNullException;
 import constsw.grupoum.courses.domain.mapper.BookMapper;
 import constsw.grupoum.courses.domain.repository.BookRepository;
 import constsw.grupoum.courses.domain.vo.QueryParam;
@@ -22,6 +23,8 @@ public class BookService {
     public BookDTO create(BookDTO book) throws CourseException {
         try {
             return bookMapper.bookToBookDTO(bookRepository.insert(bookMapper.bookDTOToBook(book)));
+        } catch (NullPointerException e) {
+            throw new NotNullException(e.getMessage(), e);
         } catch (Exception e) {
             throw new CourseException(e);
         }
