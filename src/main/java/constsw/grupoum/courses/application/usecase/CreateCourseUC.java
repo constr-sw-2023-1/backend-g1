@@ -18,6 +18,6 @@ public class CreateCourseUC {
     private final CourseMapper courseMapper;
 
     public CourseDTO run(NewCourseDTO course) throws CourseException {
-        return courseService.createCourse(courseMapper.newCourseDTOToCourseDTO(course));
+        return courseService.createCourse(courseMapper.toCourseDTO(course));
     }
 }

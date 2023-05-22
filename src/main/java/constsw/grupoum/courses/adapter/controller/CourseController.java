@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import constsw.grupoum.courses.application.dto.CourseUpdateDTO;
+import constsw.grupoum.courses.application.dto.PatchCourseDTO;
 import constsw.grupoum.courses.application.dto.ErrorDTO;
 import constsw.grupoum.courses.application.dto.NewCourseDTO;
 import constsw.grupoum.courses.application.usecase.CreateCourseUC;
@@ -81,7 +81,7 @@ public class CourseController {
             @ApiResponse(responseCode = "404", content = @Content(mediaType = APPLICATION_JSON_VALUE, schema = @Schema(implementation = ErrorDTO.class))),
             @ApiResponse(responseCode = "500", content = @Content(mediaType = APPLICATION_JSON_VALUE, schema = @Schema(implementation = ErrorDTO.class))) })
     @PutMapping("/{id}")
-    public ResponseEntity<?> updateById(@PathVariable UUID id, @RequestBody CourseUpdateDTO courseDTO)
+    public ResponseEntity<?> updateById(@PathVariable UUID id, @RequestBody NewCourseDTO courseDTO)
             throws Throwable {
         return ResponseEntity.ok(updateCourse.run(id, courseDTO));
     }
@@ -123,7 +123,7 @@ public class CourseController {
             @ApiResponse(responseCode = "404", content = @Content(mediaType = APPLICATION_JSON_VALUE, schema = @Schema(implementation = ErrorDTO.class))),
             @ApiResponse(responseCode = "500", content = @Content(mediaType = APPLICATION_JSON_VALUE, schema = @Schema(implementation = ErrorDTO.class))) })
     @PatchMapping("/{id}")
-    public ResponseEntity<?> patchCourse(@PathVariable UUID id, @RequestBody CourseUpdateDTO course) throws Throwable {
+    public ResponseEntity<?> patchCourse(@PathVariable UUID id, @RequestBody PatchCourseDTO course) throws Throwable {
         return ResponseEntity.ok(patchCourse.run(id, course));
     }
 
