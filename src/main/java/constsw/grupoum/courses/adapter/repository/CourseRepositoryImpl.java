@@ -94,7 +94,7 @@ public class CourseRepositoryImpl implements CourseRepository {
     }
 
     @Override
-    public Course patch(UUID id, Course course) {
+    public Course patch(Course course) {
         try {
             Document document = new Document();
             mongoTemplate.getConverter().write(course, document);
@@ -102,7 +102,8 @@ public class CourseRepositoryImpl implements CourseRepository {
             document.forEach(update::set);
 
             return mapperEntity.toCourse(
-                    mongoTemplate.findAndModify(Query.query(Criteria.where("_id").is(id)), update, CourseMongo.class));
+                    mongoTemplate.findAndModify(Query.query(Criteria.where("_id").is(course.getId())), update,
+                            CourseMongo.class));
 
         } catch (Exception e) {
             throw new RepositoryConnectionException(e);

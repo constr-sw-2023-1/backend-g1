@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 public class UnitTopicMongo {
 
     @Field(name = "number", targetType = FieldType.INT32)
-    private int number;
+    private Integer number;
 
     @Field(name = "name", targetType = FieldType.STRING)
     private String name;

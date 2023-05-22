@@ -20,7 +20,7 @@ public interface CourseRepository {
 
     Course save(Course course);
 
-    Course patch(UUID id, Course course);
+    Course patch(Course course);
 
     Collection<Course> findByComplexQuery(Collection<QueryParam> queries) throws CourseException;
 
