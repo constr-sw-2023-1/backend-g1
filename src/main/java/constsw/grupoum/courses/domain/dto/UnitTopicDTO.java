@@ -1,5 +1,7 @@
 package constsw.grupoum.courses.domain.dto;
 
-public record UnitTopicDTO(Integer number, String name) {
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+public record UnitTopicDTO(@JsonProperty(required = true) Integer number, @JsonProperty(required = true) String name) {
 
 }

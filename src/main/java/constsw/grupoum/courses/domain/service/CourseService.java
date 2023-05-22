@@ -11,6 +11,8 @@ import constsw.grupoum.courses.domain.dto.CourseDTO;
 import constsw.grupoum.courses.domain.entity.Course;
 import constsw.grupoum.courses.domain.exception.CourseException;
 import constsw.grupoum.courses.domain.exception.InvalidBookException;
+import constsw.grupoum.courses.domain.exception.NotFoundEntityException;
+import constsw.grupoum.courses.domain.exception.NotNullException;
 import constsw.grupoum.courses.domain.mapper.BookMapper;
 import constsw.grupoum.courses.domain.mapper.CourseMapper;
 import constsw.grupoum.courses.domain.repository.BookRepository;
@@ -43,23 +45,27 @@ public class CourseService {
     }
 
     public CourseDTO updateCourse(UUID id, CourseDTO courseDTO) throws CourseException {
+        try {
+            Course course = courseMapper.courseDTOToCourse(courseDTO);
+            course.setId(id);
+            course.setBibliography(bookMapper.toBookRefCollection(validateBooks(courseDTO.bibliography())));
 
-        validateBooks(courseDTO.bibliography());
-
-        Course course = courseMapper.courseDTOToCourse(courseDTO);
-        course.setId(id);
-        course.setBibliography(bookMapper.toBookRefCollection(validateBooks(courseDTO.bibliography())));
-
-        return courseMapper.courseToCourseDTO(courseRepository.save(course));
+            return courseMapper.courseToCourseDTO(courseRepository.save(course));
+        } catch (NullPointerException e) {
+            throw new NotNullException(e.getMessage(), e);
+        }
     }
 
     public CourseDTO createCourse(CourseDTO course) throws CourseException {
+        try {
+            Course courseEntity = courseMapper.courseDTOWithoutIdToCourseWithId(course);
+            courseEntity.setBibliography(bookMapper.toBookRefCollection(validateBooks(course.bibliography())));
 
-        Course courseEntity = courseMapper.courseDTOWithoutIdToCourseWithId(course);
-        courseEntity.setBibliography(bookMapper.toBookRefCollection(validateBooks(course.bibliography())));
-
-        return courseMapper
-                .courseToCourseDTO(courseRepository.insert(courseEntity));
+            return courseMapper
+                    .courseToCourseDTO(courseRepository.insert(courseEntity));
+        } catch (NullPointerException e) {
+            throw new NotNullException(e.getMessage(), e);
+        }
     }
 
     public Collection<CourseDTO> getByComplexQuery(Collection<QueryParam> queries) throws CourseException {
@@ -74,16 +80,23 @@ public class CourseService {
 
     public CourseDTO patchCourse(UUID id, CourseDTO course) throws CourseException {
 
-        Course courseEntity = courseMapper.courseDTOToCourse(course);
-        courseEntity.setId(id);
+        validateBooks(course.bibliography());
 
         return courseMapper
-                .courseToCourseDTO(courseRepository.patch(courseEntity));
+                .courseToCourseDTO(courseRepository.patch(courseMapper.updateCourse(courseRepository
+                        .findById(id)
+                        .orElseThrow(
+                                () -> new NotFoundEntityException(
+                                        String.format("Course with id %s not found", id.toString()))),
+                        course)));
     }
 
     private Collection<BookRefDTO> validateBooks(Collection<BookRefDTO> books) throws InvalidBookException {
         Collection<String> invalidISBNs = new ArrayList<>();
         Collection<BookRefDTO> booksRefs = new ArrayList<>();
+
+        if (books == null)
+            return null;
 
         for (BookRefDTO book : books) {
             bookRepository.findById(book.isbn13())

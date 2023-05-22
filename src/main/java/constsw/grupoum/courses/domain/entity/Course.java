@@ -6,6 +6,7 @@ import java.util.UUID;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.NonNull;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -14,9 +15,11 @@ public class Course {
 
     private UUID id;
 
+    @NonNull
     private String name;
 
-    private String codCred;
+    @NonNull
+    private String codcred;
 
     private Integer workload;
 

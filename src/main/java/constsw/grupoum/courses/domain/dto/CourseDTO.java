@@ -5,7 +5,7 @@ import java.util.UUID;
 
 public record CourseDTO(UUID id,
         String name,
-        String codCred,
+        String codcred,
         Integer workload,
         Collection<String> objectives,
         CourseSyllabusDTO syllabus,

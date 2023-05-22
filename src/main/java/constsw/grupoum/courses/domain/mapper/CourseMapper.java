@@ -4,6 +4,8 @@ import java.util.Collection;
 
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
+import org.mapstruct.MappingTarget;
+import org.mapstruct.NullValuePropertyMappingStrategy;
 import org.mapstruct.ReportingPolicy;
 import org.mapstruct.factory.Mappers;
 import org.springframework.stereotype.Component;
@@ -16,12 +18,14 @@ import constsw.grupoum.courses.domain.entity.BookRef;
 import constsw.grupoum.courses.domain.entity.Course;
 
 @Component
-@Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE, componentModel = "spring")
+@Mapper(componentModel = "spring", nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE, unmappedTargetPolicy = ReportingPolicy.IGNORE)
 public interface CourseMapper {
 
     CourseMapper INSTANCE = Mappers.getMapper(CourseMapper.class);
 
     Course courseDTOToCourse(CourseDTO course);
+
+    Course updateCourse(@MappingTarget() Course entity, CourseDTO dto);
 
     Course courseUpdateDTOToCourse(CourseUpdateDTO course);
 
