@@ -72,6 +72,15 @@ public class CourseService {
         }
     }
 
+    public CourseDTO patchCourse(UUID id, CourseDTO course) throws CourseException {
+
+        Course courseEntity = courseMapper.courseDTOToCourse(course);
+        courseEntity.setId(id);
+
+        return courseMapper
+                .courseToCourseDTO(courseRepository.patch(courseEntity));
+    }
+
     private Collection<BookRefDTO> validateBooks(Collection<BookRefDTO> books) throws InvalidBookException {
         Collection<String> invalidISBNs = new ArrayList<>();
         Collection<BookRefDTO> booksRefs = new ArrayList<>();

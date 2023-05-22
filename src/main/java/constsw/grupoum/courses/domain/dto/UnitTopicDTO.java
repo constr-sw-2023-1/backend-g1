@@ -1,5 +1,5 @@
 package constsw.grupoum.courses.domain.dto;
 
-public record UnitTopicDTO(int number, String name) {
+public record UnitTopicDTO(Integer number, String name) {
 
 }

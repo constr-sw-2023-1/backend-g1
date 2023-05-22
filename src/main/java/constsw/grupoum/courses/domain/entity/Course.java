@@ -18,7 +18,7 @@ public class Course {
 
     private String codCred;
 
-    private int workload;
+    private Integer workload;
 
     private Collection<String> objectives;
 

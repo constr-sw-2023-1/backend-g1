@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @Data
 public class SyllabusUnit {
 
-    private int number;
+    private Integer number;
 
     private String name;
 
