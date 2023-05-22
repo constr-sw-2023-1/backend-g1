@@ -7,7 +7,7 @@ import constsw.grupoum.courses.domain.dto.CourseSyllabusDTO;
 
 public record NewCourseDTO(String name,
         String codCred,
-        int workload,
+        Integer workload,
         Collection<String> objectives,
         CourseSyllabusDTO syllabus,
         Collection<BookRefDTO> bibliography) {

@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @Data
 public class UnitTopic {
 
-    private int number;
+    private Integer number;
 
     private String name;
 

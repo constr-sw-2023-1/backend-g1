@@ -28,7 +28,7 @@ public class CourseMongo {
     private String codCred;
 
     @Field("workload")
-    private int workload;
+    private Integer workload;
 
     @Field("objectives")
     private Collection<String> objectives;
