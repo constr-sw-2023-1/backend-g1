@@ -11,6 +11,7 @@ import constsw.grupoum.courses.domain.dto.CourseDTO;
 import constsw.grupoum.courses.domain.entity.Course;
 import constsw.grupoum.courses.domain.exception.CourseException;
 import constsw.grupoum.courses.domain.exception.InvalidBookException;
+import constsw.grupoum.courses.domain.mapper.BookMapper;
 import constsw.grupoum.courses.domain.mapper.CourseMapper;
 import constsw.grupoum.courses.domain.repository.BookRepository;
 import constsw.grupoum.courses.domain.repository.CourseRepository;
@@ -22,6 +23,8 @@ import lombok.RequiredArgsConstructor;
 public class CourseService {
 
     private final BookRepository bookRepository;
+
+    private final BookMapper bookMapper;
 
     private final CourseRepository courseRepository;
 
@@ -45,16 +48,18 @@ public class CourseService {
 
         Course course = courseMapper.courseDTOToCourse(courseDTO);
         course.setId(id);
+        course.setBibliography(bookMapper.toBookRefCollection(validateBooks(courseDTO.bibliography())));
 
         return courseMapper.courseToCourseDTO(courseRepository.save(course));
     }
 
     public CourseDTO createCourse(CourseDTO course) throws CourseException {
 
-        validateBooks(course.bibliography());
+        Course courseEntity = courseMapper.courseDTOWithoutIdToCourseWithId(course);
+        courseEntity.setBibliography(bookMapper.toBookRefCollection(validateBooks(course.bibliography())));
 
         return courseMapper
-                .courseToCourseDTO(courseRepository.insert(courseMapper.courseDTOWithoutIdToCourseWithId(course)));
+                .courseToCourseDTO(courseRepository.insert(courseEntity));
     }
 
     public Collection<CourseDTO> getByComplexQuery(Collection<QueryParam> queries) throws CourseException {
@@ -67,17 +72,20 @@ public class CourseService {
         }
     }
 
-    private void validateBooks(Collection<BookRefDTO> books) throws InvalidBookException {
+    private Collection<BookRefDTO> validateBooks(Collection<BookRefDTO> books) throws InvalidBookException {
         Collection<String> invalidISBNs = new ArrayList<>();
+        Collection<BookRefDTO> booksRefs = new ArrayList<>();
 
         for (BookRefDTO book : books) {
-            if (bookRepository.findById(book.isbn13()).isEmpty()) {
-                invalidISBNs.add(book.isbn13());
-            }
+            bookRepository.findById(book.isbn13())
+                    .ifPresentOrElse(b -> booksRefs.add(bookMapper.toBookRefDTO(b)),
+                            () -> invalidISBNs.add(book.isbn13()));
         }
 
         if (!invalidISBNs.isEmpty())
             throw new InvalidBookException("ISBNs not found: " + String.join(", ", invalidISBNs));
+
+        return booksRefs;
     }
 
 }
