@@ -76,7 +76,8 @@ public class CourseService {
             }
         }
 
-        if (!invalidISBNs.isEmpty()) throw new InvalidBookException("ISBNs not found: " + String.join(", ", invalidISBNs));
+        if (!invalidISBNs.isEmpty())
+            throw new InvalidBookException("ISBNs not found: " + String.join(", ", invalidISBNs));
     }
 
 }
