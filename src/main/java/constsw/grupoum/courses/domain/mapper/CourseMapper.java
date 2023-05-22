@@ -10,7 +10,7 @@ import org.mapstruct.ReportingPolicy;
 import org.mapstruct.factory.Mappers;
 import org.springframework.stereotype.Component;
 
-import constsw.grupoum.courses.application.dto.CourseUpdateDTO;
+import constsw.grupoum.courses.application.dto.PatchCourseDTO;
 import constsw.grupoum.courses.application.dto.NewCourseDTO;
 import constsw.grupoum.courses.domain.dto.BookRefDTO;
 import constsw.grupoum.courses.domain.dto.CourseDTO;
@@ -27,16 +27,16 @@ public interface CourseMapper {
 
     Course updateCourse(@MappingTarget() Course entity, CourseDTO dto);
 
-    Course courseUpdateDTOToCourse(CourseUpdateDTO course);
+    Course courseUpdateDTOToCourse(PatchCourseDTO course);
 
     @Mapping(target = "id", defaultExpression = "java(java.util.UUID.randomUUID())")
     Course courseDTOWithoutIdToCourseWithId(CourseDTO course);
 
     CourseDTO courseToCourseDTO(Course course);
 
-    CourseDTO newCourseDTOToCourseDTO(NewCourseDTO course);
+    CourseDTO toCourseDTO(NewCourseDTO course);
 
-    CourseDTO toCourseDTO(CourseUpdateDTO course);
+    CourseDTO toCourseDTO(PatchCourseDTO course);
 
     Collection<CourseDTO> toCourseDTOCollection(Collection<Course> courses);
 
