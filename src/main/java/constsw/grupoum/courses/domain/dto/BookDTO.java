@@ -1,7 +1,9 @@
 package constsw.grupoum.courses.domain.dto;
 
-public record BookDTO(String isbn13,
-        String title,
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+public record BookDTO(@JsonProperty(required = true) String isbn13,
+        @JsonProperty(required = true) String title,
         String author,
         Integer year,
         Integer pages,
