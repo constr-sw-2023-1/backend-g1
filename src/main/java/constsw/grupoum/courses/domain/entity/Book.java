@@ -3,14 +3,17 @@ package constsw.grupoum.courses.domain.entity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.NonNull;
 
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
 public class Book {
 
+    @NonNull
     private String isbn13;
 
+    @NonNull
     private String title;
 
     private String author;

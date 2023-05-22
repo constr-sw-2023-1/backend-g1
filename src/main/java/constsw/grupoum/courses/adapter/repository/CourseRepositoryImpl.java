@@ -4,12 +4,8 @@ import java.util.Collection;
 import java.util.Optional;
 import java.util.UUID;
 
-import org.bson.Document;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.data.mongodb.core.MongoTemplate;
-import org.springframework.data.mongodb.core.query.Criteria;
-import org.springframework.data.mongodb.core.query.Query;
-import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.stereotype.Repository;
 
 import constsw.grupoum.courses.adapter.entity.mongo.CourseMongo;
@@ -96,15 +92,7 @@ public class CourseRepositoryImpl implements CourseRepository {
     @Override
     public Course patch(Course course) {
         try {
-            Document document = new Document();
-            mongoTemplate.getConverter().write(course, document);
-            Update update = new Update();
-            document.forEach(update::set);
-
-            return mapperEntity.toCourse(
-                    mongoTemplate.findAndModify(Query.query(Criteria.where("_id").is(course.getId())), update,
-                            CourseMongo.class));
-
+            return mapperEntity.toCourse(courseRepositoryMongo.save(mapperEntity.toMongoCourse(course)));
         } catch (Exception e) {
             throw new RepositoryConnectionException(e);
         }
