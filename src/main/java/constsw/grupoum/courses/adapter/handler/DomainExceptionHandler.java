@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import constsw.grupoum.courses.application.dto.ErrorDTO;
 import constsw.grupoum.courses.domain.exception.CourseException;
 import constsw.grupoum.courses.domain.exception.InvalidAtributeException;
+import constsw.grupoum.courses.domain.exception.InvalidBookException;
 
 @ControllerAdvice
 public class DomainExceptionHandler {
@@ -22,5 +23,11 @@ public class DomainExceptionHandler {
     public ResponseEntity<ErrorDTO> handleThrowable(InvalidAtributeException ex) {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST)
                 .body(new ErrorDTO("CO-331", ex.getMessage()));
+    }
+
+    @ExceptionHandler(InvalidBookException.class)
+    public ResponseEntity<ErrorDTO> handleThrowable(InvalidBookException ex) {
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                .body(new ErrorDTO("CO-332", ex.getMessage()));
     }
 }
