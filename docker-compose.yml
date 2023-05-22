@@ -5,8 +5,8 @@ volumes:
   mongo-data:
     external: true
 services:
-  backendg1:
-    container_name: backendg1
+  backend-courses:
+    container_name: backend-courses
     build:
       context: .
       dockerfile: Dockerfile
@@ -19,7 +19,7 @@ services:
     depends_on:
       - database
   database:
-    container_name: mongo
+    container_name: database-mongo
     image: mongo:latest
     ports:
       - "27017:27017"
