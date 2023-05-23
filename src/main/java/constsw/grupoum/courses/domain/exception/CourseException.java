@@ -1,6 +1,6 @@
 package constsw.grupoum.courses.domain.exception;
 
-public class CourseException extends RuntimeException {
+public class CourseException extends Exception {
 
     public CourseException(String message) {
         super(message);
