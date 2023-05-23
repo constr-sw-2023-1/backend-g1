@@ -15,7 +15,6 @@ import constsw.grupoum.courses.adapter.mapper.mongo.MongoQueryMapper;
 import constsw.grupoum.courses.adapter.repository.mongo.BookRepositoryMongo;
 import constsw.grupoum.courses.domain.entity.Book;
 import constsw.grupoum.courses.domain.exception.CourseException;
-import constsw.grupoum.courses.domain.exception.InvalidAtributeException;
 import constsw.grupoum.courses.domain.repository.BookRepository;
 import constsw.grupoum.courses.domain.vo.QueryParam;
 import lombok.RequiredArgsConstructor;
@@ -66,8 +65,6 @@ public class BookRepositoryImpl implements BookRepository {
         try {
             return mapperEntity.toBookCollection(
                     mongoTemplate.find(mapperQuery.toQuery(BookMongo.class, queries), BookMongo.class));
-        } catch (InvalidAtributeException e) {
-            throw e;
         } catch (Exception e) {
             throw new RepositoryConnectionException(e);
         }
