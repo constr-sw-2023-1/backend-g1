@@ -10,10 +10,10 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
 import constsw.grupoum.courses.adapter.exception.AdapterException;
-import constsw.grupoum.courses.adapter.exception.RepositoryException;
-import constsw.grupoum.courses.adapter.util.ErrorUtils;
 import constsw.grupoum.courses.adapter.exception.RepositoryConnectionException;
 import constsw.grupoum.courses.adapter.exception.RepositoryDuplicateKeyException;
+import constsw.grupoum.courses.adapter.exception.RepositoryException;
+import constsw.grupoum.courses.adapter.util.ErrorUtils;
 import constsw.grupoum.courses.application.dto.ErrorDTO;
 import lombok.RequiredArgsConstructor;
 
