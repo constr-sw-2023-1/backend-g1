@@ -1,5 +1,9 @@
 package constsw.grupoum.courses.adapter.handler;
 
+import java.util.Arrays;
+import java.util.Collection;
+
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -18,38 +22,42 @@ import lombok.RequiredArgsConstructor;
 @ControllerAdvice
 public class DomainExceptionHandler {
 
+    @Value("${spring.application.name}")
+    private String source;
+
     private final ErrorUtils errorUtils;
 
     @ExceptionHandler(CourseException.class)
-    public ResponseEntity<ErrorDTO> handleThrowable(CourseException ex) {
+    public ResponseEntity<Collection<ErrorDTO>> handleThrowable(CourseException ex) {
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                .body(new ErrorDTO("CO-530",
+                .body(Arrays.asList(new ErrorDTO("CO-530",
                         "Erro interno, favor contatar professor Arruda",
-                        errorUtils.toErrorStack(ex)));
+                        source,
+                        errorUtils.toErrorStack(ex))));
     }
 
     @ExceptionHandler(InvalidAtributeException.class)
-    public ResponseEntity<ErrorDTO> handleThrowable(InvalidAtributeException ex) {
+    public ResponseEntity<Collection<ErrorDTO>> handleThrowable(InvalidAtributeException ex) {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-                .body(new ErrorDTO("CO-331", ex.getMessage(), errorUtils.toErrorStack(ex)));
+                .body(Arrays.asList(new ErrorDTO("CO-331", ex.getMessage(), source, errorUtils.toErrorStack(ex))));
     }
 
     @ExceptionHandler(InvalidBookException.class)
-    public ResponseEntity<ErrorDTO> handleThrowable(InvalidBookException ex) {
+    public ResponseEntity<Collection<ErrorDTO>> handleThrowable(InvalidBookException ex) {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-                .body(new ErrorDTO("CO-332", ex.getMessage(), errorUtils.toErrorStack(ex)));
+                .body(Arrays.asList(new ErrorDTO("CO-332", ex.getMessage(), source, errorUtils.toErrorStack(ex))));
     }
 
     @ExceptionHandler(NotNullException.class)
-    public ResponseEntity<ErrorDTO> handleThrowable(NotNullException ex) {
+    public ResponseEntity<Collection<ErrorDTO>> handleThrowable(NotNullException ex) {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-                .body(new ErrorDTO("CO-334", ex.getMessage(), errorUtils.toErrorStack(ex)));
+                .body(Arrays.asList(new ErrorDTO("CO-334", ex.getMessage(), source, errorUtils.toErrorStack(ex))));
     }
 
     @ExceptionHandler(NotFoundEntityException.class)
-    public ResponseEntity<ErrorDTO> handleThrowable(NotFoundEntityException ex) {
+    public ResponseEntity<Collection<ErrorDTO>> handleThrowable(NotFoundEntityException ex) {
         return ResponseEntity.status(HttpStatus.NOT_FOUND)
-                .body(new ErrorDTO("CO-231", ex.getMessage(), errorUtils.toErrorStack(ex)));
+                .body(Arrays.asList(new ErrorDTO("CO-231", ex.getMessage(), source, errorUtils.toErrorStack(ex))));
     }
 
 }

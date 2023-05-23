@@ -1,5 +1,9 @@
 package constsw.grupoum.courses.adapter.handler;
 
+import java.util.Arrays;
+import java.util.Collection;
+
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -15,20 +19,24 @@ import lombok.RequiredArgsConstructor;
 @ControllerAdvice
 public class ApplicationExceptionHandler {
 
+    @Value("${spring.application.name}")
+    private String source;
+
     private final ErrorUtils errorUtils;
 
     @ExceptionHandler(ApplicationException.class)
-    public ResponseEntity<ErrorDTO> handleThrowable(ApplicationException ex) {
+    public ResponseEntity<Collection<ErrorDTO>> handleThrowable(ApplicationException ex) {
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                .body(new ErrorDTO("CO-520",
+                .body(Arrays.asList(new ErrorDTO("CO-520",
                         "Erro interno, favor contatar professor Arruda",
-                        errorUtils.toErrorStack(ex)));
+                        source,
+                        errorUtils.toErrorStack(ex))));
     }
 
     @ExceptionHandler(InvalidQueryException.class)
-    public ResponseEntity<ErrorDTO> handleThrowable(InvalidQueryException ex) {
+    public ResponseEntity<Collection<ErrorDTO>> handleThrowable(InvalidQueryException ex) {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-                .body(new ErrorDTO("CO-320", ex.getMessage(), errorUtils.toErrorStack(ex)));
+                .body(Arrays.asList(new ErrorDTO("CO-320", ex.getMessage(), source, errorUtils.toErrorStack(ex))));
     }
 
 }
