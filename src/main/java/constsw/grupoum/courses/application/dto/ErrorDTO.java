@@ -1,5 +1,7 @@
 package constsw.grupoum.courses.application.dto;
 
-public record ErrorDTO(String code, String description) {
+import java.util.Collection;
+
+public record ErrorDTO(String code, String description, Collection<ErrorCauseDTO> cause) {
 
 }
