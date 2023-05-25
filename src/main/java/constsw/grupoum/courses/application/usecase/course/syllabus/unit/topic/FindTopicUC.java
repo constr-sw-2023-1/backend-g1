@@ -5,14 +5,14 @@ import java.util.UUID;
 import org.springframework.stereotype.Service;
 
 import constsw.grupoum.courses.domain.dto.CourseDTO;
-import constsw.grupoum.courses.domain.dto.SylabusUnitDTO;
+import constsw.grupoum.courses.domain.dto.SyllabusUnitDTO;
 import constsw.grupoum.courses.domain.dto.UnitTopicDTO;
 import constsw.grupoum.courses.domain.service.CourseService;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 @Service
-public class FindTopicByNumberUC {
+public class FindTopicUC {
 
     private final CourseService courseService;
 
@@ -20,7 +20,7 @@ public class FindTopicByNumberUC {
         CourseDTO course = courseService.getById(id);
 
         if (course != null && course.syllabus() != null) {
-            SylabusUnitDTO unit = course.syllabus() == null ? null
+            SyllabusUnitDTO unit = course.syllabus() == null ? null
                     : course.syllabus()
                             .units()
                             .stream()

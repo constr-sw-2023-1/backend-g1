@@ -1,26 +1,26 @@
-package constsw.grupoum.courses.application.usecase.course.syllabus;
+package constsw.grupoum.courses.application.usecase.course.book;
 
 import java.util.UUID;
 
 import org.springframework.stereotype.Service;
 
 import constsw.grupoum.courses.domain.dto.CourseDTO;
-import constsw.grupoum.courses.domain.dto.CourseSyllabusDTO;
 import constsw.grupoum.courses.domain.exception.CourseException;
 import constsw.grupoum.courses.domain.service.CourseService;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 @Service
-public class FindSyllabusByCourseIdUC {
+public class DeleteCourseBookByIsbnUC {
 
     private final CourseService courseService;
 
-    public CourseSyllabusDTO run(UUID id) throws CourseException {
+    public void run(UUID id, String isbn) throws CourseException {
         CourseDTO course = courseService.getById(id);
-        if (course != null)
-            return course.syllabus();
-        return null;
+        if (course != null && course.bibliography() != null)
+            course.bibliography().removeIf(book -> book.isbn13().equals(isbn));
+
+        courseService.patchCourse(id, course);
     }
 
 }

@@ -29,13 +29,18 @@ import constsw.grupoum.courses.application.usecase.course.FindCourseByIdUC;
 import constsw.grupoum.courses.application.usecase.course.PatchCourseUC;
 import constsw.grupoum.courses.application.usecase.course.UpdateCourseUC;
 import constsw.grupoum.courses.application.usecase.course.book.CreateCourseBookUC;
-import constsw.grupoum.courses.application.usecase.course.book.DeleteBookRefByIsbnUC;
+import constsw.grupoum.courses.application.usecase.course.book.DeleteCourseBookByIsbnUC;
 import constsw.grupoum.courses.application.usecase.course.book.FindCourseBooksUC;
-import constsw.grupoum.courses.application.usecase.course.syllabus.FindSyllabusByCourseIdUC;
-import constsw.grupoum.courses.application.usecase.course.syllabus.unit.FindUnitByNumberUC;
-import constsw.grupoum.courses.application.usecase.course.syllabus.unit.topic.FindTopicByNumberUC;
+import constsw.grupoum.courses.application.usecase.course.syllabus.FindCourseSyllabusUC;
+import constsw.grupoum.courses.application.usecase.course.syllabus.unit.CreateCourseUnitUC;
+import constsw.grupoum.courses.application.usecase.course.syllabus.unit.DeleteCourseUnitUC;
+import constsw.grupoum.courses.application.usecase.course.syllabus.unit.FindAllCourseUnitsUC;
+import constsw.grupoum.courses.application.usecase.course.syllabus.unit.FindCourseUnitUC;
+import constsw.grupoum.courses.application.usecase.course.syllabus.unit.topic.FindAllTopicsUC;
+import constsw.grupoum.courses.application.usecase.course.syllabus.unit.topic.FindTopicUC;
 import constsw.grupoum.courses.domain.dto.BookRefDTO;
 import constsw.grupoum.courses.domain.dto.CourseDTO;
+import constsw.grupoum.courses.domain.dto.SyllabusUnitDTO;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.ArraySchema;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -59,13 +64,17 @@ public class CourseController {
 
     private final FindCourseBooksUC findCourseBooks;
     private final CreateCourseBookUC createCourseBook;
-    private final DeleteBookRefByIsbnUC deleteBookRefByIsbn;
+    private final DeleteCourseBookByIsbnUC deleteCourseBookByIsbn;
 
-    private final FindSyllabusByCourseIdUC findSyllabusByCourseId;
+    private final FindCourseSyllabusUC findCourseSyllabus;
 
-    private final FindUnitByNumberUC findUnitByNumber;
+    private final FindAllCourseUnitsUC findAllCourseUnits;
+    private final FindCourseUnitUC findCourseUnit;
+    private final CreateCourseUnitUC createCourseUnit;
+    private final DeleteCourseUnitUC deleteCourseUnit;
 
-    private final FindTopicByNumberUC findTopicByNumber;
+    private final FindAllTopicsUC findTopics;
+    private final FindTopicUC findCourseTopic;
 
     @Operation(description = "Get all courses")
     @ApiResponses(value = {
@@ -149,27 +158,52 @@ public class CourseController {
     }
 
     @DeleteMapping("/{id}/books/{isbn}")
-    public ResponseEntity<?> deleteBook(@PathVariable UUID id, String isbn) throws Throwable {
-        deleteBookRefByIsbn.run(id, isbn);
+    public ResponseEntity<?> deleteBook(@PathVariable UUID id, @PathVariable String isbn) throws Throwable {
+        deleteCourseBookByIsbn.run(id, isbn);
         return ResponseEntity.noContent().build();
     }
 
     @GetMapping("/{id}/syllabus")
-    public ResponseEntity<?> getSyllabusByCourseId(@PathVariable UUID id) throws Throwable {
-        return ResponseEntity.ok(findSyllabusByCourseId.run(id));
+    public ResponseEntity<?> getSyllabus(@PathVariable UUID id) throws Throwable {
+        return ResponseEntity.ok(findCourseSyllabus.run(id));
+    }
+
+    @GetMapping("/{id}/syllabus/units")
+    public ResponseEntity<?> getUnits(@PathVariable UUID id)
+            throws Throwable {
+        return ResponseEntity.ok(findAllCourseUnits.run(id));
+    }
+
+    @PostMapping("/{id}/syllabus/units")
+    public ResponseEntity<?> postUnit(@PathVariable UUID id, @RequestBody SyllabusUnitDTO unit)
+            throws Throwable {
+        return ResponseEntity.ok(createCourseUnit.run(id, unit));
     }
 
     @GetMapping("/{id}/syllabus/units/{unitNumber}")
-    public ResponseEntity<?> getSyllabusUnit(@PathVariable UUID id, @PathVariable int unitNumber)
+    public ResponseEntity<?> getUnit(@PathVariable UUID id, @PathVariable int unitNumber)
             throws Throwable {
-        return ResponseEntity.ok(findUnitByNumber.run(id, unitNumber));
+        return ResponseEntity.ok(findCourseUnit.run(id, unitNumber));
+    }
+
+    @DeleteMapping("/{id}/syllabus/units/{unitNumber}")
+    public ResponseEntity<?> deleteUnit(@PathVariable UUID id, @PathVariable int unitNumber)
+            throws Throwable {
+        deleteCourseUnit.run(id, unitNumber);
+        return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping("/{id}/syllabus/units/{unitNumber}/topics/")
+    public ResponseEntity<?> getTopics(@PathVariable UUID id, @PathVariable int unitNumber)
+            throws Throwable {
+        return ResponseEntity.ok(findTopics.run(id, unitNumber));
     }
 
     @GetMapping("/{id}/syllabus/units/{unitNumber}/topics/{topicNumber}")
-    public ResponseEntity<?> getSyllabusUnitTopic(@PathVariable UUID id, @PathVariable int unitNumber,
+    public ResponseEntity<?> getTopic(@PathVariable UUID id, @PathVariable int unitNumber,
             @PathVariable int topicNumber)
             throws Throwable {
-        return ResponseEntity.ok(findTopicByNumber.run(id, unitNumber, topicNumber));
+        return ResponseEntity.ok(findCourseTopic.run(id, unitNumber, topicNumber));
     }
 
 }
