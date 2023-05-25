@@ -1,4 +1,4 @@
-package constsw.grupoum.courses.application.usecase;
+package constsw.grupoum.courses.application.usecase.course;
 
 import org.springframework.stereotype.Service;
 

@@ -37,7 +37,7 @@ public class CourseService {
     }
 
     public CourseDTO getById(UUID id) throws CourseException {
-        return courseMapper.courseToCourseDTO(courseRepository.findById(id).orElse(null));
+        return courseMapper.toCourseDTO(courseRepository.findById(id).orElse(null));
     }
 
     public void deleteById(UUID id) throws CourseException {
@@ -46,11 +46,11 @@ public class CourseService {
 
     public CourseDTO updateCourse(UUID id, CourseDTO courseDTO) throws CourseException {
         try {
-            Course course = courseMapper.courseDTOToCourse(courseDTO);
+            Course course = courseMapper.toCourse(courseDTO);
             course.setId(id);
             course.setBibliography(bookMapper.toBookRefCollection(validateBooks(courseDTO.bibliography())));
 
-            return courseMapper.courseToCourseDTO(courseRepository.save(course));
+            return courseMapper.toCourseDTO(courseRepository.save(course));
         } catch (NullPointerException e) {
             throw new NotNullException(e.getMessage(), e);
         }
@@ -58,11 +58,11 @@ public class CourseService {
 
     public CourseDTO createCourse(CourseDTO course) throws CourseException {
         try {
-            Course courseEntity = courseMapper.courseDTOWithoutIdToCourseWithId(course);
+            Course courseEntity = courseMapper.toCourseWithId(course);
             courseEntity.setBibliography(bookMapper.toBookRefCollection(validateBooks(course.bibliography())));
 
             return courseMapper
-                    .courseToCourseDTO(courseRepository.insert(courseEntity));
+                    .toCourseDTO(courseRepository.insert(courseEntity));
         } catch (NullPointerException e) {
             throw new NotNullException(e.getMessage(), e);
         }
@@ -83,7 +83,7 @@ public class CourseService {
         validateBooks(course.bibliography());
 
         return courseMapper
-                .courseToCourseDTO(courseRepository.patch(courseMapper.updateCourse(courseRepository
+                .toCourseDTO(courseRepository.patch(courseMapper.updateCourse(courseRepository
                         .findById(id)
                         .orElseThrow(
                                 () -> new NotFoundEntityException(

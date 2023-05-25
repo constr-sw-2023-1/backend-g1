@@ -18,16 +18,23 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import constsw.grupoum.courses.application.dto.PatchCourseDTO;
 import constsw.grupoum.courses.application.dto.ErrorDTO;
 import constsw.grupoum.courses.application.dto.NewCourseDTO;
-import constsw.grupoum.courses.application.usecase.CreateCourseUC;
-import constsw.grupoum.courses.application.usecase.DeleteCourseByIdUC;
-import constsw.grupoum.courses.application.usecase.FindAllCoursesUC;
-import constsw.grupoum.courses.application.usecase.FindCourseByComplexQueryUC;
-import constsw.grupoum.courses.application.usecase.FindCourseByIdUC;
-import constsw.grupoum.courses.application.usecase.PatchCourseUC;
-import constsw.grupoum.courses.application.usecase.UpdateCourseUC;
+import constsw.grupoum.courses.application.dto.PatchCourseDTO;
+import constsw.grupoum.courses.application.usecase.course.CreateCourseUC;
+import constsw.grupoum.courses.application.usecase.course.DeleteCourseByIdUC;
+import constsw.grupoum.courses.application.usecase.course.FindAllCoursesUC;
+import constsw.grupoum.courses.application.usecase.course.FindCourseByComplexQueryUC;
+import constsw.grupoum.courses.application.usecase.course.FindCourseByIdUC;
+import constsw.grupoum.courses.application.usecase.course.PatchCourseUC;
+import constsw.grupoum.courses.application.usecase.course.UpdateCourseUC;
+import constsw.grupoum.courses.application.usecase.course.book.CreateCourseBookUC;
+import constsw.grupoum.courses.application.usecase.course.book.DeleteBookRefByIsbnUC;
+import constsw.grupoum.courses.application.usecase.course.book.FindCourseBooksUC;
+import constsw.grupoum.courses.application.usecase.course.syllabus.FindSyllabusByCourseIdUC;
+import constsw.grupoum.courses.application.usecase.course.syllabus.unit.FindUnitByNumberUC;
+import constsw.grupoum.courses.application.usecase.course.syllabus.unit.topic.FindTopicByNumberUC;
+import constsw.grupoum.courses.domain.dto.BookRefDTO;
 import constsw.grupoum.courses.domain.dto.CourseDTO;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.ArraySchema;
@@ -43,18 +50,22 @@ import lombok.RequiredArgsConstructor;
 public class CourseController {
 
     private final FindAllCoursesUC findAll;
-
     private final FindCourseByIdUC findByIdUC;
-
     private final DeleteCourseByIdUC deleteById;
-
     private final UpdateCourseUC updateCourse;
-
     private final CreateCourseUC createCourse;
-
     private final FindCourseByComplexQueryUC findByComplexQuery;
-
     private final PatchCourseUC patchCourse;
+
+    private final FindCourseBooksUC findCourseBooks;
+    private final CreateCourseBookUC createCourseBook;
+    private final DeleteBookRefByIsbnUC deleteBookRefByIsbn;
+
+    private final FindSyllabusByCourseIdUC findSyllabusByCourseId;
+
+    private final FindUnitByNumberUC findUnitByNumber;
+
+    private final FindTopicByNumberUC findTopicByNumber;
 
     @Operation(description = "Get all courses")
     @ApiResponses(value = {
@@ -125,6 +136,40 @@ public class CourseController {
     @PatchMapping("/{id}")
     public ResponseEntity<?> patchCourse(@PathVariable UUID id, @RequestBody PatchCourseDTO course) throws Throwable {
         return ResponseEntity.ok(patchCourse.run(id, course));
+    }
+
+    @GetMapping("/{id}/books")
+    public ResponseEntity<?> getBooks(@PathVariable UUID id) throws Throwable {
+        return ResponseEntity.ok(findCourseBooks.run(id));
+    }
+
+    @PostMapping("/{id}/books")
+    public ResponseEntity<?> postBook(@PathVariable UUID id, BookRefDTO book) throws Throwable {
+        return ResponseEntity.ok(createCourseBook.run(id, book));
+    }
+
+    @DeleteMapping("/{id}/books/{isbn}")
+    public ResponseEntity<?> deleteBook(@PathVariable UUID id, String isbn) throws Throwable {
+        deleteBookRefByIsbn.run(id, isbn);
+        return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping("/{id}/syllabus")
+    public ResponseEntity<?> getSyllabusByCourseId(@PathVariable UUID id) throws Throwable {
+        return ResponseEntity.ok(findSyllabusByCourseId.run(id));
+    }
+
+    @GetMapping("/{id}/syllabus/units/{unitNumber}")
+    public ResponseEntity<?> getSyllabusUnit(@PathVariable UUID id, @PathVariable int unitNumber)
+            throws Throwable {
+        return ResponseEntity.ok(findUnitByNumber.run(id, unitNumber));
+    }
+
+    @GetMapping("/{id}/syllabus/units/{unitNumber}/topics/{topicNumber}")
+    public ResponseEntity<?> getSyllabusUnitTopic(@PathVariable UUID id, @PathVariable int unitNumber,
+            @PathVariable int topicNumber)
+            throws Throwable {
+        return ResponseEntity.ok(findTopicByNumber.run(id, unitNumber, topicNumber));
     }
 
 }

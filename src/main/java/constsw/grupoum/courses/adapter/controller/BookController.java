@@ -15,10 +15,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import constsw.grupoum.courses.application.dto.ErrorDTO;
-import constsw.grupoum.courses.application.usecase.CreateBookUC;
-import constsw.grupoum.courses.application.usecase.FindAllBooksUC;
-import constsw.grupoum.courses.application.usecase.FindBookByIsbn13UC;
-import constsw.grupoum.courses.application.usecase.FindBooksByComplexQueryUC;
+import constsw.grupoum.courses.application.usecase.book.CreateBookUC;
+import constsw.grupoum.courses.application.usecase.book.FindAllBooksUC;
+import constsw.grupoum.courses.application.usecase.book.FindBookByIsbn13UC;
+import constsw.grupoum.courses.application.usecase.book.FindBooksByComplexQueryUC;
 import constsw.grupoum.courses.domain.dto.BookDTO;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.ArraySchema;
