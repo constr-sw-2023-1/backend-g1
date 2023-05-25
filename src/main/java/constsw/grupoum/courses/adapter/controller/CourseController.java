@@ -36,11 +36,14 @@ import constsw.grupoum.courses.application.usecase.course.syllabus.unit.CreateCo
 import constsw.grupoum.courses.application.usecase.course.syllabus.unit.DeleteCourseUnitUC;
 import constsw.grupoum.courses.application.usecase.course.syllabus.unit.FindAllCourseUnitsUC;
 import constsw.grupoum.courses.application.usecase.course.syllabus.unit.FindCourseUnitUC;
+import constsw.grupoum.courses.application.usecase.course.syllabus.unit.topic.CreateTopicUC;
+import constsw.grupoum.courses.application.usecase.course.syllabus.unit.topic.DeleteTopicUC;
 import constsw.grupoum.courses.application.usecase.course.syllabus.unit.topic.FindAllTopicsUC;
 import constsw.grupoum.courses.application.usecase.course.syllabus.unit.topic.FindTopicUC;
 import constsw.grupoum.courses.domain.dto.BookRefDTO;
 import constsw.grupoum.courses.domain.dto.CourseDTO;
 import constsw.grupoum.courses.domain.dto.SyllabusUnitDTO;
+import constsw.grupoum.courses.domain.dto.UnitTopicDTO;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.ArraySchema;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -74,7 +77,9 @@ public class CourseController {
     private final DeleteCourseUnitUC deleteCourseUnit;
 
     private final FindAllTopicsUC findTopics;
-    private final FindTopicUC findCourseTopic;
+    private final CreateTopicUC createTopic;
+    private final FindTopicUC findTopic;
+    private final DeleteTopicUC deleteTopic;
 
     @Operation(description = "Get all courses")
     @ApiResponses(value = {
@@ -199,11 +204,26 @@ public class CourseController {
         return ResponseEntity.ok(findTopics.run(id, unitNumber));
     }
 
+    @PostMapping("/{id}/syllabus/units/{unitNumber}/topics/")
+    public ResponseEntity<?> postTopics(@PathVariable UUID id, @PathVariable int unitNumber,
+            @RequestBody UnitTopicDTO topic)
+            throws Throwable {
+        return ResponseEntity.ok(createTopic.run(id, unitNumber, topic));
+    }
+
     @GetMapping("/{id}/syllabus/units/{unitNumber}/topics/{topicNumber}")
     public ResponseEntity<?> getTopic(@PathVariable UUID id, @PathVariable int unitNumber,
             @PathVariable int topicNumber)
             throws Throwable {
-        return ResponseEntity.ok(findCourseTopic.run(id, unitNumber, topicNumber));
+        return ResponseEntity.ok(findTopic.run(id, unitNumber, topicNumber));
+    }
+
+    @DeleteMapping("/{id}/syllabus/units/{unitNumber}/topics/{topicNumber}")
+    public ResponseEntity<?> deleteTopic(@PathVariable UUID id, @PathVariable int unitNumber,
+            @PathVariable int topicNumber)
+            throws Throwable {
+        deleteTopic.run(id, unitNumber, topicNumber);
+        return ResponseEntity.noContent().build();
     }
 
 }
