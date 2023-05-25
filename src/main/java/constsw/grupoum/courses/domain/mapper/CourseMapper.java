@@ -23,16 +23,16 @@ public interface CourseMapper {
 
     CourseMapper INSTANCE = Mappers.getMapper(CourseMapper.class);
 
-    Course courseDTOToCourse(CourseDTO course);
+    Course toCourse(CourseDTO course);
 
     Course updateCourse(@MappingTarget() Course entity, CourseDTO dto);
 
-    Course courseUpdateDTOToCourse(PatchCourseDTO course);
+    Course toCourse(PatchCourseDTO course);
 
     @Mapping(target = "id", defaultExpression = "java(java.util.UUID.randomUUID())")
-    Course courseDTOWithoutIdToCourseWithId(CourseDTO course);
+    Course toCourseWithId(CourseDTO course);
 
-    CourseDTO courseToCourseDTO(Course course);
+    CourseDTO toCourseDTO(Course course);
 
     CourseDTO toCourseDTO(NewCourseDTO course);
 
@@ -40,8 +40,8 @@ public interface CourseMapper {
 
     Collection<CourseDTO> toCourseDTOCollection(Collection<Course> courses);
 
-    BookRef bookRefDTOToBookRef(BookRefDTO book);
+    BookRef toBookRef(BookRefDTO book);
 
-    BookRefDTO bookRefToBookRefDTO(BookRef book);
+    BookRefDTO toBookRefDTO(BookRef book);
 
 }
