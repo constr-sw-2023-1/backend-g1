@@ -3,13 +3,13 @@ spring:
     name: courses-service
   data:
     mongodb:
-      host: localhost
-      port: 27017
-      database: courses
-      username: root
-      password: root
-      authentication-database: admin
-      uuid-representation: standard
+      host: ${MONGO_HOST:localhost}
+      port: ${MONGO_PORT:27017}
+      database: ${MONGO_DATABASE:courses}
+      username: ${MONGO_USERNAME:root}
+      password: ${MONGO_PASSWORD:root}
+      authentication-database: ${MONGO_AUTHENTICATION_DATABASE:admin}
+      uuid-representation: ${MONGO_UUID_REPRESENTATION:standard}
 logging:
   level:
     root: INFO
