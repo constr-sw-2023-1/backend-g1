@@ -171,7 +171,7 @@ public class CourseController {
             @ApiResponse(responseCode = "500", content = @Content(mediaType = APPLICATION_JSON_VALUE, schema = @Schema(implementation = ErrorDTO.class))) })
     @PostMapping("/{id}/books")
     public ResponseEntity<?> postBook(@PathVariable UUID id, BookRefDTO book) throws Throwable {
-        return ResponseEntity.ok(createCourseBook.run(id, book));
+        return new ResponseEntity<BookRefDTO>(createCourseBook.run(id, book), HttpStatus.CREATED);
     }
 
     @Operation(description = "Delete books for a course by id")
@@ -204,7 +204,7 @@ public class CourseController {
         return ResponseEntity.ok(findAllCourseUnits.run(id));
     }
 
-    @Operation(description = "Post units for a syllabus for a course by id")
+    @Operation(description = " units for a syllabus for a course by id")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "201", content = @Content(mediaType = APPLICATION_JSON_VALUE, schema = @Schema(implementation = SyllabusUnitDTO.class))),
             @ApiResponse(responseCode = "400", content = @Content(mediaType = APPLICATION_JSON_VALUE, schema = @Schema(implementation = ErrorDTO.class))),
@@ -214,7 +214,7 @@ public class CourseController {
     @PostMapping("/{id}/syllabus/units")
     public ResponseEntity<?> postUnit(@PathVariable UUID id, @RequestBody SyllabusUnitDTO unit)
             throws Throwable {
-        return ResponseEntity.ok(createCourseUnit.run(id, unit));
+        return new ResponseEntity<SyllabusUnitDTO>(createCourseUnit.run(id, unit), HttpStatus.CREATED);
     }
 
     
@@ -261,7 +261,7 @@ public class CourseController {
     public ResponseEntity<?> postTopics(@PathVariable UUID id, @PathVariable int unitNumber,
             @RequestBody UnitTopicDTO topic)
             throws Throwable {
-        return ResponseEntity.ok(createTopic.run(id, unitNumber, topic));
+        return new ResponseEntity<UnitTopicDTO>(createTopic.run(id, unitNumber, topic), HttpStatus.CREATED);
     }
 
     @Operation(description = "Get topic by topic number, unit number and course id")
