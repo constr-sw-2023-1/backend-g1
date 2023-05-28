@@ -44,6 +44,7 @@ import constsw.grupoum.courses.domain.dto.NewCourseDTO;
 import constsw.grupoum.courses.domain.dto.PatchCourseDTO;
 import constsw.grupoum.courses.domain.dto.SyllabusUnitDTO;
 import constsw.grupoum.courses.domain.dto.UnitTopicDTO;
+import constsw.grupoum.courses.domain.entity.CourseSyllabus;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.ArraySchema;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -152,45 +153,86 @@ public class CourseController {
         return ResponseEntity.ok(patchCourse.run(id, course));
     }
 
+    @Operation(description = "Get books for a course by id")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", content = @Content(mediaType = APPLICATION_JSON_VALUE, array = @ArraySchema(schema = @Schema(implementation = BookRefDTO.class)))),
+            @ApiResponse(responseCode = "500", content = @Content(mediaType = APPLICATION_JSON_VALUE, schema = @Schema(implementation = ErrorDTO.class))) })
     @GetMapping("/{id}/books")
     public ResponseEntity<?> getBooks(@PathVariable UUID id) throws Throwable {
         return ResponseEntity.ok(findCourseBooks.run(id));
     }
 
+    @Operation(description = "Post books for a course by id")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "201", content = @Content(mediaType = APPLICATION_JSON_VALUE, schema = @Schema(implementation = BookRefDTO.class))),
+            @ApiResponse(responseCode = "400", content = @Content(mediaType = APPLICATION_JSON_VALUE, schema = @Schema(implementation = ErrorDTO.class))),
+            @ApiResponse(responseCode = "404", content = @Content(mediaType = APPLICATION_JSON_VALUE, schema = @Schema(implementation = ErrorDTO.class))),
+            @ApiResponse(responseCode = "409", content = @Content(mediaType = APPLICATION_JSON_VALUE, schema = @Schema(implementation = ErrorDTO.class))),
+            @ApiResponse(responseCode = "500", content = @Content(mediaType = APPLICATION_JSON_VALUE, schema = @Schema(implementation = ErrorDTO.class))) })
     @PostMapping("/{id}/books")
     public ResponseEntity<?> postBook(@PathVariable UUID id, BookRefDTO book) throws Throwable {
         return ResponseEntity.ok(createCourseBook.run(id, book));
     }
 
+    @Operation(description = "Delete books for a course by id")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "204", content = @Content(schema = @Schema(implementation = Void.class))),
+            @ApiResponse(responseCode = "404", content = @Content(mediaType = APPLICATION_JSON_VALUE, schema = @Schema(implementation = ErrorDTO.class))),
+            @ApiResponse(responseCode = "500", content = @Content(mediaType = APPLICATION_JSON_VALUE, schema = @Schema(implementation = ErrorDTO.class))) })
     @DeleteMapping("/{id}/books/{isbn}")
     public ResponseEntity<?> deleteBook(@PathVariable UUID id, @PathVariable String isbn) throws Throwable {
         deleteCourseBookByIsbn.run(id, isbn);
         return ResponseEntity.noContent().build();
     }
 
+    @Operation(description = "Get syllabus for a course by id")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", content = @Content(mediaType = APPLICATION_JSON_VALUE, array = @ArraySchema(schema = @Schema(implementation = CourseSyllabus.class)))),
+            @ApiResponse(responseCode = "500", content = @Content(mediaType = APPLICATION_JSON_VALUE, schema = @Schema(implementation = ErrorDTO.class))) })
     @GetMapping("/{id}/syllabus")
     public ResponseEntity<?> getSyllabus(@PathVariable UUID id) throws Throwable {
         return ResponseEntity.ok(findCourseSyllabus.run(id));
     }
 
+    @Operation(description = "Get units for syllabus for a course by id")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", content = @Content(mediaType = APPLICATION_JSON_VALUE, array = @ArraySchema(schema = @Schema(implementation = SyllabusUnitDTO.class)))),
+            @ApiResponse(responseCode = "500", content = @Content(mediaType = APPLICATION_JSON_VALUE, schema = @Schema(implementation = ErrorDTO.class))) })
     @GetMapping("/{id}/syllabus/units")
     public ResponseEntity<?> getUnits(@PathVariable UUID id)
             throws Throwable {
         return ResponseEntity.ok(findAllCourseUnits.run(id));
     }
 
+    @Operation(description = "Post units for a syllabus for a course by id")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "201", content = @Content(mediaType = APPLICATION_JSON_VALUE, schema = @Schema(implementation = SyllabusUnitDTO.class))),
+            @ApiResponse(responseCode = "400", content = @Content(mediaType = APPLICATION_JSON_VALUE, schema = @Schema(implementation = ErrorDTO.class))),
+            @ApiResponse(responseCode = "404", content = @Content(mediaType = APPLICATION_JSON_VALUE, schema = @Schema(implementation = ErrorDTO.class))),
+            @ApiResponse(responseCode = "409", content = @Content(mediaType = APPLICATION_JSON_VALUE, schema = @Schema(implementation = ErrorDTO.class))),
+            @ApiResponse(responseCode = "500", content = @Content(mediaType = APPLICATION_JSON_VALUE, schema = @Schema(implementation = ErrorDTO.class))) })
     @PostMapping("/{id}/syllabus/units")
     public ResponseEntity<?> postUnit(@PathVariable UUID id, @RequestBody SyllabusUnitDTO unit)
             throws Throwable {
         return ResponseEntity.ok(createCourseUnit.run(id, unit));
     }
 
+    
+    @Operation(description = "Get a unit by unit number and course id")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", content = @Content(mediaType = APPLICATION_JSON_VALUE, schema = @Schema(implementation = SyllabusUnitDTO.class))),
+            @ApiResponse(responseCode = "500", content = @Content(mediaType = APPLICATION_JSON_VALUE, schema = @Schema(implementation = ErrorDTO.class))) })
     @GetMapping("/{id}/syllabus/units/{unitNumber}")
     public ResponseEntity<?> getUnit(@PathVariable UUID id, @PathVariable int unitNumber)
             throws Throwable {
         return ResponseEntity.ok(findCourseUnit.run(id, unitNumber));
     }
 
+    @Operation(description = "Delete unit by unit number and course id")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "204", content = @Content(schema = @Schema(implementation = Void.class))),
+            @ApiResponse(responseCode = "404", content = @Content(mediaType = APPLICATION_JSON_VALUE, schema = @Schema(implementation = ErrorDTO.class))),
+            @ApiResponse(responseCode = "500", content = @Content(mediaType = APPLICATION_JSON_VALUE, schema = @Schema(implementation = ErrorDTO.class))) })
     @DeleteMapping("/{id}/syllabus/units/{unitNumber}")
     public ResponseEntity<?> deleteUnit(@PathVariable UUID id, @PathVariable int unitNumber)
             throws Throwable {
@@ -198,12 +240,23 @@ public class CourseController {
         return ResponseEntity.noContent().build();
     }
 
+    @Operation(description = "Get topics by unit number and course id")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", content = @Content(mediaType = APPLICATION_JSON_VALUE, array = @ArraySchema(schema = @Schema(implementation = UnitTopicDTO.class)))),
+            @ApiResponse(responseCode = "500", content = @Content(mediaType = APPLICATION_JSON_VALUE, schema = @Schema(implementation = ErrorDTO.class))) })
     @GetMapping("/{id}/syllabus/units/{unitNumber}/topics/")
     public ResponseEntity<?> getTopics(@PathVariable UUID id, @PathVariable int unitNumber)
             throws Throwable {
         return ResponseEntity.ok(findTopics.run(id, unitNumber));
     }
 
+    @Operation(description = "Post topic by unit number and course id")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "201", content = @Content(mediaType = APPLICATION_JSON_VALUE, schema = @Schema(implementation = UnitTopicDTO.class))),
+            @ApiResponse(responseCode = "400", content = @Content(mediaType = APPLICATION_JSON_VALUE, schema = @Schema(implementation = ErrorDTO.class))),
+            @ApiResponse(responseCode = "404", content = @Content(mediaType = APPLICATION_JSON_VALUE, schema = @Schema(implementation = ErrorDTO.class))),
+            @ApiResponse(responseCode = "409", content = @Content(mediaType = APPLICATION_JSON_VALUE, schema = @Schema(implementation = ErrorDTO.class))),
+            @ApiResponse(responseCode = "500", content = @Content(mediaType = APPLICATION_JSON_VALUE, schema = @Schema(implementation = ErrorDTO.class))) })
     @PostMapping("/{id}/syllabus/units/{unitNumber}/topics/")
     public ResponseEntity<?> postTopics(@PathVariable UUID id, @PathVariable int unitNumber,
             @RequestBody UnitTopicDTO topic)
@@ -211,6 +264,10 @@ public class CourseController {
         return ResponseEntity.ok(createTopic.run(id, unitNumber, topic));
     }
 
+    @Operation(description = "Get topic by topic number, unit number and course id")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", content = @Content(mediaType = APPLICATION_JSON_VALUE, schema = @Schema(implementation = UnitTopicDTO.class))),
+            @ApiResponse(responseCode = "500", content = @Content(mediaType = APPLICATION_JSON_VALUE, schema = @Schema(implementation = ErrorDTO.class))) })
     @GetMapping("/{id}/syllabus/units/{unitNumber}/topics/{topicNumber}")
     public ResponseEntity<?> getTopic(@PathVariable UUID id, @PathVariable int unitNumber,
             @PathVariable int topicNumber)
@@ -218,6 +275,11 @@ public class CourseController {
         return ResponseEntity.ok(findTopic.run(id, unitNumber, topicNumber));
     }
 
+    @Operation(description = "Delete topic by topic number, unit number and course id")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "204", content = @Content(schema = @Schema(implementation = Void.class))),
+            @ApiResponse(responseCode = "404", content = @Content(mediaType = APPLICATION_JSON_VALUE, schema = @Schema(implementation = ErrorDTO.class))),
+            @ApiResponse(responseCode = "500", content = @Content(mediaType = APPLICATION_JSON_VALUE, schema = @Schema(implementation = ErrorDTO.class))) })
     @DeleteMapping("/{id}/syllabus/units/{unitNumber}/topics/{topicNumber}")
     public ResponseEntity<?> deleteTopic(@PathVariable UUID id, @PathVariable int unitNumber,
             @PathVariable int topicNumber)
