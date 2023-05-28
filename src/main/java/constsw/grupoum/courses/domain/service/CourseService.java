@@ -114,6 +114,10 @@ public class CourseService {
         return booksRefs;
     }
 
+    public Collection<BookRefDTO> findBibliography(UUID id) {
+        return courseMapper.toCourseDTO(courseRepository.findById(id).orElse(null)).bibliography();
+    }
+
     public CourseSyllabusDTO findSyllabus(UUID id) {
         return courseMapper.toCourseDTO(courseRepository.findById(id).orElse(null)).syllabus();
     }
