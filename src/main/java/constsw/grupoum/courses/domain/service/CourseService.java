@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import constsw.grupoum.courses.domain.dto.BookRefDTO;
 import constsw.grupoum.courses.domain.dto.CourseDTO;
+import constsw.grupoum.courses.domain.dto.SyllabusUnitDTO;
 import constsw.grupoum.courses.domain.dto.UnitTopicDTO;
 import constsw.grupoum.courses.domain.entity.Course;
 import constsw.grupoum.courses.domain.exception.CourseException;
@@ -110,6 +111,17 @@ public class CourseService {
             throw new InvalidBookException("ISBNs not found: " + String.join(", ", invalidISBNs));
 
         return booksRefs;
+    }
+
+    public SyllabusUnitDTO findUnit(UUID id, int numberUnit) {
+        return courseMapper.toSyllabusUnitDTO(courseRepository.findByIdAndSyllabusUnitsNumber(id, numberUnit)
+                .map(course -> course.getSyllabus()
+                        .getUnits()
+                        .stream()
+                        .filter(unit -> unit.getNumber().equals(numberUnit))
+                        .findFirst()
+                        .orElse(null))
+                .orElse(null));
     }
 
     public Collection<UnitTopicDTO> findUnitTopics(UUID id, int numberUnit) {
