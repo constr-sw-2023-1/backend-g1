@@ -2,12 +2,14 @@ package constsw.grupoum.courses.domain.service;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Optional;
 import java.util.UUID;
 
 import org.springframework.stereotype.Service;
 
 import constsw.grupoum.courses.domain.dto.BookRefDTO;
 import constsw.grupoum.courses.domain.dto.CourseDTO;
+import constsw.grupoum.courses.domain.dto.UnitTopicDTO;
 import constsw.grupoum.courses.domain.entity.Course;
 import constsw.grupoum.courses.domain.exception.CourseException;
 import constsw.grupoum.courses.domain.exception.InvalidBookException;
@@ -108,6 +110,20 @@ public class CourseService {
             throw new InvalidBookException("ISBNs not found: " + String.join(", ", invalidISBNs));
 
         return booksRefs;
+    }
+
+    public UnitTopicDTO findUnitTopic(UUID id, int numberTopic, int numberUnit) {
+        return courseMapper.toUnitTopicDTO(courseRepository
+                .findByIdAndSyllabusUnitsNumberAndSyllabusUnitsTopicsNumber(id, numberUnit, numberTopic)
+                .map(course -> course
+                        .getSyllabus()
+                        .getUnits()
+                        .stream()
+                        .filter(unit -> unit.getNumber().equals(numberUnit))
+                        .findFirst()
+                        .map(unit -> unit.getTopics().stream().filter(topic -> topic.getNumber().equals(numberTopic))
+                                .findFirst().orElse(null)))
+                .orElse(Optional.empty()).orElse(null));
     }
 
 }

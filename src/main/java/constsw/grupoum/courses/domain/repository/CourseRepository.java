@@ -24,4 +24,7 @@ public interface CourseRepository {
 
     Collection<Course> findByComplexQuery(Collection<QueryParam> queries) throws CourseException;
 
+    Optional<Course> findByIdAndSyllabusUnitsNumberAndSyllabusUnitsTopicsNumber(UUID id, int unitNumber,
+            int topicNumber);
+
 }

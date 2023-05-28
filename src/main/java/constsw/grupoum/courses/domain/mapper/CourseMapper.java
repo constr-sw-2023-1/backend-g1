@@ -14,8 +14,10 @@ import constsw.grupoum.courses.application.dto.PatchCourseDTO;
 import constsw.grupoum.courses.application.dto.NewCourseDTO;
 import constsw.grupoum.courses.domain.dto.BookRefDTO;
 import constsw.grupoum.courses.domain.dto.CourseDTO;
+import constsw.grupoum.courses.domain.dto.UnitTopicDTO;
 import constsw.grupoum.courses.domain.entity.BookRef;
 import constsw.grupoum.courses.domain.entity.Course;
+import constsw.grupoum.courses.domain.entity.UnitTopic;
 
 @Component
 @Mapper(componentModel = "spring", nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE, unmappedTargetPolicy = ReportingPolicy.IGNORE)
@@ -43,5 +45,7 @@ public interface CourseMapper {
     BookRef toBookRef(BookRefDTO book);
 
     BookRefDTO toBookRefDTO(BookRef book);
+
+    UnitTopicDTO toUnitTopicDTO(UnitTopic unitTopic);
 
 }
