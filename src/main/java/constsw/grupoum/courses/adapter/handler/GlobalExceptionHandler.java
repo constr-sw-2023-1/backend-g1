@@ -14,7 +14,7 @@ import constsw.grupoum.courses.application.dto.ErrorDTO;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
-@ControllerAdvice
+@ControllerAdvice(assignableTypes = { Throwable.class })
 public class GlobalExceptionHandler {
 
     @Value("${spring.application.name}")

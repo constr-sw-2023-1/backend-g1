@@ -17,7 +17,6 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.web.SecurityFilterChain;
 
-
 @Configuration
 @EnableWebSecurity
 @EnableMethodSecurity(prePostEnabled = true)
@@ -25,7 +24,8 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity httpSecurity,
-                                           @Qualifier("customAuthenticationEntryPoint") RestAuthenticationEntryPoint authEntryPoint) throws Exception {
+            @Qualifier("delegatedAuthenticationEntryPoint") DelegatedAuthenticationEntryPoint authEntryPoint)
+            throws Exception {
         httpSecurity.authorizeHttpRequests()
                 .requestMatchers("/actuator/**")
                 .permitAll()
@@ -60,14 +60,13 @@ public class SecurityConfig {
             Map<String, Collection<String>> realmAccess = jwt.getClaim("realm_access");
             Collection<String> roles = realmAccess.get("roles");
             return roles.stream()
-                .map(role -> new SimpleGrantedAuthority("ROLE_" + role))
-                .collect(Collectors.toList());
+                    .map(role -> new SimpleGrantedAuthority("ROLE_" + role))
+                    .collect(Collectors.toList());
         };
-    
+
         var jwtAuthenticationConverter = new JwtAuthenticationConverter();
         jwtAuthenticationConverter.setJwtGrantedAuthoritiesConverter(jwtGrantedAuthoritiesConverter);
-    
+
         return jwtAuthenticationConverter;
     }
 }
-
