@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import constsw.grupoum.courses.domain.dto.BookRefDTO;
 import constsw.grupoum.courses.domain.dto.CourseDTO;
 import constsw.grupoum.courses.domain.dto.CourseSyllabusDTO;
+import constsw.grupoum.courses.domain.dto.PatchCourseDTO;
 import constsw.grupoum.courses.domain.dto.SyllabusUnitDTO;
 import constsw.grupoum.courses.domain.dto.UnitTopicDTO;
 import constsw.grupoum.courses.domain.entity.Course;
@@ -82,7 +83,7 @@ public class CourseService {
         }
     }
 
-    public CourseDTO patchCourse(UUID id, CourseDTO course) throws CourseException {
+    public CourseDTO patchCourse(UUID id, PatchCourseDTO course) throws CourseException {
 
         validateBooks(course.bibliography());
 
@@ -92,7 +93,7 @@ public class CourseService {
                         .orElseThrow(
                                 () -> new NotFoundEntityException(
                                         String.format("Course with id %s not found", id.toString()))),
-                        course)));
+                        courseMapper.toCourseDTO(course))));
     }
 
     private Collection<BookRefDTO> validateBooks(Collection<BookRefDTO> books) throws InvalidBookException {
@@ -114,6 +115,60 @@ public class CourseService {
         return booksRefs;
     }
 
+    public BookRefDTO createBook(UUID id, BookRefDTO book) {
+
+        Optional<Course> course = courseRepository.findById(id);
+
+        patchCourse(id, course
+                .map(c -> {
+
+                    Collection<BookRefDTO> books = new ArrayList<>();
+                    books.add(book);
+
+                    CourseDTO courseDTO = courseMapper.toCourseDTO(c);
+                    if (courseDTO.bibliography() != null)
+                        books.addAll(courseDTO.bibliography());
+
+                    return new PatchCourseDTO(courseDTO.name(),
+                            courseDTO.codcred(),
+                            courseDTO.workload(),
+                            courseDTO.objectives(),
+                            courseDTO.syllabus(),
+                            books);
+
+                }).orElseThrow(() -> new NotFoundEntityException(
+                        String.format("Course with id %s not found", id.toString()))));
+
+        return book;
+    }
+
+    public void deleteBook(UUID id, String isbn13) {
+
+        Optional<Course> course = courseRepository.findByIdAndBibliographyIsbn13(id, isbn13);
+
+        patchCourse(id, course
+                .map(c -> {
+
+                    Collection<BookRefDTO> books = new ArrayList<>();
+
+                    CourseDTO courseDTO = courseMapper.toCourseDTO(c);
+                    if (courseDTO.bibliography() != null)
+                        books.addAll(courseDTO.bibliography());
+
+                    books.removeIf(book -> book.isbn13().equals(isbn13));
+
+                    return new PatchCourseDTO(courseDTO.name(),
+                            courseDTO.codcred(),
+                            courseDTO.workload(),
+                            courseDTO.objectives(),
+                            courseDTO.syllabus(),
+                            books);
+
+                }).orElseThrow(() -> new NotFoundEntityException(
+                        String.format("Course with id %s not found", id.toString()))));
+
+    }
+
     public Collection<BookRefDTO> findBibliography(UUID id) {
         return courseMapper.toCourseDTO(courseRepository.findById(id).orElse(null)).bibliography();
     }
@@ -132,6 +187,68 @@ public class CourseService {
                 .orElse(null));
     }
 
+    public SyllabusUnitDTO createSyllabusUnit(UUID id, SyllabusUnitDTO unit) {
+
+        Optional<Course> course = courseRepository.findById(id);
+
+        patchCourse(id, course
+                .map(c -> {
+
+                    CourseDTO courseDTO = courseMapper.toCourseDTO(c);
+
+                    Collection<SyllabusUnitDTO> units = new ArrayList<>();
+                    units.add(unit);
+
+                    if (courseDTO.syllabus() == null)
+                        throw new NotFoundEntityException(
+                                String.format("Syllabus from Course %s is null", id.toString()));
+
+                    if (courseDTO.syllabus().units() != null)
+                        units.addAll(courseDTO.syllabus().units());
+
+                    return new PatchCourseDTO(courseDTO.name(),
+                            courseDTO.codcred(),
+                            courseDTO.workload(),
+                            courseDTO.objectives(),
+                            new CourseSyllabusDTO(courseDTO.syllabus().description(), units),
+                            courseDTO.bibliography());
+
+                }).orElseThrow(() -> new NotFoundEntityException(
+                        String.format("Course with id %s not found", id.toString()))));
+
+        return unit;
+    }
+
+    public void deleteSyllabusUnit(UUID id, int unitNumber) {
+
+        Optional<Course> course = courseRepository.findByIdAndSyllabusUnitsNumber(id, unitNumber);
+
+        patchCourse(id, course
+                .map(c -> {
+
+                    CourseDTO courseDTO = courseMapper.toCourseDTO(c);
+
+                    if (courseDTO.syllabus() == null)
+                        throw new NotFoundEntityException(
+                                String.format("Syllabus from Course %s is null", id.toString()));
+
+                    if (courseDTO.syllabus().units() != null)
+                        courseDTO.syllabus()
+                                .units()
+                                .removeIf(unit -> unit.number().equals(unitNumber));
+
+                    return new PatchCourseDTO(courseDTO.name(),
+                            courseDTO.codcred(),
+                            courseDTO.workload(),
+                            courseDTO.objectives(),
+                            new CourseSyllabusDTO(courseDTO.syllabus().description(), courseDTO.syllabus().units()),
+                            courseDTO.bibliography());
+
+                }).orElseThrow(() -> new NotFoundEntityException(
+                        String.format("Course with id %s and unit %s not found", id.toString(), unitNumber))));
+
+    }
+
     public SyllabusUnitDTO findUnit(UUID id, int numberUnit) {
         return courseMapper.toSyllabusUnitDTO(courseRepository.findByIdAndSyllabusUnitsNumber(id, numberUnit)
                 .map(course -> course.getSyllabus()
@@ -141,6 +258,89 @@ public class CourseService {
                         .findFirst()
                         .orElse(null))
                 .orElse(null));
+    }
+
+    public UnitTopicDTO createUnitTopic(UUID id, int unitNumber, UnitTopicDTO topic) {
+
+        Optional<Course> course = courseRepository.findByIdAndSyllabusUnitsNumber(id, unitNumber);
+
+        patchCourse(id, course
+                .map(c -> {
+
+                    CourseDTO courseDTO = courseMapper.toCourseDTO(c);
+
+                    Collection<UnitTopicDTO> topics = new ArrayList<>();
+                    topics.add(topic);
+
+                    Collection<SyllabusUnitDTO> units = courseMapper
+                            .toSyllabusUnitDTOCollection(c.getSyllabus().getUnits());
+
+                    SyllabusUnitDTO actualUnit = units
+                            .stream()
+                            .filter(unit -> unit.number().equals(unitNumber))
+                            .findFirst()
+                            .orElseThrow(() -> new NotFoundEntityException(
+                                    String.format("Unit with number %s not found", unitNumber)));
+
+                    units.remove(actualUnit);
+
+                    Collection<UnitTopicDTO> actualTopics = actualUnit.topics();
+
+                    if (actualTopics != null)
+                        topics.addAll(actualTopics);
+
+                    units.add(new SyllabusUnitDTO(actualUnit.number(), actualUnit.name(), topics));
+
+                    return new PatchCourseDTO(courseDTO.name(),
+                            courseDTO.codcred(),
+                            courseDTO.workload(),
+                            courseDTO.objectives(),
+                            new CourseSyllabusDTO(courseDTO.syllabus().description(), units),
+                            courseDTO.bibliography());
+
+                }).orElseThrow(() -> new NotFoundEntityException(
+                        String.format("Course with id %s and unit number %s not found", id.toString(), unitNumber))));
+
+        return topic;
+    }
+
+    public void deleteTopic(UUID id, int unitNumber, int topicNumber) {
+
+        Optional<Course> course = courseRepository.findByIdAndSyllabusUnitsNumberAndSyllabusUnitsTopicsNumber(id,
+                unitNumber, topicNumber);
+
+        patchCourse(id, course
+                .map(c -> {
+
+                    CourseDTO courseDTO = courseMapper.toCourseDTO(c);
+
+                    Collection<SyllabusUnitDTO> units = courseMapper
+                            .toSyllabusUnitDTOCollection(c.getSyllabus().getUnits());
+
+                    SyllabusUnitDTO unit = units
+                            .stream()
+                            .filter(u -> u.number().equals(unitNumber))
+                            .findFirst()
+                            .orElseThrow(() -> new NotFoundEntityException(
+                                    String.format("Course with id %s and unit number %s", id.toString(), unitNumber)));
+
+                    Collection<UnitTopicDTO> topics = unit.topics();
+
+                    topics.removeIf(topic -> topic.number().equals(topicNumber));
+
+                    units.add(new SyllabusUnitDTO(unit.number(), unit.name(), topics));
+
+                    return new PatchCourseDTO(courseDTO.name(),
+                            courseDTO.codcred(),
+                            courseDTO.workload(),
+                            courseDTO.objectives(),
+                            new CourseSyllabusDTO(courseDTO.syllabus().description(), units),
+                            courseDTO.bibliography());
+                })
+                .orElseThrow(() -> new NotFoundEntityException(
+                        String.format("Course with id %s and unit number %s and topic number %s not found",
+                                id.toString(), unitNumber, topicNumber))));
+
     }
 
     public Collection<UnitTopicDTO> findUnitTopics(UUID id, int numberUnit) {

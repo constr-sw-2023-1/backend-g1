@@ -19,8 +19,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import constsw.grupoum.courses.application.dto.ErrorDTO;
-import constsw.grupoum.courses.application.dto.NewCourseDTO;
-import constsw.grupoum.courses.application.dto.PatchCourseDTO;
 import constsw.grupoum.courses.application.usecase.course.CreateCourseUC;
 import constsw.grupoum.courses.application.usecase.course.DeleteCourseByIdUC;
 import constsw.grupoum.courses.application.usecase.course.FindAllCoursesUC;
@@ -42,6 +40,8 @@ import constsw.grupoum.courses.application.usecase.course.syllabus.unit.topic.Fi
 import constsw.grupoum.courses.application.usecase.course.syllabus.unit.topic.FindTopicUC;
 import constsw.grupoum.courses.domain.dto.BookRefDTO;
 import constsw.grupoum.courses.domain.dto.CourseDTO;
+import constsw.grupoum.courses.domain.dto.NewCourseDTO;
+import constsw.grupoum.courses.domain.dto.PatchCourseDTO;
 import constsw.grupoum.courses.domain.dto.SyllabusUnitDTO;
 import constsw.grupoum.courses.domain.dto.UnitTopicDTO;
 import io.swagger.v3.oas.annotations.Operation;

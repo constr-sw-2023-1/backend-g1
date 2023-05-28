@@ -102,11 +102,22 @@ public class CourseRepositoryImpl implements CourseRepository {
     }
 
     @Override
+    public Optional<Course> findByIdAndBibliographyIsbn13(UUID id, String isbn13) {
+        try {
+            return courseRepositoryMongo
+                    .findByIdAndBibliographyIsbn13(id, isbn13)
+                    .map(course -> mapperEntity.toCourse(course));
+        } catch (Exception e) {
+            throw new RepositoryConnectionException(e);
+        }
+    }
+
+    @Override
     public Optional<Course> findByIdAndSyllabusUnitsNumber(UUID id, int unitNumber) {
         try {
             return courseRepositoryMongo
                     .findByIdAndSyllabusUnitsNumber(id, unitNumber)
-                    .map(unit -> mapperEntity.toCourse(unit));
+                    .map(course -> mapperEntity.toCourse(course));
         } catch (Exception e) {
             throw new RepositoryConnectionException(e);
         }
@@ -118,7 +129,7 @@ public class CourseRepositoryImpl implements CourseRepository {
         try {
             return courseRepositoryMongo
                     .findByIdAndSyllabusUnitsNumberAndSyllabusUnitsTopicsNumber(id, unitNumber, topicNumber)
-                    .map(unit -> mapperEntity.toCourse(unit));
+                    .map(course -> mapperEntity.toCourse(course));
         } catch (Exception e) {
             throw new RepositoryConnectionException(e);
         }

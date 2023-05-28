@@ -10,10 +10,10 @@ import org.mapstruct.ReportingPolicy;
 import org.mapstruct.factory.Mappers;
 import org.springframework.stereotype.Component;
 
-import constsw.grupoum.courses.application.dto.NewCourseDTO;
-import constsw.grupoum.courses.application.dto.PatchCourseDTO;
 import constsw.grupoum.courses.domain.dto.BookRefDTO;
 import constsw.grupoum.courses.domain.dto.CourseDTO;
+import constsw.grupoum.courses.domain.dto.NewCourseDTO;
+import constsw.grupoum.courses.domain.dto.PatchCourseDTO;
 import constsw.grupoum.courses.domain.dto.SyllabusUnitDTO;
 import constsw.grupoum.courses.domain.dto.UnitTopicDTO;
 import constsw.grupoum.courses.domain.entity.BookRef;
