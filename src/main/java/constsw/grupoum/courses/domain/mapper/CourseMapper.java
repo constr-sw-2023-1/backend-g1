@@ -44,6 +44,8 @@ public interface CourseMapper {
 
     Collection<CourseDTO> toCourseDTOCollection(Collection<Course> courses);
 
+    Collection<BookRef> toBookRefCollection(Collection<BookRefDTO> booksRefs);
+
     BookRef toBookRef(BookRefDTO book);
 
     BookRefDTO toBookRefDTO(BookRef book);

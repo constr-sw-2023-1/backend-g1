@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Optional;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 
@@ -85,15 +86,18 @@ public class CourseService {
 
     public CourseDTO patchCourse(UUID id, PatchCourseDTO course) throws CourseException {
 
-        validateBooks(course.bibliography());
-
         return courseMapper
-                .toCourseDTO(courseRepository.patch(courseMapper.updateCourse(courseRepository
+                .toCourseDTO(courseRepository.patch(courseRepository
                         .findById(id)
+                        .map(c -> {
+                            return courseMapper.updateCourse(c,
+                                    courseMapper.toCourseDTO(new PatchCourseDTO(course.name(), course.codcred(),
+                                            course.workload(), course.objectives(),
+                                            course.syllabus(), validateBooks(course.bibliography()))));
+                        })
                         .orElseThrow(
                                 () -> new NotFoundEntityException(
-                                        String.format("Course with id %s not found", id.toString()))),
-                        courseMapper.toCourseDTO(course))));
+                                        String.format("Course with id %s not found", id.toString())))));
     }
 
     private Collection<BookRefDTO> validateBooks(Collection<BookRefDTO> books) throws InvalidBookException {
@@ -112,7 +116,10 @@ public class CourseService {
         if (!invalidISBNs.isEmpty())
             throw new InvalidBookException("ISBNs not found: " + String.join(", ", invalidISBNs));
 
-        return booksRefs;
+        return booksRefs
+                .stream()
+                .distinct()
+                .collect(Collectors.toList());
     }
 
     public BookRefDTO createBook(UUID id, BookRefDTO book) {
@@ -139,7 +146,9 @@ public class CourseService {
                 }).orElseThrow(() -> new NotFoundEntityException(
                         String.format("Course with id %s not found", id.toString()))));
 
-        return book;
+        return bookRepository.findById(book.isbn13())
+                .map(b -> bookMapper.toBookRefDTO(b))
+                .orElseThrow(() -> new InvalidBookException(String.format("ISBN %s not found: ", book.isbn13())));
     }
 
     public void deleteBook(UUID id, String isbn13) {
