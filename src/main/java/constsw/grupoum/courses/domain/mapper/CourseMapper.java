@@ -47,7 +47,9 @@ public interface CourseMapper {
     BookRef toBookRef(BookRefDTO book);
 
     BookRefDTO toBookRefDTO(BookRef book);
-    
+
+    Collection<SyllabusUnitDTO> toSyllabusUnitDTOCollection(Collection<SyllabusUnit> unitsSyllabusUnits);
+
     SyllabusUnitDTO toSyllabusUnitDTO(SyllabusUnit unit);
 
     UnitTopicDTO toUnitTopicDTO(UnitTopic unitTopic);

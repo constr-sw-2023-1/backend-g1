@@ -113,6 +113,16 @@ public class CourseService {
         return booksRefs;
     }
 
+    public Collection<SyllabusUnitDTO> findUnits(UUID id) {
+        return courseMapper.toSyllabusUnitDTOCollection(courseRepository.findById(id)
+                .map(course -> {
+                    if (course.getSyllabus() != null && course.getSyllabus().getUnits() != null)
+                        return course.getSyllabus().getUnits();
+                    return null;
+                })
+                .orElse(null));
+    }
+
     public SyllabusUnitDTO findUnit(UUID id, int numberUnit) {
         return courseMapper.toSyllabusUnitDTO(courseRepository.findByIdAndSyllabusUnitsNumber(id, numberUnit)
                 .map(course -> course.getSyllabus()
