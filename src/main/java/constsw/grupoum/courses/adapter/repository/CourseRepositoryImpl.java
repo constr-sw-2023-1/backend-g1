@@ -102,6 +102,17 @@ public class CourseRepositoryImpl implements CourseRepository {
     }
 
     @Override
+    public Optional<Course> findByIdAndSyllabusUnitsNumber(UUID id, int unitNumber) {
+        try {
+            return courseRepositoryMongo
+                    .findByIdAndSyllabusUnitsNumber(id, unitNumber)
+                    .map(unit -> mapperEntity.toCourse(unit));
+        } catch (Exception e) {
+            throw new RepositoryConnectionException(e);
+        }
+    }
+
+    @Override
     public Optional<Course> findByIdAndSyllabusUnitsNumberAndSyllabusUnitsTopicsNumber(UUID id, int unitNumber,
             int topicNumber) {
         try {

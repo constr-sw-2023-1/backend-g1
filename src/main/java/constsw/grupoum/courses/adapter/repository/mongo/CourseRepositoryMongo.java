@@ -11,6 +11,8 @@ import constsw.grupoum.courses.adapter.entity.mongo.CourseMongo;
 @Repository
 public interface CourseRepositoryMongo extends MongoRepository<CourseMongo, UUID> {
 
+    Optional<CourseMongo> findByIdAndSyllabusUnitsNumber(UUID id, int unitNumber);
+
     Optional<CourseMongo> findByIdAndSyllabusUnitsNumberAndSyllabusUnitsTopicsNumber(UUID id, int unitNumber,
             int topicNumber);
 

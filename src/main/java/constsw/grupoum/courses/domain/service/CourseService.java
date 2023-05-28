@@ -112,7 +112,19 @@ public class CourseService {
         return booksRefs;
     }
 
-    public UnitTopicDTO findUnitTopic(UUID id, int numberTopic, int numberUnit) {
+    public Collection<UnitTopicDTO> findUnitTopics(UUID id, int numberUnit) {
+        return courseMapper.toUnitTopicDTOCollection(courseRepository.findByIdAndSyllabusUnitsNumber(id, numberUnit)
+                .map(course -> course.getSyllabus()
+                        .getUnits()
+                        .stream()
+                        .filter(unit -> unit.getNumber().equals(numberUnit))
+                        .findFirst()
+                        .orElse(null)
+                        .getTopics())
+                .orElse(null));
+    }
+
+    public UnitTopicDTO findUnitTopic(UUID id, int numberUnit, int numberTopic) {
         return courseMapper.toUnitTopicDTO(courseRepository
                 .findByIdAndSyllabusUnitsNumberAndSyllabusUnitsTopicsNumber(id, numberUnit, numberTopic)
                 .map(course -> course

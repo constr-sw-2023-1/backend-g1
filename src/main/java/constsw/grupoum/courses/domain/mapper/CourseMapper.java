@@ -48,4 +48,6 @@ public interface CourseMapper {
 
     UnitTopicDTO toUnitTopicDTO(UnitTopic unitTopic);
 
+    Collection<UnitTopicDTO> toUnitTopicDTOCollection(Collection<UnitTopic> unitTopics);
+
 }
