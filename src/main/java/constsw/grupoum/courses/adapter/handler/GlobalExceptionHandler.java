@@ -22,8 +22,8 @@ public class GlobalExceptionHandler {
 
     private final ErrorUtils errorUtils;
 
-    @ExceptionHandler(Throwable.class)
-    public ResponseEntity<Collection<ErrorDTO>> handleThrowable(Throwable ex) {
+    @ExceptionHandler(Exception.class)
+    public ResponseEntity<Collection<ErrorDTO>> handleThrowable(Exception ex) {
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
                 .body(Arrays.asList(new ErrorDTO("CO-500",
                         "Erro interno, favor contatar professor Arruda",
