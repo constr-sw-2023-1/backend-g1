@@ -18,11 +18,11 @@ spring:
       client:
         registration:
           keycloak:
-            client-id: ${KEYCLOAK_CLIENT_ID:client-id}
-            client-secret: ${KEYCLOAK_CLIENT_SECRET:client-secret}
+            client-id: ${KEYCLOAK_CLIENT_ID:admin-cli}
+            client-secret: ${KEYCLOAK_CLIENT_SECRET:zFHd3nu9XA3L0ULdxJPZ3EVeRKflrgbg}
             client-authentication-method: post
             authorization-grant-type: password
-            client-name: oauth
+            client-name: admin-cli
         provider:
           keycloak:
             issuer-uri: ${KEYCLOAK_REALM_URL:http://localhost:8090/auth}/realms/master
