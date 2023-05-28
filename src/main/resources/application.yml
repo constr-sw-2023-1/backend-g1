@@ -10,6 +10,24 @@ spring:
       password: root
       authentication-database: admin
       uuid-representation: standard
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: ${KEYCLOAK_REALM_URL:http://localhost:8090/auth}/realms/master
+      client:
+        registration:
+          keycloak:
+            client-id: ${KEYCLOAK_CLIENT_ID:client-id}
+            client-secret: ${KEYCLOAK_CLIENT_SECRET:client-secret}
+            client-authentication-method: post
+            authorization-grant-type: password
+            client-name: oauth
+        provider:
+          keycloak:
+            issuer-uri: ${KEYCLOAK_REALM_URL:http://localhost:8090/auth}/realms/master
+            user-name-attribute: preferred_username
+            jwk-set-uri: ${KEYCLOAK_REALM_URL:http://localhost:8090/auth}/realms/master/protocol/openid-connect/certs
 logging:
   level:
     root: INFO
