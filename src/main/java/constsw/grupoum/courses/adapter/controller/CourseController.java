@@ -89,9 +89,10 @@ public class CourseController {
             @ApiResponse(responseCode = "200", content = @Content(mediaType = APPLICATION_JSON_VALUE, array = @ArraySchema(schema = @Schema(implementation = CourseDTO.class)))),
             @ApiResponse(responseCode = "401", content = @Content(mediaType = APPLICATION_JSON_VALUE, schema = @Schema(implementation = ErrorDTO.class))),
             @ApiResponse(responseCode = "500", content = @Content(mediaType = APPLICATION_JSON_VALUE, schema = @Schema(implementation = ErrorDTO.class))) })
-    @GetMapping
-    public ResponseEntity<?> getAll() throws Throwable {
-        return ResponseEntity.ok(findAll.run());
+    @GetMapping("")
+    public ResponseEntity<?> getAll(@RequestParam(required = true) Map<String, String> searchParams) throws Throwable {
+        return searchParams.size() == 0 ? ResponseEntity.ok(findAll.run())
+                : ResponseEntity.ok(findByComplexQuery.run(searchParams));
     }
 
     @Operation(description = "Get course by id")
@@ -137,17 +138,6 @@ public class CourseController {
     @PostMapping
     public ResponseEntity<?> postCourse(@RequestBody NewCourseDTO course) throws Throwable {
         return new ResponseEntity<CourseDTO>(createCourse.run(course), HttpStatus.CREATED);
-    }
-
-    @Operation(description = "Get courses with complexy query")
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", content = @Content(mediaType = APPLICATION_JSON_VALUE, array = @ArraySchema(schema = @Schema(implementation = CourseDTO.class)))),
-            @ApiResponse(responseCode = "400", content = @Content(mediaType = APPLICATION_JSON_VALUE, schema = @Schema(implementation = ErrorDTO.class))),
-            @ApiResponse(responseCode = "401", content = @Content(mediaType = APPLICATION_JSON_VALUE, schema = @Schema(implementation = ErrorDTO.class))),
-            @ApiResponse(responseCode = "500", content = @Content(mediaType = APPLICATION_JSON_VALUE, schema = @Schema(implementation = ErrorDTO.class))) })
-    @GetMapping("/search")
-    public ResponseEntity<?> getComplexQuery(@RequestParam Map<String, String> searchParams) throws Throwable {
-        return ResponseEntity.ok(findByComplexQuery.run(searchParams));
     }
 
     @Operation(description = "Patch course")
