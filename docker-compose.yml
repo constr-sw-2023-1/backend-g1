@@ -21,6 +21,11 @@ services:
       - MONGO_AUTHENTICATION_DATABASE=admin
       - MONGO_DATABASE=courses
       - MONGO_UUID_REPRESENTATION=standard
+      - KEYCLOAK_REALM_URL=http://localhost:8090/auth
+      - KEYCLOAK_CLIENT_ID=admin-cli
+      - KEYCLOAK_CLIENT_SECRET=secret
+      - KEYCLOAK_REALM_NAME=master
+      - KEYCLOAK_GRANT_TYPE=password
     networks:
       - grupoum
     restart: always
