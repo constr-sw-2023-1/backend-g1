@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.AuthenticationException;
-import org.springframework.security.oauth2.server.resource.InvalidBearerTokenException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
@@ -47,17 +46,8 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(AuthenticationException.class)
     public ResponseEntity<Collection<ErrorDTO>> handleThrowable(AuthenticationException ex) {
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
-                .body(Arrays.asList(new ErrorDTO("CO-411",
-                        "Erro interno, vindo da autenticação do token verifique se o token está correto",
-                        source,
-                        errorUtils.toErrorStack(ex))));
-    }
-
-    @ExceptionHandler(InvalidBearerTokenException.class)
-    public ResponseEntity<Collection<ErrorDTO>> handleThrowable(InvalidBearerTokenException ex) {
-        return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
-                .body(Arrays.asList(new ErrorDTO("CO-411",
-                        "Erro interno, vindo da autenticação do token verifique se o token está correto",
+                .body(Arrays.asList(new ErrorDTO("CO-121",
+                        "Invalid or expired token",
                         source,
                         errorUtils.toErrorStack(ex))));
     }
