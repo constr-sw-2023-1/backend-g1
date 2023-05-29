@@ -59,6 +59,3 @@ Você vai precisar do [Docker](https://www.docker.com) instalado em sua máquina
 | CO-53X| Erros do domínio |
 | ------ | ----------- | 
 | CO-530| Erro desconhecido | 
-
-## Astah Class Diagram
-![class diagram](astah/backend.jpg)
