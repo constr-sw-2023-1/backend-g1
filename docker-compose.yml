@@ -1,4 +1,4 @@
-version: '3.4'
+version: '3.5'
 networks:
   grupoum:
 volumes:
@@ -14,18 +14,35 @@ services:
       - 8080:80
     environment:
       - SERVER_PORT=80
+      - MONGO_HOST=database
+      - MONGO_PORT=27017
+      - MONGO_USERNAME=root
+      - MONGO_PASSWORD=root
+      - MONGO_AUTHENTICATION_DATABASE=admin
+      - MONGO_DATABASE=courses
+      - MONGO_UUID_REPRESENTATION=standard
     networks:
       - grupoum
+    restart: always
     depends_on:
+      database:
+        condition: service_healthy
+    links:
       - database
   database:
     container_name: database-mongo
     image: mongo:latest
+    restart: always
     ports:
       - "27017:27017"
     environment:
       - MONGO_INITDB_ROOT_USERNAME=root
       - MONGO_INITDB_ROOT_PASSWORD=root
+    healthcheck:
+        test: echo 'db.runCommand("ping").ok' | mongosh localhost:27017/test --quiet
+        interval: 10s
+        timeout: 10s
+        retries: 5
     networks:
       - grupoum
     volumes:
