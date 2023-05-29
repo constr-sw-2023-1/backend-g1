@@ -1,5 +1,6 @@
 package constsw.grupoum.courses.adapter.repository.mongo;
 
+import java.util.Optional;
 import java.util.UUID;
 
 import org.springframework.data.mongodb.repository.MongoRepository;
@@ -9,5 +10,12 @@ import constsw.grupoum.courses.adapter.entity.mongo.CourseMongo;
 
 @Repository
 public interface CourseRepositoryMongo extends MongoRepository<CourseMongo, UUID> {
+
+    Optional<CourseMongo> findByIdAndBibliographyIsbn13(UUID id, String isbn13);
+
+    Optional<CourseMongo> findByIdAndSyllabusUnitsNumber(UUID id, int unitNumber);
+
+    Optional<CourseMongo> findByIdAndSyllabusUnitsNumberAndSyllabusUnitsTopicsNumber(UUID id, int unitNumber,
+            int topicNumber);
 
 }

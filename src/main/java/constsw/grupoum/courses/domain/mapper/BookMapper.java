@@ -17,13 +17,13 @@ public interface BookMapper {
 
     BookMapper INSTANCE = Mappers.getMapper(BookMapper.class);
 
-    Book bookDTOToBook(BookDTO book);
+    Book toBook(BookDTO book);
 
-    BookDTO bookToBookDTO(Book book);
+    BookDTO toBookDTO(Book book);
 
     BookRefDTO toBookRefDTO(Book book);
 
     Collection<BookRef> toBookRefCollection(Collection<BookRefDTO> bookRef);
 
-    Collection<BookDTO> collectionOfBookToCollectionOfBookDTO(Collection<Book> books);
+    Collection<BookDTO> toCollectionOfBookDTO(Collection<Book> books);
 }

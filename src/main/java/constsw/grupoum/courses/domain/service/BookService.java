@@ -22,7 +22,7 @@ public class BookService {
 
     public BookDTO create(BookDTO book) throws CourseException {
         try {
-            return bookMapper.bookToBookDTO(bookRepository.insert(bookMapper.bookDTOToBook(book)));
+            return bookMapper.toBookDTO(bookRepository.insert(bookMapper.toBook(book)));
         } catch (NullPointerException e) {
             throw new NotNullException(e.getMessage(), e);
         } catch (Exception e) {
@@ -32,7 +32,7 @@ public class BookService {
 
     public Collection<BookDTO> getAll() throws CourseException {
         try {
-            return bookMapper.collectionOfBookToCollectionOfBookDTO(bookRepository.findAll());
+            return bookMapper.toCollectionOfBookDTO(bookRepository.findAll());
         } catch (Exception e) {
             throw new CourseException(e);
         }
@@ -40,7 +40,7 @@ public class BookService {
 
     public BookDTO getByIsbn13(String isbn13) throws CourseException {
         try {
-            return bookMapper.bookToBookDTO(bookRepository.findById(isbn13).orElse(null));
+            return bookMapper.toBookDTO(bookRepository.findById(isbn13).orElse(null));
         } catch (Exception e) {
             throw new CourseException(e);
         }
@@ -48,7 +48,7 @@ public class BookService {
 
     public Collection<BookDTO> getByComplexQuery(Collection<QueryParam> queries) throws CourseException {
         try {
-            return bookMapper.collectionOfBookToCollectionOfBookDTO(bookRepository.findByComplexQuery(queries));
+            return bookMapper.toCollectionOfBookDTO(bookRepository.findByComplexQuery(queries));
         } catch (CourseException e) {
             throw e;
         } catch (Throwable e) {

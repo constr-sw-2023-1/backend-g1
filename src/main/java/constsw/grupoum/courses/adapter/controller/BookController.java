@@ -15,10 +15,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import constsw.grupoum.courses.application.dto.ErrorDTO;
-import constsw.grupoum.courses.application.usecase.CreateBookUC;
-import constsw.grupoum.courses.application.usecase.FindAllBooksUC;
-import constsw.grupoum.courses.application.usecase.FindBookByIsbn13UC;
-import constsw.grupoum.courses.application.usecase.FindBooksByComplexQueryUC;
+import constsw.grupoum.courses.application.usecase.book.CreateBookUC;
+import constsw.grupoum.courses.application.usecase.book.FindAllBooksUC;
+import constsw.grupoum.courses.application.usecase.book.FindBookByIsbn13UC;
+import constsw.grupoum.courses.application.usecase.book.FindBooksByComplexQueryUC;
 import constsw.grupoum.courses.domain.dto.BookDTO;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.ArraySchema;
@@ -26,10 +26,12 @@ import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 @RequestMapping("/courses/books")
+@SecurityRequirement(name = "bearerAuth")
 @RestController
 public class BookController {
 
@@ -44,6 +46,7 @@ public class BookController {
     @Operation(description = "Create new Book")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "201", content = @Content(mediaType = APPLICATION_JSON_VALUE, schema = @Schema(implementation = BookDTO.class))),
+            @ApiResponse(responseCode = "401", content = @Content(mediaType = APPLICATION_JSON_VALUE, schema = @Schema(implementation = ErrorDTO.class))),
             @ApiResponse(responseCode = "409", content = @Content(mediaType = APPLICATION_JSON_VALUE, schema = @Schema(implementation = ErrorDTO.class))),
             @ApiResponse(responseCode = "500", content = @Content(mediaType = APPLICATION_JSON_VALUE, schema = @Schema(implementation = ErrorDTO.class))) })
     @PostMapping
@@ -55,6 +58,7 @@ public class BookController {
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", content = @Content(mediaType = APPLICATION_JSON_VALUE, array = @ArraySchema(schema = @Schema(implementation = BookDTO.class)))),
             @ApiResponse(responseCode = "400", content = @Content(mediaType = APPLICATION_JSON_VALUE, schema = @Schema(implementation = ErrorDTO.class))),
+            @ApiResponse(responseCode = "401", content = @Content(mediaType = APPLICATION_JSON_VALUE, schema = @Schema(implementation = ErrorDTO.class))),
             @ApiResponse(responseCode = "500", content = @Content(mediaType = APPLICATION_JSON_VALUE, schema = @Schema(implementation = ErrorDTO.class))) })
     @GetMapping
     public ResponseEntity<?> getAll() throws Throwable {
@@ -64,6 +68,7 @@ public class BookController {
     @Operation(description = "Get Book from ISBN13")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", content = @Content(mediaType = APPLICATION_JSON_VALUE, schema = @Schema(implementation = BookDTO.class))),
+            @ApiResponse(responseCode = "401", content = @Content(mediaType = APPLICATION_JSON_VALUE, schema = @Schema(implementation = ErrorDTO.class))),
             @ApiResponse(responseCode = "500", content = @Content(mediaType = APPLICATION_JSON_VALUE, schema = @Schema(implementation = ErrorDTO.class))) })
     @GetMapping("/{isbn13}")
     public ResponseEntity<?> getById(@PathVariable String isbn13) throws Throwable {
@@ -74,6 +79,7 @@ public class BookController {
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", content = @Content(mediaType = APPLICATION_JSON_VALUE, array = @ArraySchema(schema = @Schema(implementation = BookDTO.class)))),
             @ApiResponse(responseCode = "400", content = @Content(mediaType = APPLICATION_JSON_VALUE, schema = @Schema(implementation = ErrorDTO.class))),
+            @ApiResponse(responseCode = "401", content = @Content(mediaType = APPLICATION_JSON_VALUE, schema = @Schema(implementation = ErrorDTO.class))),
             @ApiResponse(responseCode = "500", content = @Content(mediaType = APPLICATION_JSON_VALUE, schema = @Schema(implementation = ErrorDTO.class))) })
     @GetMapping("/search")
     public ResponseEntity<?> getComplexQuery(@RequestParam Map<String, String> searchParams) throws Throwable {

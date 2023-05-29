@@ -1,4 +1,4 @@
-package constsw.grupoum.courses.application.usecase;
+package constsw.grupoum.courses.application.usecase.book;
 
 import org.springframework.stereotype.Service;
 
@@ -9,12 +9,12 @@ import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 @Service
-public class CreateBookUC {
+public class FindBookByIsbn13UC {
 
     private final BookService bookService;
 
-    public BookDTO run(BookDTO book) throws CourseException {
-        return bookService.create(book);
+    public BookDTO run(String isbn13) throws CourseException {
+        return bookService.getByIsbn13(isbn13);
     }
 
 }
