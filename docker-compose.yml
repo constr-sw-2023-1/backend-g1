@@ -11,7 +11,7 @@ services:
       context: .
       dockerfile: Dockerfile
     ports:
-      - 8080:80
+      - 8081:80
     environment:
       - SERVER_PORT=80
       - MONGO_HOST=database
