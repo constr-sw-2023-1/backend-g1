@@ -1,9 +1,8 @@
-# backend-g1
+# Courses backend
 
 Você vai precisar do [Docker](https://www.docker.com) instalado em sua máquina, rode o seguinte comando na raiz do projeto:
 
     docker-compose up
-
 
 # Erros 
 
@@ -59,4 +58,8 @@ Você vai precisar do [Docker](https://www.docker.com) instalado em sua máquina
 
 | CO-53X| Erros do domínio |
 | ------ | ----------- | 
-| CO-530| Erro desconhecido | 
+| CO-530| Erro desconhecido |
+
+## Modelagem Astah
+
+![Diagrama Astah](astah/backend.jpg)

@@ -10,12 +10,16 @@ import org.mapstruct.ReportingPolicy;
 import org.mapstruct.factory.Mappers;
 import org.springframework.stereotype.Component;
 
-import constsw.grupoum.courses.application.dto.PatchCourseDTO;
-import constsw.grupoum.courses.application.dto.NewCourseDTO;
 import constsw.grupoum.courses.domain.dto.BookRefDTO;
 import constsw.grupoum.courses.domain.dto.CourseDTO;
+import constsw.grupoum.courses.domain.dto.NewCourseDTO;
+import constsw.grupoum.courses.domain.dto.PatchCourseDTO;
+import constsw.grupoum.courses.domain.dto.SyllabusUnitDTO;
+import constsw.grupoum.courses.domain.dto.UnitTopicDTO;
 import constsw.grupoum.courses.domain.entity.BookRef;
 import constsw.grupoum.courses.domain.entity.Course;
+import constsw.grupoum.courses.domain.entity.SyllabusUnit;
+import constsw.grupoum.courses.domain.entity.UnitTopic;
 
 @Component
 @Mapper(componentModel = "spring", nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE, unmappedTargetPolicy = ReportingPolicy.IGNORE)
@@ -23,16 +27,16 @@ public interface CourseMapper {
 
     CourseMapper INSTANCE = Mappers.getMapper(CourseMapper.class);
 
-    Course courseDTOToCourse(CourseDTO course);
+    Course toCourse(CourseDTO course);
 
     Course updateCourse(@MappingTarget() Course entity, CourseDTO dto);
 
-    Course courseUpdateDTOToCourse(PatchCourseDTO course);
+    Course toCourse(PatchCourseDTO course);
 
     @Mapping(target = "id", defaultExpression = "java(java.util.UUID.randomUUID())")
-    Course courseDTOWithoutIdToCourseWithId(CourseDTO course);
+    Course toCourseWithId(CourseDTO course);
 
-    CourseDTO courseToCourseDTO(Course course);
+    CourseDTO toCourseDTO(Course course);
 
     CourseDTO toCourseDTO(NewCourseDTO course);
 
@@ -40,8 +44,18 @@ public interface CourseMapper {
 
     Collection<CourseDTO> toCourseDTOCollection(Collection<Course> courses);
 
-    BookRef bookRefDTOToBookRef(BookRefDTO book);
+    Collection<BookRef> toBookRefCollection(Collection<BookRefDTO> booksRefs);
 
-    BookRefDTO bookRefToBookRefDTO(BookRef book);
+    BookRef toBookRef(BookRefDTO book);
+
+    BookRefDTO toBookRefDTO(BookRef book);
+
+    Collection<SyllabusUnitDTO> toSyllabusUnitDTOCollection(Collection<SyllabusUnit> unitsSyllabusUnits);
+
+    SyllabusUnitDTO toSyllabusUnitDTO(SyllabusUnit unit);
+
+    UnitTopicDTO toUnitTopicDTO(UnitTopic unitTopic);
+
+    Collection<UnitTopicDTO> toUnitTopicDTOCollection(Collection<UnitTopic> unitTopics);
 
 }
