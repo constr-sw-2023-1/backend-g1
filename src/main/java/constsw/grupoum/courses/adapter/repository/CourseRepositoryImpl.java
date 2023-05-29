@@ -100,4 +100,38 @@ public class CourseRepositoryImpl implements CourseRepository {
             throw new RepositoryConnectionException(e);
         }
     }
+
+    @Override
+    public Optional<Course> findByIdAndBibliographyIsbn13(UUID id, String isbn13) {
+        try {
+            return courseRepositoryMongo
+                    .findByIdAndBibliographyIsbn13(id, isbn13)
+                    .map(course -> mapperEntity.toCourse(course));
+        } catch (Exception e) {
+            throw new RepositoryConnectionException(e);
+        }
+    }
+
+    @Override
+    public Optional<Course> findByIdAndSyllabusUnitsNumber(UUID id, int unitNumber) {
+        try {
+            return courseRepositoryMongo
+                    .findByIdAndSyllabusUnitsNumber(id, unitNumber)
+                    .map(course -> mapperEntity.toCourse(course));
+        } catch (Exception e) {
+            throw new RepositoryConnectionException(e);
+        }
+    }
+
+    @Override
+    public Optional<Course> findByIdAndSyllabusUnitsNumberAndSyllabusUnitsTopicsNumber(UUID id, int unitNumber,
+            int topicNumber) {
+        try {
+            return courseRepositoryMongo
+                    .findByIdAndSyllabusUnitsNumberAndSyllabusUnitsTopicsNumber(id, unitNumber, topicNumber)
+                    .map(course -> mapperEntity.toCourse(course));
+        } catch (Exception e) {
+            throw new RepositoryConnectionException(e);
+        }
+    }
 }

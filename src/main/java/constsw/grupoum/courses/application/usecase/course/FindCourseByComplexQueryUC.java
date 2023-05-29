@@ -1,4 +1,4 @@
-package constsw.grupoum.courses.application.usecase;
+package constsw.grupoum.courses.application.usecase.course;
 
 import java.util.Collection;
 import java.util.Map;
