@@ -230,7 +230,6 @@ public class CourseController {
         return new ResponseEntity<SyllabusUnitDTO>(createCourseUnit.run(id, unit), HttpStatus.CREATED);
     }
 
-    
     @Operation(description = "Get a unit by unit number and course id")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", content = @Content(mediaType = APPLICATION_JSON_VALUE, schema = @Schema(implementation = SyllabusUnitDTO.class))),
