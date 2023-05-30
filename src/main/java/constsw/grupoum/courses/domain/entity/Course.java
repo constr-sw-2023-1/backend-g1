@@ -29,6 +29,8 @@ public class Course {
 
     private Collection<CourseUnit> units;
 
+    private Boolean active = true;
+
     private Collection<BookRef> bibliography;
 
 }
