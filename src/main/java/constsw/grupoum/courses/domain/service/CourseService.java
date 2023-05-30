@@ -47,7 +47,13 @@ public class CourseService {
     }
 
     public void deleteById(UUID id) throws CourseException {
-        courseRepository.deleteById(id);
+        try{
+        Course course = courseRepository.findById(id).orElseThrow(() -> new NotFoundEntityException("Course not found"));
+        course.setActive(false);
+        courseRepository.save(course);
+        } catch (NullPointerException e) {
+            throw new NotNullException(e.getMessage(), e);
+        }
     }
 
     public CourseDTO updateCourse(UUID id, CourseDTO courseDTO) throws CourseException {

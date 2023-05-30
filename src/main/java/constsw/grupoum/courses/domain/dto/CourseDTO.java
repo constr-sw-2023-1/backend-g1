@@ -9,6 +9,7 @@ public record CourseDTO(UUID id,
         Integer workload,
         Collection<String> objectives,
         CourseSyllabusDTO syllabus,
+        Boolean active,
         Collection<BookRefDTO> bibliography) {
 
 }
