@@ -54,7 +54,6 @@ public class CourseService {
             Course course = courseMapper.toCourse(courseDTO);
             course.setId(id);
             course.setBibliography(bookMapper.toBookRefCollection(validateBooks(courseDTO.bibliography())));
-
             return courseMapper.toCourseDTO(courseRepository.save(course));
         } catch (NullPointerException e) {
             throw new NotNullException(e.getMessage(), e);
