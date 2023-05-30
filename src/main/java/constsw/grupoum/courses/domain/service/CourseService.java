@@ -39,7 +39,8 @@ public class CourseService {
     private final CourseMapper courseMapper;
 
     public Collection<CourseDTO> getAll() throws CourseException {
-        return courseMapper.toCourseDTOCollection(courseRepository.findAll());
+        
+        return courseMapper.toCourseDTOCollection(courseRepository.findAll().stream().filter(c -> c.getActive()).collect(Collectors.toList()));
     }
 
     public CourseDTO getById(UUID id) throws CourseException {
