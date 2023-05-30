@@ -1,4 +1,4 @@
-package constsw.grupoum.courses.application.usecase.course.syllabus.unit.topic;
+package constsw.grupoum.courses.application.usecase.course.unit.topic;
 
 import java.util.UUID;
 
@@ -10,12 +10,12 @@ import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 @Service
-public class FindTopicUC {
+public class CreateTopicUC {
 
     private final CourseService courseService;
 
-    public UnitTopicDTO run(UUID id, int unitNumber, int topicNumber) {
-        return courseService.findUnitTopic(id, unitNumber, topicNumber);
+    public UnitTopicDTO run(UUID id, int unitNumber, UnitTopicDTO topic) {
+        return courseService.createUnitTopic(id, unitNumber, topic);
     }
 
 }

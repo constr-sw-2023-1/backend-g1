@@ -13,9 +13,9 @@ public interface CourseRepositoryMongo extends MongoRepository<CourseMongo, UUID
 
     Optional<CourseMongo> findByIdAndBibliographyIsbn13(UUID id, String isbn13);
 
-    Optional<CourseMongo> findByIdAndSyllabusUnitsNumber(UUID id, int unitNumber);
+    Optional<CourseMongo> findByIdAndUnitsNumber(UUID id, int unitNumber);
 
-    Optional<CourseMongo> findByIdAndSyllabusUnitsNumberAndSyllabusUnitsTopicsNumber(UUID id, int unitNumber,
+    Optional<CourseMongo> findByIdAndUnitsNumberAndUnitsTopicsNumber(UUID id, int unitNumber,
             int topicNumber);
 
 }

@@ -12,13 +12,13 @@ import org.springframework.stereotype.Component;
 
 import constsw.grupoum.courses.domain.dto.BookRefDTO;
 import constsw.grupoum.courses.domain.dto.CourseDTO;
+import constsw.grupoum.courses.domain.dto.CourseUnitDTO;
 import constsw.grupoum.courses.domain.dto.NewCourseDTO;
 import constsw.grupoum.courses.domain.dto.PatchCourseDTO;
-import constsw.grupoum.courses.domain.dto.SyllabusUnitDTO;
 import constsw.grupoum.courses.domain.dto.UnitTopicDTO;
 import constsw.grupoum.courses.domain.entity.BookRef;
 import constsw.grupoum.courses.domain.entity.Course;
-import constsw.grupoum.courses.domain.entity.SyllabusUnit;
+import constsw.grupoum.courses.domain.entity.CourseUnit;
 import constsw.grupoum.courses.domain.entity.UnitTopic;
 
 @Component
@@ -50,9 +50,11 @@ public interface CourseMapper {
 
     BookRefDTO toBookRefDTO(BookRef book);
 
-    Collection<SyllabusUnitDTO> toSyllabusUnitDTOCollection(Collection<SyllabusUnit> unitsSyllabusUnits);
+    //Collection<SyllabusUnitDTO> toSyllabusUnitDTOCollection(Collection<SyllabusUnit> unitsSyllabusUnits);
+    Collection<CourseUnitDTO> toCourseUnitDTOCollection(Collection<CourseUnit> unitsCourseUnits);
 
-    SyllabusUnitDTO toSyllabusUnitDTO(SyllabusUnit unit);
+    //SyllabusUnitDTO toSyllabusUnitDTO(SyllabusUnit unit);
+    CourseUnitDTO toCourseUnitDTO(CourseUnit unit);
 
     UnitTopicDTO toUnitTopicDTO(UnitTopic unitTopic);
 

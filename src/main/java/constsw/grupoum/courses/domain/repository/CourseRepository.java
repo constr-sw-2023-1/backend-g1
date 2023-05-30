@@ -26,9 +26,9 @@ public interface CourseRepository {
 
     Optional<Course> findByIdAndBibliographyIsbn13(UUID id, String isbn13);
 
-    Optional<Course> findByIdAndSyllabusUnitsNumber(UUID id, int unitNumber);
+    Optional<Course> findByIdAndCourseUnitsNumber(UUID id, int unitNumber);
 
-    Optional<Course> findByIdAndSyllabusUnitsNumberAndSyllabusUnitsTopicsNumber(UUID id, int unitNumber,
+    Optional<Course> findByIdAndCourseUnitsNumberAndCourseUnitsTopicsNumber(UUID id, int unitNumber,
             int topicNumber);
 
 }
