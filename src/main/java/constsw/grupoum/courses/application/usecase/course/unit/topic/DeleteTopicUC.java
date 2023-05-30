@@ -1,4 +1,4 @@
-package constsw.grupoum.courses.application.usecase.course.syllabus.unit.topic;
+package constsw.grupoum.courses.application.usecase.course.unit.topic;
 
 import java.util.UUID;
 

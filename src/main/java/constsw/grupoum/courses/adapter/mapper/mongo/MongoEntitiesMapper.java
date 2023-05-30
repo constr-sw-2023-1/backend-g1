@@ -9,14 +9,12 @@ import org.springframework.stereotype.Component;
 import constsw.grupoum.courses.adapter.entity.mongo.BookMongo;
 import constsw.grupoum.courses.adapter.entity.mongo.BookRefMongo;
 import constsw.grupoum.courses.adapter.entity.mongo.CourseMongo;
-import constsw.grupoum.courses.adapter.entity.mongo.CourseSyllabusMongo;
-import constsw.grupoum.courses.adapter.entity.mongo.SyllabusUnitMongo;
+import constsw.grupoum.courses.adapter.entity.mongo.CourseUnitMongo;
 import constsw.grupoum.courses.adapter.entity.mongo.UnitTopicMongo;
 import constsw.grupoum.courses.domain.entity.Book;
 import constsw.grupoum.courses.domain.entity.BookRef;
 import constsw.grupoum.courses.domain.entity.Course;
-import constsw.grupoum.courses.domain.entity.CourseSyllabus;
-import constsw.grupoum.courses.domain.entity.SyllabusUnit;
+import constsw.grupoum.courses.domain.entity.CourseUnit;
 import constsw.grupoum.courses.domain.entity.UnitTopic;
 
 @Component
@@ -41,13 +39,9 @@ public interface MongoEntitiesMapper {
 
     Collection<Course> toCourseCollection(Collection<CourseMongo> course);
 
-    CourseSyllabusMongo toMongoCourseSyllabus(CourseSyllabus courseSyllabus);
+    CourseUnitMongo toMongoCourseUnit(CourseUnit courseUnit);
 
-    CourseSyllabus toCourseSyllabus(CourseSyllabusMongo courseSyllabus);
-
-    SyllabusUnitMongo toMongoSyallabusUnit(SyllabusUnit syllabusUnit);
-
-    SyllabusUnit toSyllabusUnit(SyllabusUnitMongo syllabusUnit);
+    CourseUnit toCourseUnit(CourseUnitMongo courseUnit);
 
     UnitTopicMongo toMongoUnitTopic(UnitTopic unitTopic);
 

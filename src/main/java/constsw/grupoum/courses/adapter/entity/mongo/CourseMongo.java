@@ -34,7 +34,10 @@ public class CourseMongo {
     private Collection<String> objectives;
 
     @Field("syllabus")
-    private CourseSyllabusMongo syllabus;
+    private String syllabus;
+
+    @Field("units")
+    private Collection<CourseUnitMongo> units;
 
     @Field(name = "bibliography", targetType = FieldType.ARRAY)
     private Collection<BookRefMongo> bibliography;

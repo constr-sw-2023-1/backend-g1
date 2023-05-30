@@ -1,5 +1,6 @@
-package constsw.grupoum.courses.application.usecase.course.syllabus.unit.topic;
+package constsw.grupoum.courses.application.usecase.course.unit.topic;
 
+import java.util.Collection;
 import java.util.UUID;
 
 import org.springframework.stereotype.Service;
@@ -10,12 +11,11 @@ import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 @Service
-public class CreateTopicUC {
+public class FindAllTopicsUC {
 
     private final CourseService courseService;
 
-    public UnitTopicDTO run(UUID id, int unitNumber, UnitTopicDTO topic) {
-        return courseService.createUnitTopic(id, unitNumber, topic);
+    public Collection<UnitTopicDTO> run(UUID id, int unitNumber) {
+        return courseService.findUnitTopics(id, unitNumber);
     }
-
 }

@@ -1,4 +1,4 @@
-package constsw.grupoum.courses.application.usecase.course.syllabus.unit;
+package constsw.grupoum.courses.application.usecase.course.unit;
 
 import java.util.UUID;
 
@@ -14,6 +14,6 @@ public class DeleteCourseUnitUC {
     private final CourseService courseService;
 
     public void run(UUID id, int number) {
-        courseService.deleteSyllabusUnit(id, number);
+        courseService.deleteCourseUnit(id, number);
     }
 }

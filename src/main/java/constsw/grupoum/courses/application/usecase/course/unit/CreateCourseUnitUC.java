@@ -1,10 +1,10 @@
-package constsw.grupoum.courses.application.usecase.course.syllabus.unit;
+package constsw.grupoum.courses.application.usecase.course.unit;
 
 import java.util.UUID;
 
 import org.springframework.stereotype.Service;
 
-import constsw.grupoum.courses.domain.dto.SyllabusUnitDTO;
+import constsw.grupoum.courses.domain.dto.CourseUnitDTO;
 import constsw.grupoum.courses.domain.service.CourseService;
 import lombok.RequiredArgsConstructor;
 
@@ -14,8 +14,8 @@ public class CreateCourseUnitUC {
 
     private final CourseService courseService;
 
-    public SyllabusUnitDTO run(UUID id, SyllabusUnitDTO unit) {
-        return courseService.createSyllabusUnit(id, unit);
+    public CourseUnitDTO run(UUID id, CourseUnitDTO unit) {
+        return courseService.createCourseUnit(id, unit);
     }
 
 }

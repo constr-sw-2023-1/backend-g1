@@ -25,7 +25,9 @@ public class Course {
 
     private Collection<String> objectives;
 
-    private CourseSyllabus syllabus;
+    private String syllabus;
+
+    private Collection<CourseUnit> units;
 
     private Collection<BookRef> bibliography;
 

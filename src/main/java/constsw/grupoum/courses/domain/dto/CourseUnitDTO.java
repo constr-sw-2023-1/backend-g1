@@ -7,7 +7,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Builder;
 
 @Builder
-public record SyllabusUnitDTO(@JsonProperty(required = true) Integer number,
+public record CourseUnitDTO(@JsonProperty(required = true) Integer number,
         @JsonProperty(required = true) String name,
         Collection<UnitTopicDTO> topics) {
 

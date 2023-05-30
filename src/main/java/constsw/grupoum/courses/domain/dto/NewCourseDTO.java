@@ -8,7 +8,8 @@ public record NewCourseDTO(@JsonProperty(required = true) String name,
         @JsonProperty(required = true) String codcred,
         Integer workload,
         Collection<String> objectives,
-        CourseSyllabusDTO syllabus,
+        String syllabus,
+        Collection<CourseUnitDTO> units,
         Collection<BookRefDTO> bibliography) {
 
 }

@@ -10,7 +10,7 @@ import lombok.NonNull;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class SyllabusUnit {
+public class CourseUnit {
 
     @NonNull
     private Integer number;
