@@ -27,7 +27,7 @@ public class Course {
 
     private CourseSyllabus syllabus;
 
-    private Boolean active;
+    private Boolean active = true;
 
     private Collection<BookRef> bibliography;
 

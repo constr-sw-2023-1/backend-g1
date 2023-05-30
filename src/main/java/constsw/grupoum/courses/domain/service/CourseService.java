@@ -72,7 +72,7 @@ public class CourseService {
         try {
             Course courseEntity = courseMapper.toCourseWithId(course);
             courseEntity.setBibliography(bookMapper.toBookRefCollection(validateBooks(course.bibliography())));
-
+            
             return courseMapper
                     .toCourseDTO(courseRepository.insert(courseEntity));
         } catch (NullPointerException e) {

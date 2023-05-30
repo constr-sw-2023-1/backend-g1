@@ -37,7 +37,7 @@ public class CourseMongo {
     private CourseSyllabusMongo syllabus;
 
     @Field("active")
-    private Boolean active;
+    private Boolean active = true;
 
     @Field(name = "bibliography", targetType = FieldType.ARRAY)
     private Collection<BookRefMongo> bibliography;
