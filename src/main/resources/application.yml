@@ -16,7 +16,7 @@ spring:
     oauth2:
       resourceserver:
         jwt:
-          issuer-uri: ${KEYCLOAK_REALM_URL:http://localhost:8090/auth}/realms/${KEYCLOAK_REALM_NAME:master}
+          issuer-uri: ${KEYCLOAK_REALM_URL:http://localhost:8090/auth}/realms/${KEYCLOAK_REALM:master}
       client:
         registration:
           keycloak:
@@ -27,9 +27,9 @@ spring:
             client-name: ${KEYCLOAK_CLIENT_ID:admin-cli}
         provider:
           keycloak:
-            issuer-uri: ${KEYCLOAK_REALM_URL:http://localhost:8090/auth}/realms/${KEYCLOAK_REALM_NAME:master}
+            issuer-uri: ${KEYCLOAK_REALM_URL:http://localhost:8090/auth}/realms/${KEYCLOAK_REALM:master}
             user-name-attribute: preferred_username
-            jwk-set-uri: ${KEYCLOAK_REALM_URL:http://localhost:8090/auth}/realms/${KEYCLOAK_REALM_NAME:master}/protocol/openid-connect/certs
+            jwk-set-uri: ${KEYCLOAK_REALM_URL:http://localhost:8090/auth}/realms/${KEYCLOAK_REALM:master}/protocol/openid-connect/certs
 logging:
   level:
     root: INFO
