@@ -5,7 +5,7 @@ spring:
     name: courses-service
   data:
     mongodb:
-      host: ${MONGO_HOST:localhost}
+      host: ${MONGO_HOST:mongodb}
       port: ${MONGO_PORT:27017}
       database: ${MONGO_DATABASE:courses}
       username: ${MONGO_USERNAME:root}
